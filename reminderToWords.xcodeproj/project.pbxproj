@@ -30,6 +30,8 @@
 		E858E1A22AD82F0000E37212 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E858E18F2AD82F0000E37212 /* OFL.txt */; };
 		E858E1A32AD82F0000E37212 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1902AD82F0000E37212 /* Poppins-Medium.ttf */; };
 		E858E1A42AD82F0000E37212 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */; };
+		E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageController.swift */; };
+		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
 		E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358C02AD755CB00EE32E6 /* AppDelegate.swift */; };
 		E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358C22AD755CB00EE32E6 /* SceneDelegate.swift */; };
 		E8E358C52AD755CB00EE32E6 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358C42AD755CB00EE32E6 /* SplashScreenViewController.swift */; };
@@ -81,6 +83,8 @@
 		E858E18F2AD82F0000E37212 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../Downloads/Poppins/OFL.txt; sourceTree = "<group>"; };
 		E858E1902AD82F0000E37212 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		E858E1A62AD83D4400E37212 /* HomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageController.swift; sourceTree = "<group>"; };
+		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		E8E358BD2AD755CB00EE32E6 /* reminderToWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reminderToWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E358C02AD755CB00EE32E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8E358C22AD755CB00EE32E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +144,8 @@
 		E858E1702AD760F400E37212 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E858E1772AD7624400E37212 /* SplashScreenView.swift */,
+				E858E1AA2AD83E3100E37212 /* HomePage */,
+				E858E1A92AD83E1D00E37212 /* SplashScreen */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -148,7 +153,8 @@
 		E858E1712AD760F800E37212 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E8E358C42AD755CB00EE32E6 /* SplashScreenViewController.swift */,
+				E858E1A82AD83D4800E37212 /* HomePageVC */,
+				E858E1A52AD83B5C00E37212 /* SplashVc */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,6 +200,38 @@
 				E858E1882AD82EFF00E37212 /* Poppins-ThinItalic.ttf */,
 			);
 			path = PoppinsFont;
+			sourceTree = "<group>";
+		};
+		E858E1A52AD83B5C00E37212 /* SplashVc */ = {
+			isa = PBXGroup;
+			children = (
+				E8E358C42AD755CB00EE32E6 /* SplashScreenViewController.swift */,
+			);
+			path = SplashVc;
+			sourceTree = "<group>";
+		};
+		E858E1A82AD83D4800E37212 /* HomePageVC */ = {
+			isa = PBXGroup;
+			children = (
+				E858E1A62AD83D4400E37212 /* HomePageController.swift */,
+			);
+			path = HomePageVC;
+			sourceTree = "<group>";
+		};
+		E858E1A92AD83E1D00E37212 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E858E1772AD7624400E37212 /* SplashScreenView.swift */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		E858E1AA2AD83E3100E37212 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				E858E1AB2AD83E3E00E37212 /* HomePageView.swift */,
+			);
+			path = HomePage;
 			sourceTree = "<group>";
 		};
 		E8E358B42AD755CB00EE32E6 = {
@@ -403,7 +441,9 @@
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
+				E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
+				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
