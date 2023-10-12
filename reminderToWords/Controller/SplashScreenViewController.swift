@@ -9,11 +9,13 @@ import UIKit
 
 class SplashScreenViewController: UIViewController {
     
-    let splashView = SplashScreenView()
+    var splashView : SplashScreenView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        splashView = SplashScreenView(frame: view.frame)
+        view = splashView
+        view.backgroundColor = UIColor(hex:"#478dff")
     }
 
 }

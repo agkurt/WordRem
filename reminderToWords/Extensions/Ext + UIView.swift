@@ -30,13 +30,7 @@ extension UIView {
         }
     }
     
-    func createCustomLabel(with label : UILabel , text :String , fontSize : CGFloat , colorName : String) -> UILabel {
-        label.text = text
-        label.font = UIFont(name: "Poppins-Regular", size: fontSize)
-        label.textColor = UIColor(named: colorName)
-        label.textAlignment = .center
-        return label
-    }
+
     
 }
 
