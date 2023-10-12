@@ -7,13 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SplashScreenViewController: UIViewController {
+    
+    let splashView = SplashScreenView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .black
     }
-
 
 }
 
