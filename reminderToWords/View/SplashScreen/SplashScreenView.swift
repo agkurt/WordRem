@@ -8,8 +8,6 @@
 import UIKit
 
 class SplashScreenView : UIView {
-    
-    let userButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create Word", titleColor:.white, buttonBackGroundColor: .black)
     let userLabel = UIComponentsHelper.createCustomLabel(text: "SMARTCARDS", size: 30, labelBackGroundColor: .clear, textColor: .white , fontName: "Poppins-SemiBold")
     let userDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Study smarter, learn faster, and remember\n longer with spaced repetition", size: 17, labelBackGroundColor: .clear, textColor: .white, fontName: "Poppins-Regular")
     
@@ -24,13 +22,13 @@ class SplashScreenView : UIView {
     }
     
     private func setupSubviews() {
-        addSubview(userButton)
-        addSubview(userLabel)
         addSubview(userDescriptionLabel)
+        addSubview(userLabel)
     }
     private func configureLabel() {
         userLabel.translatesAutoresizingMaskIntoConstraints = false
         userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             userLabel.widthAnchor.constraint(equalToConstant: 250),
             userLabel.heightAnchor.constraint(equalToConstant: 25),

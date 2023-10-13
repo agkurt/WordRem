@@ -29,9 +29,7 @@ class HomePageView : UIView {
     private func configureUI() {
         infoButton.anchor(top: topAnchor, paddingTop: 55, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: rightAnchor, paddingRight: 8, width: 50, height: 50 , centerXAnchor: nil , centerYAnchor: nil)
         descriptionLabel.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: centerYAnchor)
-        //        newCardButton.anchor(top: topAnchor, paddingTop: 300, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 300, height: 40, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         stackViewButtons.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 20, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 80, centerXAnchor: centerXAnchor, centerYAnchor: nil)
-        
     }
     
     private func setupSubviews() {

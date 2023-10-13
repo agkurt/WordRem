@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E8444D8B2AD945F0001D2B33 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D8A2AD945F0001D2B33 /* Network.swift */; };
 		E8444D8F2AD9B644001D2B33 /* WordsBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */; };
+		E8444D912AD9C542001D2B33 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D902AD9C542001D2B33 /* CustomCell.swift */; };
+		E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D922AD9DC2A001D2B33 /* WordDecks.swift */; };
+		E8444D982ADA0551001D2B33 /* DecksGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D972ADA0551001D2B33 /* DecksGroupController.swift */; };
+		E8444D9A2ADA05BC001D2B33 /* DecksGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D992ADA05BC001D2B33 /* DecksGroup.swift */; };
 		E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1722AD7619700E37212 /* Ext + UIView.swift */; };
 		E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1752AD7622000E37212 /* Ext + UIColor .swift */; };
 		E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1772AD7624400E37212 /* SplashScreenView.swift */; };
@@ -64,6 +68,10 @@
 /* Begin PBXFileReference section */
 		E8444D8A2AD945F0001D2B33 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsBrain.swift; sourceTree = "<group>"; };
+		E8444D902AD9C542001D2B33 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		E8444D922AD9DC2A001D2B33 /* WordDecks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDecks.swift; sourceTree = "<group>"; };
+		E8444D972ADA0551001D2B33 /* DecksGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksGroupController.swift; sourceTree = "<group>"; };
+		E8444D992ADA05BC001D2B33 /* DecksGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksGroup.swift; sourceTree = "<group>"; };
 		E858E1722AD7619700E37212 /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		E858E1752AD7622000E37212 /* Ext + UIColor .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIColor .swift"; sourceTree = "<group>"; };
 		E858E1772AD7624400E37212 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -128,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8444D942ADA02A8001D2B33 /* DecksVC */ = {
+			isa = PBXGroup;
+			children = (
+				E8444D972ADA0551001D2B33 /* DecksGroupController.swift */,
+			);
+			path = DecksVC;
+			sourceTree = "<group>";
+		};
 		E858E16E2AD760C700E37212 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +159,8 @@
 			children = (
 				E8444D8A2AD945F0001D2B33 /* Network.swift */,
 				E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */,
+				E8444D922AD9DC2A001D2B33 /* WordDecks.swift */,
+				E8444D992ADA05BC001D2B33 /* DecksGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +177,7 @@
 		E858E1712AD760F800E37212 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E8444D942ADA02A8001D2B33 /* DecksVC */,
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
 			);
@@ -220,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				E858E1A62AD83D4400E37212 /* HomePageController.swift */,
+				E8444D902AD9C542001D2B33 /* CustomCell.swift */,
 			);
 			path = HomePageVC;
 			sourceTree = "<group>";
@@ -449,9 +469,13 @@
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
 				E8444D8F2AD9B644001D2B33 /* WordsBrain.swift in Sources */,
+				E8444D9A2ADA05BC001D2B33 /* DecksGroup.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */,
+				E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
+				E8444D982ADA0551001D2B33 /* DecksGroupController.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
+				E8444D912AD9C542001D2B33 /* CustomCell.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,6 +650,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T569GVN5Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -657,6 +682,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7T569GVN5Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";

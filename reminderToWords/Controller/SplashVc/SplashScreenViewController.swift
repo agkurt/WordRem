@@ -11,8 +11,8 @@ class SplashScreenViewController: UIViewController {
     
     var splashView : SplashScreenView!
     
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         splashView = SplashScreenView(frame: view.frame)
         view = splashView
         view.backgroundColor = UIColor(hex:"#478dff")
@@ -27,7 +27,7 @@ class SplashScreenViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .crossDissolve
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.present(navController, animated: true, completion: nil)
         }
     }

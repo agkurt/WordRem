@@ -8,24 +8,14 @@
 import UIKit
 
 struct WordsBrain {
-    var words = [
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
-       "agk",
+    var wordsDeck : [WordDecks] = [
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
+        WordDecks(imageName:"car" ,label: "agk"),
     ]
+    
 }
