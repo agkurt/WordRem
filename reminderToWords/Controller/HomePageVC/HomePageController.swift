@@ -7,76 +7,114 @@
 
 import UIKit
 
-class HomePageController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomePageController : UICollectionViewController {
     
-    var homePageVc : HomePageView!
-    var wordsBrain = WordsBrain()
+    var homePageView : HomePageView!
+    // MARK - COMPOSITIONAL LAYOUT
+    init() {
+        super.init(collectionViewLayout: HomePageController.createLayout())
+    }
     
-    private let tableView : UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
-        tableView.allowsSelection = true
-        tableView.register(CustomCell.self, forCellReuseIdentifier: CustomCell.identifier)
-        tableView.register(DecksGroupController.self, forCellReuseIdentifier: "decksCell")
-        return tableView
-    }()
+    static func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionNumber, env) ->
+            NSCollectionLayoutSection? in
+            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+            item.contentInsets.trailing = 15
+            item.contentInsets.leading = 15
+            item.contentInsets.bottom = 15
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(150)), subitems: [item])
+            
+            
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+    }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        cell.backgroundColor = .red
+        return cell
+    }
+    
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0 :
+            let detailViewController = UIViewController() // Veya farklı bir ViewController sınıfı
+            detailViewController.view.backgroundColor = .white
+            detailViewController.title = "Detay \(indexPath.row)"
+            
+            // Şimdi bu yeni ViewController'ı gösterelim
+            navigationController?.pushViewController(detailViewController, animated: true)
+        default:
+            let detailViewController = UIViewController() // Veya farklı bir ViewController sınıfı
+            detailViewController.view.backgroundColor = .white
+            detailViewController.title = "Detay \(indexPath.row)"
+            
+            // Şimdi bu yeni ViewController'ı gösterelim
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
     }
+    
+    private let cellId = "cellId"
     
     private func setupUI() {
-        
-        homePageVc = HomePageView(frame: view.frame)
-        self.view = homePageVc
+        collectionView.backgroundColor = .white
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         title = "SMARTCARDS"
-        self.view.backgroundColor = .white
-        self.view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        configureButton()
+
+    }
+    
+    private func configureButton() {
+        let infoButton = UIComponentsHelper.createCustomButton(buttonTitle: "Info", titleColor: UIColor.darkGray, buttonBackGroundColor: .clear)
+        let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: .blue)
+        let importButton = UIComponentsHelper.createCustomButton(buttonTitle: "Import", titleColor: .white, buttonBackGroundColor: .blue)
+        
+        let stackViewButtons = UIStackView(arrangedSubviews: [newCardButton, importButton])
+        stackViewButtons.axis = .horizontal
+        stackViewButtons.distribution = .fillProportionally
+        stackViewButtons.spacing = 8
+        
+        view.addSubview(stackViewButtons)
+        view.addSubview(infoButton)
+        
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
+        stackViewButtons.translatesAutoresizingMaskIntoConstraints = false
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .gray
+        view.insertSubview(backgroundView, belowSubview: stackViewButtons)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: homePageVc.infoButton.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: homePageVc.stackViewButtons.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
+            infoButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            infoButton.widthAnchor.constraint(equalToConstant: 50),
+            infoButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            stackViewButtons.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackViewButtons.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            stackViewButtons.widthAnchor.constraint(equalToConstant: 350),
+            stackViewButtons.heightAnchor.constraint(equalToConstant: 80),
+            
+            backgroundView.centerXAnchor.constraint(equalTo: stackViewButtons.centerXAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: stackViewButtons.bottomAnchor),
+            backgroundView.widthAnchor.constraint(equalTo: stackViewButtons.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: stackViewButtons.heightAnchor)
         ])
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordsBrain.wordsDeck.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else {
-            fatalError("The tableview could not dequeue a CustomCell in ViewController")
-        }
-        let wordDeckItem = self.wordsBrain.wordsDeck[indexPath.row]
-        
-        // image özelliği zaten UIImage? tipinde, bu nedenle doğrudan kullanabiliriz.
-        if let image = wordDeckItem.image {
-            cell.configure(with: image, and: wordDeckItem.label)
-        } else {
-            print("Image not found for name: \(wordDeckItem.imageName)")
-        }
 
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-        switch [indexPath.row]{
-        case 0 :
-            let cell = tableView.dequeueReusableCell(withIdentifier: <#T##String#>, for: <#T##IndexPath#>)
-        }
-           self.navigationController?.pushViewController(DecksGroupController(), animated: true)
-     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 112.5
-    }
-
-    
 }

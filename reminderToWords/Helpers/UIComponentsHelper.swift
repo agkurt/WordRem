@@ -50,7 +50,7 @@ struct UIComponentsHelper {
         stackView.distribution = .fillProportionally
         return stackView
     }
-    
+
     
 }
 
