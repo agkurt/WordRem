@@ -71,50 +71,24 @@ class HomePageController : UICollectionViewController {
     private let cellId = "cellId"
     
     private func setupUI() {
+        homePageView = HomePageView(frame: self.view.frame)
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         title = "SMARTCARDS"
-        configureButton()
-
+        homePageView.infoButton.removeFromSuperview()
+        view.addSubview(homePageView.infoButton)
+        view.bringSubviewToFront(homePageView.infoButton)
+        self.view.addSubview(homePageView.viewForButton)
+        self.view.addSubview(homePageView.stackViewButtons)
+       
+       
+        configureUI()
+        
     }
     
-    private func configureButton() {
-        let infoButton = UIComponentsHelper.createCustomButton(buttonTitle: "Info", titleColor: UIColor.darkGray, buttonBackGroundColor: .clear)
-        let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: .blue)
-        let importButton = UIComponentsHelper.createCustomButton(buttonTitle: "Import", titleColor: .white, buttonBackGroundColor: .blue)
-        
-        let stackViewButtons = UIStackView(arrangedSubviews: [newCardButton, importButton])
-        stackViewButtons.axis = .horizontal
-        stackViewButtons.distribution = .fillProportionally
-        stackViewButtons.spacing = 8
-        
-        view.addSubview(stackViewButtons)
-        view.addSubview(infoButton)
-        
-        infoButton.translatesAutoresizingMaskIntoConstraints = false
-        stackViewButtons.translatesAutoresizingMaskIntoConstraints = false
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .gray
-        view.insertSubview(backgroundView, belowSubview: stackViewButtons)
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            infoButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
-            infoButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            infoButton.widthAnchor.constraint(equalToConstant: 50),
-            infoButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            stackViewButtons.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackViewButtons.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            stackViewButtons.widthAnchor.constraint(equalToConstant: 350),
-            stackViewButtons.heightAnchor.constraint(equalToConstant: 80),
-            
-            backgroundView.centerXAnchor.constraint(equalTo: stackViewButtons.centerXAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: stackViewButtons.bottomAnchor),
-            backgroundView.widthAnchor.constraint(equalTo: stackViewButtons.widthAnchor),
-            backgroundView.heightAnchor.constraint(equalTo: stackViewButtons.heightAnchor)
-        ])
+    private func configureUI() {
+        homePageView.infoButton.anchor(top: view.topAnchor, paddingTop: 55, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: view.rightAnchor, paddingRight: 8, width: 50, height: 50 , centerXAnchor: nil , centerYAnchor: nil)
+        homePageView.stackViewButtons.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 20, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
+        homePageView.viewForButton.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: view.leftAnchor, paddingLeft: 0, right: view.rightAnchor, paddingRight: 0, width: 0, height: 100, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
     }
-
 }

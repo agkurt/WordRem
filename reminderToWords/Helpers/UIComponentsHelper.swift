@@ -50,7 +50,14 @@ struct UIComponentsHelper {
         stackView.distribution = .fillProportionally
         return stackView
     }
-
+    
+    static func createView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        return view
+    }
     
 }
 

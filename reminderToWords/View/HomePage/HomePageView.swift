@@ -13,6 +13,7 @@ class HomePageView : UIView {
     let descriptionLabel = UIComponentsHelper.createCustomLabel(text: "Tap Below to create or import your first deck!", size: 14, labelBackGroundColor: .clear, textColor: .black, fontName: "Poppins-Regular")
     let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: .blue)
     let importButton = UIComponentsHelper.createCustomButton(buttonTitle: "Import", titleColor: .white, buttonBackGroundColor: .blue)
+    let viewForButton = UIComponentsHelper.createView()
     var stackViewButtons = UIComponentsHelper.createStackView()
     
     override init(frame: CGRect) {
@@ -41,6 +42,7 @@ class HomePageView : UIView {
         addSubview(infoButton)
         addSubview(descriptionLabel)
         addSubview(stackViewButtons)
+        addSubview(viewForButton)
     }
     
     private func setupStackView() {
