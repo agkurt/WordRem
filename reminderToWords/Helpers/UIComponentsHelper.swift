@@ -59,6 +59,27 @@ struct UIComponentsHelper {
         return view
     }
     
+    static func createTextField(placeholder : String) -> UITextField {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.text = ""
+        textField.placeholder = placeholder
+        textField.font = UIFont(name: "Poppins-Light", size: 12)
+        textField.textColor = .white
+        textField.isUserInteractionEnabled = true
+        return textField
+    }
+    
+    static func createLabel(text : String , size : CGFloat , fontName : String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = text
+        label.font = UIFont(name: fontName, size: size)
+        label.textColor = UIColor.darkGray
+        label.isUserInteractionEnabled = false
+        return label
+    }
+    
 }
 
 

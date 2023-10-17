@@ -8,7 +8,6 @@
 import UIKit
 
 class HomePageView : UIView {
-    
     let infoButton = UIComponentsHelper.createCustomButton(buttonTitle: "Info", titleColor: UIColor.darkGray, buttonBackGroundColor: .clear)
     let descriptionLabel = UIComponentsHelper.createCustomLabel(text: "Tap Below to create or import your first deck!", size: 14, labelBackGroundColor: .clear, textColor: .black, fontName: "Poppins-Regular")
     let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: .blue)
@@ -19,7 +18,6 @@ class HomePageView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        setupSubviews()
         setupStackView()
         configureUI()
     }
@@ -32,18 +30,13 @@ class HomePageView : UIView {
         super.layoutSubviews()
     }
     
-    private func configureUI() {
-        infoButton.anchor(top: topAnchor, paddingTop: 55, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: rightAnchor, paddingRight: 8, width: 50, height: 50 , centerXAnchor: nil , centerYAnchor: nil)
-        descriptionLabel.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: centerYAnchor)
-        stackViewButtons.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 20, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 80, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+    func configureUI() {
+        self.addSubview(viewForButton)
+        self.addSubview(stackViewButtons)
+        stackViewButtons.anchor(top: nil, paddingTop: 0, bottom: self.bottomAnchor, paddingBottom: 20, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: self.centerXAnchor, centerYAnchor: nil)
+        viewForButton.anchor(top: nil, paddingTop: 0, bottom: self.bottomAnchor, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 0, right: self.rightAnchor, paddingRight: 0, width: 0, height: 100, centerXAnchor: self.centerXAnchor, centerYAnchor: nil)
     }
-    
-    private func setupSubviews() {
-        addSubview(infoButton)
-        addSubview(descriptionLabel)
-        addSubview(stackViewButtons)
-        addSubview(viewForButton)
-    }
+
     
     private func setupStackView() {
         stackViewButtons.addArrangedSubview(newCardButton)
