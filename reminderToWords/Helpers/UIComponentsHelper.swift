@@ -64,8 +64,8 @@ struct UIComponentsHelper {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.text = ""
         textField.placeholder = placeholder
-        textField.font = UIFont(name: "Poppins-Light", size: 12)
-        textField.textColor = .white
+        textField.font = UIFont(name: "Poppins-Light", size: 15)
+        textField.textColor = .black
         textField.isUserInteractionEnabled = true
         return textField
     }
@@ -79,6 +79,30 @@ struct UIComponentsHelper {
         label.isUserInteractionEnabled = false
         return label
     }
+    
+    static func createPath() ->UIBezierPath {
+        let path = UIBezierPath()
+        path.lineWidth = 2.0
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: 370, y: 0))
+        return path
+    }
+    
+    static func createDraw(startPoint: CGPoint, endPoint: CGPoint, strokeColor: UIColor = .gray, lineWidth: CGFloat = 1.0) -> CAShapeLayer {
+        let shapeLayer = CAShapeLayer()
+        let path = UIBezierPath()
+        
+        path.move(to: startPoint)
+        path.addLine(to: endPoint)
+        
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = strokeColor.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = lineWidth
+        return shapeLayer
+    }
+
+
     
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */; };
 		E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */; };
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckTableViewCell.swift; sourceTree = "<group>"; };
 		E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
@@ -136,12 +138,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */ = {
+		E82420BC2ADFF43E00B6993D /* NewDeckCell */ = {
 			isa = PBXGroup;
 			children = (
+				E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */,
+			);
+			path = NewDeckCell;
+			sourceTree = "<group>";
+		};
+		E83FFE3F2ADE8AFB00C9A01A /* NewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				E82420BC2ADFF43E00B6993D /* NewDeckCell */,
 				E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */,
 			);
-			path = NewDeckVC;
+			path = NewDeck;
 			sourceTree = "<group>";
 		};
 		E83FFE422ADE8EB900C9A01A /* NewDeck */ = {
@@ -194,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
-				E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */,
+				E83FFE3F2ADE8AFB00C9A01A /* NewDeck */,
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
 			);
@@ -487,6 +498,7 @@
 				E8444D8F2AD9B644001D2B33 /* WordsBrain.swift in Sources */,
 				E8444D9A2ADA05BC001D2B33 /* DecksGroup.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */,
+				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,

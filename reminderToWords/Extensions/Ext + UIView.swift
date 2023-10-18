@@ -32,10 +32,21 @@ extension UIView {
         if let centerX = centerXAnchor {
             self.centerXAnchor.constraint(equalTo: centerX).isActive = true
         }
-
+        
         if let centerY = centerYAnchor {
             self.centerYAnchor.constraint(equalTo: centerY).isActive = true
         }
-
+        
     }
+    
+    
+    func pin(to superView : UIView) {
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
+    }
+    
+    
 }
