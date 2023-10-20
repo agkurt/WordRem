@@ -20,34 +20,36 @@ struct UIComponentsHelper {
         return label
     }
     
-    static func createCustomButton(buttonTitle : String , titleColor :UIColor , buttonBackGroundColor: UIColor) -> UIButton {
+    static func createCustomButton(buttonTitle : String , titleColor :UIColor , buttonBackGroundColor: UIColor, UIColorName:String) -> UIButton {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(buttonTitle, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 15)
+        button.titleLabel?.font = UIFont(name: UIColorName, size: 15)
         button.setTitleColor(titleColor, for: .normal)
         button.backgroundColor = buttonBackGroundColor
         button.layer.cornerRadius = 5
         return button
     }
     
-    static func createImageView(imageName :String ) -> UIImageView {
+    static func createImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: imageName)
         imageView.layer.cornerRadius = 20
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "questionmark")
+        imageView.tintColor = .label
         imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
     }
     
-    static func createStackView() -> UIStackView {
+    static func createStackView(axis : NSLayoutConstraint.Axis , spacing : CGFloat , distribution :UIStackView.Distribution ) -> UIStackView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
+        stackView.axis = axis
         stackView.alignment = .center
-        stackView.spacing = 8
-        stackView.distribution = .fillProportionally
+        stackView.spacing = spacing
+        stackView.distribution = distribution
         return stackView
     }
     

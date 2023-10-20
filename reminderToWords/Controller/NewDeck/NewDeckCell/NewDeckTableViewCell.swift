@@ -11,17 +11,15 @@ class NewDeckTableViewCell: UITableViewCell {
     
     let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.systemGray, fontName: "Poppins-SemiBold")
     let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...")
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureViewCell()
-        
     }
     
     private func configureViewCell(){
-        setupUI()
         setSubviews()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -29,15 +27,16 @@ class NewDeckTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-
-        deckLabel.adjustsFontSizeToFitWidth = false
         deckLabel.numberOfLines = 0
+        deckLabel.adjustsFontSizeToFitWidth = false
+        deckLabel.anchor(top: topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
+        deckNameTextField.anchor(top: deckLabel.bottomAnchor, paddingTop: 10, bottom: bottomAnchor, paddingBottom: 5, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
+        
     }
-    
     private func setSubviews() {
-        self.addSubview(deckLabel)
-        self.addSubview(deckNameTextField)
+        contentView.addSubview(deckLabel)
+        contentView.addSubview(deckNameTextField)
+
     }
-    
-    
 }
+

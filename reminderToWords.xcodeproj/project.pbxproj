@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */; };
+		E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */; };
+		E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */; };
 		E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */; };
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */; };
@@ -68,6 +70,8 @@
 
 /* Begin PBXFileReference section */
 		E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckTableViewCell.swift; sourceTree = "<group>"; };
+		E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckColorTableViewCell.swift; sourceTree = "<group>"; };
+		E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckImageTableViewCell.swift; sourceTree = "<group>"; };
 		E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +146,27 @@
 			isa = PBXGroup;
 			children = (
 				E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */,
+				E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */,
+				E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */,
 			);
 			path = NewDeckCell;
+			sourceTree = "<group>";
+		};
+		E83577B52AE0A0B900C37473 /* Word */ = {
+			isa = PBXGroup;
+			children = (
+				E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */,
+				E8444D922AD9DC2A001D2B33 /* WordDecks.swift */,
+			);
+			path = Word;
+			sourceTree = "<group>";
+		};
+		E83577B62AE0A0C300C37473 /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				E8444D992ADA05BC001D2B33 /* DecksGroup.swift */,
+			);
+			path = Deck;
 			sourceTree = "<group>";
 		};
 		E83FFE3F2ADE8AFB00C9A01A /* NewDeck */ = {
@@ -184,9 +207,8 @@
 		E858E16F2AD760EF00E37212 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */,
-				E8444D922AD9DC2A001D2B33 /* WordDecks.swift */,
-				E8444D992ADA05BC001D2B33 /* DecksGroup.swift */,
+				E83577B62AE0A0C300C37473 /* Deck */,
+				E83577B52AE0A0B900C37473 /* Word */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */,
+				E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */,
 				E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */,
 				E8E358C52AD755CB00EE32E6 /* SplashScreenViewController.swift in Sources */,
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
@@ -500,6 +523,7 @@
 				E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */,
 				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */,
+				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
@@ -682,6 +706,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -714,6 +739,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
