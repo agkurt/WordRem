@@ -7,12 +7,26 @@
 
 import UIKit
 
+protocol ImagePickerDelegate : AnyObject {
+    func showImagePickerOptions(_ image : UIImage)
+    func didTapSelectButton()
+}
 
-class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
+
+class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate,ImagePickerDelegate   {
+    
+    func didTapSelectButton() {
+        showImagePickerOptions()
+    }
+    
+
+    func showImagePickerOptions(_ image: UIImage) {
+        imageView.image = image
+    }
     
     private var tableView = UITableView()
     private var newDeckView = NewDeckView()
-    
+    let imageView = UIImageView()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -21,6 +35,7 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
     private func configureTableView() {
         self.view.addSubview(newDeckView)
         self.view.addSubview(tableView)
+        self.view.addSubview(imageView)
         setTableViewDelegate()
         tableView.register(NewDeckTableViewCell.self, forCellReuseIdentifier: "deckCell")
         tableView.register(DeckColorTableViewCell.self, forCellReuseIdentifier: "colorCell")
@@ -35,23 +50,26 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
     public func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
         return imagePicker
     }
         
         public func showImagePickerOptions() {
             let alertVC = UIAlertController(title: "Pick a Photo", message: "Choose a picture from Library or camera", preferredStyle: .actionSheet)
-            //Image picker for camera
+
             let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
                 guard let self = self else {return}
                 let cameraImagePicker = self.imagePicker (sourceType: .camera)
+                cameraImagePicker.delegate = self
                 self.present(cameraImagePicker, animated: true) {
                     //TODO
                 }
             }
-            //Image Picker for Library
+
             let libraryAction = UIAlertAction(title: "Library", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
                 guard let self = self else {return}
                 let libraryImagePicker = self.imagePicker (sourceType: .photoLibrary)
+                libraryImagePicker.delegate = self
                 self.present(libraryImagePicker, animated: true) {
                    
                 }
@@ -89,6 +107,13 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor , constant: -140),
         ])
         
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10),
+            imageView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            imageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor)
+        ])
+        
     }
 
     private func configureNavigationbar() {
@@ -104,6 +129,7 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
     }
     
 }
+
 extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -132,7 +158,6 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
-
             return cell
         default :
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
@@ -158,3 +183,4 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
         
     }
 }
+

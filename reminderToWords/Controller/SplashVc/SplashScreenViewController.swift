@@ -21,7 +21,7 @@ class SplashScreenViewController: UIViewController {
     }
     
     func showOnboardingScreen() {
-        let homePageVC = HomePageController()
+        let homePageVC = OnboardingViewController()
         let navController = UINavigationController(rootViewController: homePageVC)
         
         navController.modalPresentationStyle = .fullScreen

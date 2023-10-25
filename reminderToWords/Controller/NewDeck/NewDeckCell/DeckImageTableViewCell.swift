@@ -7,9 +7,13 @@
 
 import UIKit
 
-
-
 class DeckImageTableViewCell: UITableViewCell {
+    
+    var delegate : ImagePickerDelegate?
+
+    func imagePickerDidSelectImage(_ image: UIImage) {
+        delegate?.showImagePickerOptions(image)
+     }
     
     let deckImageLabel = UIComponentsHelper.createCustomLabel(text: "Deck Image", size: 15, labelBackGroundColor: .clear, textColor: UIColor.systemGray, fontName: "Poppins-SemiBold")
     var selectImageButton = UIComponentsHelper.createCustomButton(buttonTitle: "Add an a Image", titleColor: .black, buttonBackGroundColor: .clear, UIColorName: "Poppins-Light")
@@ -37,8 +41,8 @@ class DeckImageTableViewCell: UITableViewCell {
     }
     
     @objc private func didTapSelectButton() {
-        let deckViewController = NewDeckViewController()
-        deckViewController.showImagePickerOptions()
+        delegate?.didTapSelectButton()
+        print("ss")
     }
     
     private func setupUI() {
