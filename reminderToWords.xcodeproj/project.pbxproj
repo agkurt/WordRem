@@ -16,6 +16,8 @@
 		E8444D8F2AD9B644001D2B33 /* WordsBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */; };
 		E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D922AD9DC2A001D2B33 /* WordDecks.swift */; };
 		E8444D9A2ADA05BC001D2B33 /* DecksGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8444D992ADA05BC001D2B33 /* DecksGroup.swift */; };
+		E84809092AE94DBD008FF04A /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84809082AE94DBD008FF04A /* CellData.swift */; };
+		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
 		E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1722AD7619700E37212 /* Ext + UIView.swift */; };
 		E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1752AD7622000E37212 /* Ext + UIColor .swift */; };
 		E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1772AD7624400E37212 /* SplashScreenView.swift */; };
@@ -39,7 +41,7 @@
 		E858E1A22AD82F0000E37212 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E858E18F2AD82F0000E37212 /* OFL.txt */; };
 		E858E1A32AD82F0000E37212 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1902AD82F0000E37212 /* Poppins-Medium.ttf */; };
 		E858E1A42AD82F0000E37212 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */; };
-		E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageController.swift */; };
+		E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */; };
 		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
@@ -81,6 +83,8 @@
 		E8444D8E2AD9B644001D2B33 /* WordsBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsBrain.swift; sourceTree = "<group>"; };
 		E8444D922AD9DC2A001D2B33 /* WordDecks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDecks.swift; sourceTree = "<group>"; };
 		E8444D992ADA05BC001D2B33 /* DecksGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksGroup.swift; sourceTree = "<group>"; };
+		E84809082AE94DBD008FF04A /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		E858E1722AD7619700E37212 /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		E858E1752AD7622000E37212 /* Ext + UIColor .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIColor .swift"; sourceTree = "<group>"; };
 		E858E1772AD7624400E37212 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -104,7 +108,7 @@
 		E858E18F2AD82F0000E37212 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OFL.txt; path = ../../../../../Downloads/Poppins/OFL.txt; sourceTree = "<group>"; };
 		E858E1902AD82F0000E37212 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		E858E1A62AD83D4400E37212 /* HomePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageController.swift; sourceTree = "<group>"; };
+		E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewController.swift; sourceTree = "<group>"; };
 		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 			children = (
 				E83577B62AE0A0C300C37473 /* Deck */,
 				E83577B52AE0A0B900C37473 /* Word */,
+				E84809082AE94DBD008FF04A /* CellData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,7 +301,8 @@
 		E858E1A82AD83D4800E37212 /* HomePageVC */ = {
 			isa = PBXGroup;
 			children = (
-				E858E1A62AD83D4400E37212 /* HomePageController.swift */,
+				E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */,
+				E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */,
 			);
 			path = HomePageVC;
 			sourceTree = "<group>";
@@ -543,9 +549,11 @@
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
 				E8444D8F2AD9B644001D2B33 /* WordsBrain.swift in Sources */,
 				E8444D9A2ADA05BC001D2B33 /* DecksGroup.swift in Sources */,
-				E858E1A72AD83D4400E37212 /* HomePageController.swift in Sources */,
+				E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */,
+				E84809092AE94DBD008FF04A /* CellData.swift in Sources */,
 				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */,
+				E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */,
 				E8444D932AD9DC2A001D2B33 /* WordDecks.swift in Sources */,
 				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,

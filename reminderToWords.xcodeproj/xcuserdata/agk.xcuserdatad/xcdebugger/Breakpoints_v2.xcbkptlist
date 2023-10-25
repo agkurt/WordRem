@@ -3,4 +3,114 @@
    uuid = "CF8E1C28-BC5C-4B34-BCB2-2F594D8F82AB"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "HomePageCollectionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - b4bc3f7d9aacbf0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.text.getter : Swift.String"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - 5a4ac0525b424de6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.text.setter : Swift.String"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - 48d6dc131bfbf9f7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.text.modify : Swift.String"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - 29cf53a6e7810848"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.text.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - 6b3969058249ae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.init() -&gt; reminderToWords.HomePageCollectionViewController"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "798F9E66-44C9-4625-896D-0A18A6A6F718 - 7e08c1c676fe65f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.HomePageCollectionViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;reminderToWords.HomePageCollectionViewController&gt;"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/HomePageVC/HomePageCollectionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "336">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

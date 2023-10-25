@@ -7,13 +7,18 @@
 
 import UIKit
 
-class HomePageController : UICollectionViewController {
+class HomePageCollectionViewController : UICollectionViewController {
     
     var homePageView : HomePageView!
     var wordsBrain = WordsBrain()
+    var cellDataArray = [CellData]()
+    let newdeckvc = NewDeckViewController()
+    var values: [String] = []
+    
+    var words : [WordsBrain] = []
     // MARK - COMPOSITIONAL LAYOUT
     init() {
-        super.init(collectionViewLayout: HomePageController.createLayout())
+        super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
     }
     
     static func createLayout() -> UICollectionViewCompositionalLayout {
@@ -24,20 +29,20 @@ class HomePageController : UICollectionViewController {
             item.contentInsets.leading = 15
             item.contentInsets.bottom = 15
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(150)), subitems: [item])
-            
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return values.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.row {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deckViewCell", for: indexPath) as! DeckCellCollectionViewCell
             cell.backgroundColor = .red
+            cell.configure(with: values[indexPath.item])
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
@@ -64,7 +69,7 @@ class HomePageController : UICollectionViewController {
             navigationController?.pushViewController(detailViewController, animated: true)
         }
     }
-   
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -72,6 +77,7 @@ class HomePageController : UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckViewCell")
     }
     
     private let cellId = "cellId"
@@ -85,7 +91,7 @@ class HomePageController : UICollectionViewController {
         addTargetButton()
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
     }
-    
+
     private func addTargetButton() {
         homePageView.newCardButton.addTarget(self, action: #selector(newCardButtonTapped), for: .touchUpInside)
         homePageView.importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
@@ -106,7 +112,4 @@ class HomePageController : UICollectionViewController {
     @objc func infoButtonTapped() {
         print("infoButtonTapped tapped")
     }
-    
-    
 }
-

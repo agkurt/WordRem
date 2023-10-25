@@ -12,25 +12,27 @@ protocol ImagePickerDelegate : AnyObject {
     func didTapSelectButton()
 }
 
+protocol TextFieldDelegate {
+    // Protokolde bir fonksiyon belirtiyoruz
+    func sendValue(_ value: [String])
+}
+
 
 class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate,ImagePickerDelegate   {
     
-    func didTapSelectButton() {
-        showImagePickerOptions()
-    }
-    
-
-    func showImagePickerOptions(_ image: UIImage) {
-        imageView.image = image
-    }
-    
     private var tableView = UITableView()
     private var newDeckView = NewDeckView()
+    let newDeckCell = NewDeckTableViewCell()
     let imageView = UIImageView()
+    let deckText = ""
+    var values : [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        values = Array(repeating: "", count: 2)
     }
+    
     
     private func configureTableView() {
         self.view.addSubview(newDeckView)
@@ -53,37 +55,49 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         imagePicker.delegate = self
         return imagePicker
     }
-        
-        public func showImagePickerOptions() {
-            let alertVC = UIAlertController(title: "Pick a Photo", message: "Choose a picture from Library or camera", preferredStyle: .actionSheet)
-
-            let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
-                guard let self = self else {return}
-                let cameraImagePicker = self.imagePicker (sourceType: .camera)
-                cameraImagePicker.delegate = self
-                self.present(cameraImagePicker, animated: true) {
-                    //TODO
-                }
-            }
-
-            let libraryAction = UIAlertAction(title: "Library", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
-                guard let self = self else {return}
-                let libraryImagePicker = self.imagePicker (sourceType: .photoLibrary)
-                libraryImagePicker.delegate = self
-                self.present(libraryImagePicker, animated: true) {
-                   
-                }
-            }
-            let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
-            alertVC.addAction(cameraAction)
-            alertVC.addAction(libraryAction)
-            alertVC.addAction(cancelAction)
-            self.present(alertVC, animated: true, completion: nil)
-        }
     
-   
+    public func showImagePickerOptions() {
+        let alertVC = UIAlertController(title: "Pick a Photo", message: "Choose a picture from Library or camera", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
+            guard let self = self else {return}
+            let cameraImagePicker = self.imagePicker (sourceType: .camera)
+            cameraImagePicker.delegate = self
+            self.present(cameraImagePicker, animated: true) {
+                //TODO
+            }
+        }
+        
+        let libraryAction = UIAlertAction(title: "Library", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
+            guard let self = self else {return}
+            let libraryImagePicker = self.imagePicker (sourceType: .photoLibrary)
+            libraryImagePicker.delegate = self
+            self.present(libraryImagePicker, animated: true) {
+                
+            }
+        }
+        let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
+        alertVC.addAction(cameraAction)
+        alertVC.addAction(libraryAction)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    
     @objc func doneButtonTapped() {
-        print("agk")
+        guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
+            fatalError("Wrong cell file")
+        }
+        sendValue(values)
+    }
+    
+    func didTapSelectButton() {
+        showImagePickerOptions()
+    }
+    
+    
+    func showImagePickerOptions(_ image: UIImage) {
+        imageView.image = image
     }
     
     @objc func cancelButtonTapped() {
@@ -106,16 +120,8 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
             tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 20),
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor , constant: -140),
         ])
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 10),
-            imageView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            imageView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor)
-        ])
-        
     }
-
+    
     private func configureNavigationbar() {
         navigationItem.backButtonTitle = "Cancel"
         navigationItem.title = "New Deck"
@@ -127,10 +133,20 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
 }
 
-extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
+extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , TextFieldDelegate,UITextFieldDelegate {
+    
+    func sendValue(_ value: [String]) {
+        let homePageVC = HomePageCollectionViewController()
+        
+        // İkinci view controller'daki diziyi bu değerle atıyoruz
+        homePageVC.values = value
+        
+        // Navigation controller'a ikinci ekrana geçiş yapmasını söylüyoruz
+        navigationController?.pushViewController(homePageVC, animated: true)
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -141,7 +157,10 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
         case 0:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
                 fatalError("Wrong cell file")
+                
             }
+            cell.configure(with: values[indexPath.row], tag: indexPath.row, delegate: self)
+            
             return cell
         case 1:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
@@ -182,5 +201,23 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // Textfield'da girilen metni alıyoruz
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        // Textfield'ın tag'ini alıyoruz
+        let tag = textField.tag
+        
+        // Dizinin ilgili elemanına metni atıyoruz
+        values[tag] = text
+        
+        return true
+    }
 }
+
+
+
+
 

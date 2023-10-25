@@ -31,7 +31,7 @@ extension OnboardingViewController: UIOnboardingViewControllerDelegate {
 
 extension OnboardingViewController {
     public func setUp() {
-        let vc = HomePageController()
+        let vc = HomePageCollectionViewController()
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = .init(named: "camou")
         navigationController?.pushViewController(vc, animated: true)
