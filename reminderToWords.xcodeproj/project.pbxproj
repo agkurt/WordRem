@@ -41,6 +41,7 @@
 		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
 		E8698B172AEB2F5100CC7144 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B162AEB2F5100CC7144 /* Deck.swift */; };
+		E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */; };
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
@@ -106,6 +107,7 @@
 		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E8698B162AEB2F5100CC7144 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
 		E8E358BD2AD755CB00EE32E6 /* reminderToWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reminderToWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 		E858E1702AD760F400E37212 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */,
 				E82420BC2ADFF43E00B6993D /* NewDeckTableViewCell */,
 				E83FFE422ADE8EB900C9A01A /* NewDeckBackGround */,
 				E858E1AA2AD83E3100E37212 /* HomePage */,
@@ -299,6 +302,14 @@
 				E858E1AB2AD83E3E00E37212 /* HomePageView.swift */,
 			);
 			path = HomePage;
+			sourceTree = "<group>";
+		};
+		E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */,
+			);
+			path = DetailTableViewCell;
 			sourceTree = "<group>";
 		};
 		E88B60612AE7FBF00005649A /* OnboardingVC */ = {
@@ -534,6 +545,7 @@
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
+				E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */,
 				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */,

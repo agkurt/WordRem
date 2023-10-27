@@ -7,8 +7,6 @@
 
 import UIKit
 
-struct Deck {
-    var image : UIImage?
-    var name : String
-    var color : UIColor?
+struct DeckDetails {
+   
 }
