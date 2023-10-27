@@ -10,9 +10,9 @@ import UIKit
 class DeckColorTableViewCell: UITableViewCell {
     
     let colors : [UIColor] = []
-    let selectColorButton = UIComponentsHelper.createCustomButton(buttonTitle: "Select Color", titleColor: UIColor.white, buttonBackGroundColor: UIColor.blue, UIColorName: "Poppins-SemiBold")
+    let selectColorButton = UIComponentsHelper.createCustomButton(buttonTitle: "Select Color", titleColor: UIColor.white, buttonBackGroundColor: UIColor(hex: "#3B5BA5"), UIColorName: "Poppins-SemiBold")
     let colorsStackView = UIComponentsHelper.createStackView(axis: .horizontal, spacing: 4, distribution: .fillEqually)
-    let deckColorLabel = UIComponentsHelper.createCustomLabel(text: "Deck Color", size: 15, labelBackGroundColor: .clear, textColor: .systemGray, fontName: "Poppins-SemiBold")
+    let deckColorLabel = UIComponentsHelper.createCustomLabel(text: "Deck Color", size: 15, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#3B5BA5"), fontName: "Poppins-SemiBold")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -11,7 +11,7 @@ class NewDeckView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(hex: "#3B5BA5")
     }
     
     required init?(coder: NSCoder) {
@@ -19,4 +19,5 @@ class NewDeckView : UIView {
     }
  
 }
+
 

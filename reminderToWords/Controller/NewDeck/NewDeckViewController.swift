@@ -8,36 +8,29 @@
 import UIKit
 
 protocol ImagePickerDelegate : AnyObject {
-    func showImagePickerOptions(_ image : UIImage)
-    func didTapSelectButton()
+    func didTapButton(_ button : UIButton)
+    func didSelectButtonInCell(_ cell : DeckImageTableViewCell)
 }
-
+// MARK - CREATE PROTOCOL FOR TEXTFIELD
 protocol TextFieldDelegate {
-    // Protokolde bir fonksiyon belirtiyoruz
-    func sendValue(_ value: [String])
+    func sendValue( _ value: [String])
 }
 
-
-class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate,ImagePickerDelegate   {
+class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private var tableView = UITableView()
     private var newDeckView = NewDeckView()
-    let newDeckCell = NewDeckTableViewCell()
-    let imageView = UIImageView()
-    let deckText = ""
     var values : [String] = []
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        values = Array(repeating: "", count: 2)
     }
-    
     
     private func configureTableView() {
         self.view.addSubview(newDeckView)
         self.view.addSubview(tableView)
-        self.view.addSubview(imageView)
         setTableViewDelegate()
         tableView.register(NewDeckTableViewCell.self, forCellReuseIdentifier: "deckCell")
         tableView.register(DeckColorTableViewCell.self, forCellReuseIdentifier: "colorCell")
@@ -47,13 +40,25 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         configureView()
         tableView.separatorStyle = .none
         title = "New Deck"
+        values = Array(repeating: "", count: 3)
+        view.backgroundColor = UIColor.init(hex: "#DED4E8")
     }
     
-    public func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
+    private func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
         return imagePicker
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            selectedImage = image
+            if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? DeckImageTableViewCell {
+                cell.updateImage(image)
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
     
     public func showImagePickerOptions() {
@@ -73,7 +78,6 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
             let libraryImagePicker = self.imagePicker (sourceType: .photoLibrary)
             libraryImagePicker.delegate = self
             self.present(libraryImagePicker, animated: true) {
-                
             }
         }
         let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
@@ -83,21 +87,8 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    
     @objc func doneButtonTapped() {
-        guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
-            fatalError("Wrong cell file")
-        }
         sendValue(values)
-    }
-    
-    func didTapSelectButton() {
-        showImagePickerOptions()
-    }
-    
-    
-    func showImagePickerOptions(_ image: UIImage) {
-        imageView.image = image
     }
     
     @objc func cancelButtonTapped() {
@@ -114,6 +105,7 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         tableView.layer.shadowRadius = 2
         tableView.layer.masksToBounds = true
         tableView.clipsToBounds = true
+        tableView.backgroundColor = .white
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
             tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -135,18 +127,13 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
     }
 }
 
-extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , TextFieldDelegate,UITextFieldDelegate {
+extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , TextFieldDelegate, UITextFieldDelegate {
     
     func sendValue(_ value: [String]) {
         let homePageVC = HomePageCollectionViewController()
-        
-        // İkinci view controller'daki diziyi bu değerle atıyoruz
         homePageVC.values = value
-        
-        // Navigation controller'a ikinci ekrana geçiş yapmasını söylüyoruz
         navigationController?.pushViewController(homePageVC, animated: true)
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -157,31 +144,32 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
         case 0:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
                 fatalError("Wrong cell file")
-                
             }
+            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
             cell.configure(with: values[indexPath.row], tag: indexPath.row, delegate: self)
-            
+            cell.selectionStyle = .none
             return cell
         case 1:
-            guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
-                fatalError("Wrong cell identifier")
-            }
-            return cell
-        case 2:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
                 fatalError("Wrong cell identifier")
-                
             }
+            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.selectionStyle = .none
             return cell
-        case 3:
+        case 2:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
+            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.delegate = self
+            cell.selectionStyle = .none
             return cell
         default :
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
+            cell.selectionStyle = .none
+            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
             return cell
         }
     }
@@ -191,30 +179,37 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
         case 0 :
             return 60
         case 1:
-            return 60
-        case 2:
             return 120
-        case 3:
+        case 2:
             return 200
         default:
-            return 60
+            return 200
         }
         
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        // Textfield'da girilen metni alıyoruz
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
-        // Textfield'ın tag'ini alıyoruz
         let tag = textField.tag
-        
-        // Dizinin ilgili elemanına metni atıyoruz
         values[tag] = text
-        
         return true
     }
+}
+
+extension NewDeckViewController : ImagePickerDelegate {
+    
+    func didSelectButtonInCell(_ cell: DeckImageTableViewCell) {
+        showImagePickerOptions()
+    }
+    
+    func didTapButton(_ button: UIButton) {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
+            fatalError("wrong identifier")
+        }
+        cell.delegate?.didTapButton(button)
+    }
+    
 }
 
 

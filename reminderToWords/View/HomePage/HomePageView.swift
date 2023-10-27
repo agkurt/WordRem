@@ -10,8 +10,8 @@ import UIKit
 class HomePageView : UIView {
     let infoButton = UIComponentsHelper.createCustomButton(buttonTitle: "Info", titleColor: UIColor.darkGray, buttonBackGroundColor: .clear , UIColorName: "Poppins-SemiBold")
     let descriptionLabel = UIComponentsHelper.createCustomLabel(text: "Tap Below to create or import your first deck!", size: 14, labelBackGroundColor: .clear, textColor: .black, fontName: "Poppins-Regular")
-    let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: .blue, UIColorName: "Poppins-SemiBold")
-    let importButton = UIComponentsHelper.createCustomButton(buttonTitle: "Import", titleColor: .white, buttonBackGroundColor: .blue, UIColorName: "Poppins-SemiBold")
+    let newCardButton = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Flashcard Deck", titleColor: .white, buttonBackGroundColor: UIColor.init(hex: "#F3B941"), UIColorName: "Poppins-SemiBold")
+    let importButton = UIComponentsHelper.createCustomButton(buttonTitle: "Import", titleColor: .white, buttonBackGroundColor: UIColor.init(hex: "#F3B941"), UIColorName: "Poppins-SemiBold")
     let viewForButton = UIComponentsHelper.createView()
     var stackViewButtons = UIComponentsHelper.createStackView(axis: .horizontal, spacing: 8 , distribution: .fillProportionally)
     

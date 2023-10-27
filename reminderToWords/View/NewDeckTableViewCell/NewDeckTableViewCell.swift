@@ -9,7 +9,7 @@ import UIKit
 
 class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
     
-    let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.systemGray, fontName: "Poppins-SemiBold")
+    let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#3B5BA5"), fontName: "Poppins-SemiBold")
     let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...")
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -25,16 +25,6 @@ class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updateText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-        print("Güncellenen metin: \(updateText)")
-        return true
-    }
-    
-    func getDeckText() -> String {
-        return deckNameTextField.text ?? ""
     }
     
     func configure(with text: String, tag: Int, delegate: UITextFieldDelegate) {
@@ -56,6 +46,3 @@ class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
         contentView.addSubview(deckNameTextField)
     }
 }
-
-
-

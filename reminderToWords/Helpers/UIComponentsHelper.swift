@@ -38,7 +38,7 @@ struct UIComponentsHelper {
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "questionmark")
         imageView.tintColor = .label
-        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderWidth = 0.5
         imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
     }
@@ -67,7 +67,7 @@ struct UIComponentsHelper {
         textField.text = ""
         textField.placeholder = placeholder
         textField.font = UIFont(name: "Poppins-Light", size: 15)
-        textField.textColor = .black
+        textField.textColor = .white
         textField.isUserInteractionEnabled = true
         return textField
     }

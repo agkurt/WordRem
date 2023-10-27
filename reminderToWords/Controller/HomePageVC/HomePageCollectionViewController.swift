@@ -10,13 +10,10 @@ import UIKit
 class HomePageCollectionViewController : UICollectionViewController {
     
     var homePageView : HomePageView!
-    var wordsBrain = WordsBrain()
-    var cellDataArray = [CellData]()
     let newdeckvc = NewDeckViewController()
     var values: [String] = []
-    
-    var words : [WordsBrain] = []
     // MARK - COMPOSITIONAL LAYOUT
+    
     init() {
         super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
     }
@@ -41,33 +38,25 @@ class HomePageCollectionViewController : UICollectionViewController {
         switch indexPath.row {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deckViewCell", for: indexPath) as! DeckCellCollectionViewCell
-            cell.backgroundColor = .red
+            cell.backgroundColor = .lightGray
             cell.configure(with: values[indexPath.item])
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-            cell.backgroundColor = .red
+            cell.backgroundColor = .lightGray
             return cell
         default :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-            cell.backgroundColor = .red
+            cell.backgroundColor = .lightGray
             return cell
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0 :
-            let detailViewController = UIViewController()
-            detailViewController.view.backgroundColor = .white
-            detailViewController.title = " \(indexPath.row)"
-            navigationController?.pushViewController(detailViewController, animated: true)
-        default:
-            let detailViewController = UIViewController()
-            detailViewController.view.backgroundColor = .white
-            detailViewController.title = " \(indexPath.row)"
-            navigationController?.pushViewController(detailViewController, animated: true)
-        }
+            let vc = DetailViewController()
+            vc.title = " \(indexPath.row)"
+            navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     required init?(coder: NSCoder) {
