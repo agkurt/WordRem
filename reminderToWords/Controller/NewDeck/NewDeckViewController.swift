@@ -41,7 +41,7 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         tableView.separatorStyle = .none
         title = "New Deck"
         values = Array(repeating: "", count: 3)
-        view.backgroundColor = UIColor.init(hex: "#DED4E8")
+        view.backgroundColor = UIColor.white
     }
     
     private func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
@@ -145,7 +145,7 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
                 fatalError("Wrong cell file")
             }
-            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.backgroundColor = UIColor.white
             cell.configure(with: values[indexPath.row], tag: indexPath.row, delegate: self)
             cell.selectionStyle = .none
             return cell
@@ -153,14 +153,14 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
-            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.backgroundColor = UIColor.white
             cell.selectionStyle = .none
             return cell
         case 2:
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
-            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.backgroundColor = UIColor.white
             cell.delegate = self
             cell.selectionStyle = .none
             return cell
@@ -169,7 +169,7 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
                 fatalError("Wrong cell identifier")
             }
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor.init(hex: "#FCEDDA")
+            cell.backgroundColor = UIColor.white           
             return cell
         }
     }

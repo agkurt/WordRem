@@ -53,7 +53,8 @@ class HomePageCollectionViewController : UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let vc = DetailViewController()
+            
+            let vc = CardViewController()
             vc.title = " \(indexPath.row)"
             navigationController?.pushViewController(vc, animated: true)
         

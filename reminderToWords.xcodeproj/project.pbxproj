@@ -42,6 +42,8 @@
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
 		E8698B172AEB2F5100CC7144 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B162AEB2F5100CC7144 /* Deck.swift */; };
 		E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */; };
+		E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559D2AF2D840006F2612 /* CardViewController.swift */; };
+		E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559F2AF2DB46006F2612 /* CardView.swift */; };
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
@@ -108,6 +110,8 @@
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E8698B162AEB2F5100CC7144 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		E87E559D2AF2D840006F2612 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		E87E559F2AF2DB46006F2612 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
 		E8E358BD2AD755CB00EE32E6 /* reminderToWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reminderToWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +209,7 @@
 		E858E1702AD760F400E37212 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E87E559B2AF2D800006F2612 /* ConfigureCardView */,
 				E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */,
 				E82420BC2ADFF43E00B6993D /* NewDeckTableViewCell */,
 				E83FFE422ADE8EB900C9A01A /* NewDeckBackGround */,
@@ -217,6 +222,7 @@
 		E858E1712AD760F800E37212 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E87E559C2AF2D817006F2612 /* ConfigureCardController */,
 				E88B60612AE7FBF00005649A /* OnboardingVC */,
 				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
 				E83FFE3F2ADE8AFB00C9A01A /* NewDeck */,
@@ -310,6 +316,22 @@
 				E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */,
 			);
 			path = DetailTableViewCell;
+			sourceTree = "<group>";
+		};
+		E87E559B2AF2D800006F2612 /* ConfigureCardView */ = {
+			isa = PBXGroup;
+			children = (
+				E87E559F2AF2DB46006F2612 /* CardView.swift */,
+			);
+			path = ConfigureCardView;
+			sourceTree = "<group>";
+		};
+		E87E559C2AF2D817006F2612 /* ConfigureCardController */ = {
+			isa = PBXGroup;
+			children = (
+				E87E559D2AF2D840006F2612 /* CardViewController.swift */,
+			);
+			path = ConfigureCardController;
 			sourceTree = "<group>";
 		};
 		E88B60612AE7FBF00005649A /* OnboardingVC */ = {
@@ -544,6 +566,7 @@
 				E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */,
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
+				E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
 				E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */,
@@ -553,6 +576,7 @@
 				E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */,
 				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
+				E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,

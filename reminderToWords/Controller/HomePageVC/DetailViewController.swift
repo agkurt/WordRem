@@ -21,16 +21,22 @@ class DetailViewController: UIViewController {
     private func setupTableView() {
         configureTableView()
         setupCell()
+        setTableViewDelegate()
     }
 
     private func configureTableView() {
         self.view.addSubview(tableView)
         tableView.pin(to: view)
-        self.view.backgroundColor = .white
+        tableView.backgroundColor = .white
     }
     
     private func setupCell() {
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: identifier)
+    }
+    
+    private func setTableViewDelegate() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
 }
@@ -38,14 +44,16 @@ class DetailViewController: UIViewController {
 extension DetailViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? DetailTableViewCell else {
             fatalError("wrong identifier ")
         }
-        cell.backgroundColor = .blue
+        cell.selectionStyle = .none
+        cell.backgroundColor = .white
+        
         return cell
     }
     
@@ -53,9 +61,12 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? DetailTableViewCell else {
             fatalError("wrong identifier")
         }
-        cell.backgroundColor = .blue
+        cell.selectionStyle = .none
+        cell.backgroundColor = .white
         
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 500
+    }
 }

@@ -61,13 +61,13 @@ struct UIComponentsHelper {
         return view
     }
     
-    static func createTextField(placeholder : String) -> UITextField {
+    static func createTextField(placeholder : String ,textColor :UIColor) -> UITextField {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.text = ""
         textField.placeholder = placeholder
         textField.font = UIFont(name: "Poppins-Light", size: 15)
-        textField.textColor = .white
+        textField.textColor = textColor
         textField.isUserInteractionEnabled = true
         return textField
     }

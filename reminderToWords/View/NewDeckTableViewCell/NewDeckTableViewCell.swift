@@ -10,17 +10,17 @@ import UIKit
 class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
     
     let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#3B5BA5"), fontName: "Poppins-SemiBold")
-    let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...")
+    let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...", textColor : UIColor.black)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureViewCell()
-        deckNameTextField.delegate = self
     }
     
     private func configureViewCell(){
         setSubviews()
-        setupUI()
+        setupUI()   
+        deckNameTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
