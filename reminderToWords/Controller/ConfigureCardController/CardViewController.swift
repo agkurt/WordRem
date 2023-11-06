@@ -11,7 +11,6 @@ class CardViewController: UIViewController {
     
     let tableView = UITableView()
     var cardView = CardView()
-    let cards :[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +24,9 @@ class CardViewController: UIViewController {
         configureCardView()
         cardView.createNewCard.addTarget(self, action: #selector(didTapNewCardButton), for: .touchUpInside)
         cardView.createNewCard.isUserInteractionEnabled = true
+        title = "Cards"
     }
-    
+     
     private func configureTableView() {
         tableView.delegate  = self
         tableView.dataSource = self
@@ -64,11 +64,7 @@ extension CardViewController : UITableViewDelegate , UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
             fatalError("wrong identifier")
         }
-        cell.backgroundColor = .orange
+        cell.backgroundColor = .white
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height
     }
 }

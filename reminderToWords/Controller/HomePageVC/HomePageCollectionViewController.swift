@@ -77,7 +77,7 @@ class HomePageCollectionViewController : UICollectionViewController {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         homePageView = HomePageView(frame: self.view.frame)
         self.view.addSubview(homePageView)
-        title = "SMARTCARDS"
+        title = "ReminderToWords"
         addTargetButton()
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
     }

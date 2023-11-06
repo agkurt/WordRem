@@ -103,9 +103,6 @@ struct UIComponentsHelper {
         shapeLayer.lineWidth = lineWidth
         return shapeLayer
     }
-
-
-    
 }
 
 
