@@ -29,7 +29,9 @@ class LoginScreenViewController: UIViewController {
     }
     
     @objc func loginButtonTapped() {
-        print("Giriş butonuna tıklandı")
+        let vc = HomePageCollectionViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @objc func registerButtonTapped() {
