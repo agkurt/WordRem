@@ -39,6 +39,8 @@
 		E858E1A42AD82F0000E37212 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */; };
 		E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */; };
 		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
+		E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDA2AFAB9A40077A8BD /* AuthService.swift */; };
+		E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */; };
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
 		E8698B172AEB2F5100CC7144 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B162AEB2F5100CC7144 /* Deck.swift */; };
 		E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */; };
@@ -47,6 +49,7 @@
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
+		E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */; };
 		E8B677FA2AF9331700694A1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8B677F92AF9331700694A1F /* GoogleService-Info.plist */; };
 		E8B677FD2AF9350B00694A1F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E8B677FC2AF9350B00694A1F /* FirebaseAnalytics */; };
 		E8B677FF2AF9350B00694A1F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8B677FE2AF9350B00694A1F /* FirebaseAnalyticsSwift */; };
@@ -118,6 +121,8 @@
 		E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewController.swift; sourceTree = "<group>"; };
 		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		E8697CDA2AFAB9A40077A8BD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E8698B162AEB2F5100CC7144 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 		E87E559F2AF2DB46006F2612 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		E8B677F92AF9331700694A1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8D75F162AF981AB00CD4857 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		E8D75F182AF981B600CD4857 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				E8698B162AEB2F5100CC7144 /* Deck.swift */,
+				E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */,
+				E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +342,14 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		E8697CDE2AFABBC80077A8BD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E8697CDA2AFAB9A40077A8BD /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +443,7 @@
 				E858E1742AD7619B00E37212 /* Extensions */,
 				E858E1712AD760F800E37212 /* Controller */,
 				E858E1702AD760F400E37212 /* View */,
+				E8697CDE2AFABBC80077A8BD /* Services */,
 				E858E16F2AD760EF00E37212 /* Model */,
 				E8E358C92AD755CE00EE32E6 /* Assets.xcassets */,
 				E858E16E2AD760C700E37212 /* Settings */,
@@ -618,7 +635,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */,
+				E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */,
 				E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */,
+				E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */,
 				E8D75F172AF981AB00CD4857 /* LoginScreenViewController.swift in Sources */,
 				E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */,
 				E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */,
@@ -627,6 +646,7 @@
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E8D75F1C2AF981EF00CD4857 /* LoginScreenView.swift in Sources */,
 				E8D75F1E2AF981F800CD4857 /* RegisterView.swift in Sources */,
+				E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
 				E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,

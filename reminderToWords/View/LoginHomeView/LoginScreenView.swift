@@ -11,8 +11,8 @@ class LoginScreenView: UIView {
     
     private let emailLabel = UIComponentsHelper.createCustomLabel(text: "Email", size: 20, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#7F00FF"), fontName: "Poppins-SemiBold")
     private let passwordLabel = UIComponentsHelper.createCustomLabel(text: "Password", size: 20, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#7F00FF"), fontName: "Poppins-SemiBold")
-    private let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your email...", textColor: UIColor.black)
-    private let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your password...", textColor: UIColor.black)
+    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your email...", textColor: UIColor.black)
+    let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your password...", textColor: UIColor.black)
     let loginButton = UIComponentsHelper.createCustomButton(buttonTitle: "Login", titleColor: UIColor.init(hex: "#7F00FF"), buttonBackGroundColor: UIColor.white, UIColorName: "Poppins-SemiBold")
     let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "Register", titleColor: UIColor.init(hex: "#7F00FF"), buttonBackGroundColor: UIColor.white, UIColorName: "Poppins-SemiBold")
 

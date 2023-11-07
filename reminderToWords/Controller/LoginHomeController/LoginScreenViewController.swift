@@ -10,7 +10,7 @@ import UIKit
 class LoginScreenViewController: UIViewController {
     
     private var loginView = LoginScreenView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -28,16 +28,28 @@ class LoginScreenViewController: UIViewController {
         loginView.registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
-    @objc func loginButtonTapped() {
-        let vc = HomePageCollectionViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        
+    @objc func loginButtonTapped() -> Bool {
+        let login = LoginUserRequest(email: loginView.emailTextField.text, password: loginView.passwordTextField.text)
+        var hype = true
+        guard
+            !login.email!.isEmpty,
+            !login.password!.isEmpty else {
+            print("Please fill in all fields.")
+            return hype
+        }
+        hype = false
+        DispatchQueue.main.async {
+            let vc = HomePageCollectionViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            print("Login Successful!!!")
+        }
+        return hype
     }
     
     @objc func registerButtonTapped() {
-        print("Kayıt ol butonuna tıklandı.")
-        let vc = RegisterViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.async {
+            let vc = RegisterViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
 }

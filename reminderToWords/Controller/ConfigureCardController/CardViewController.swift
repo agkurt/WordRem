@@ -46,12 +46,11 @@ class CardViewController: UIViewController {
     }
     
     @objc func didTapNewCardButton() {
-        let vc = DetailViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        print("hello world")
+        DispatchQueue.main.async {
+            let vc = DetailViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
-    
 }
 
 extension CardViewController : UITableViewDelegate , UITableViewDataSource {
