@@ -80,6 +80,7 @@ class HomePageCollectionViewController : UICollectionViewController {
         title = "ReminderToWords"
         addTargetButton()
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
+        navigatorControllerSet()
     }
 
     private func addTargetButton() {
@@ -101,5 +102,22 @@ class HomePageCollectionViewController : UICollectionViewController {
     
     @objc func infoButtonTapped() {
         print("infoButtonTapped tapped")
+    }
+    
+    private func navigatorControllerSet() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
+    }
+    
+    @objc func didTapLogoutButton() {
+        AuthService.shared.signOut { [weak self] error in
+            guard let self = self else {return}
+            if let error = error {
+                
+            }
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            }
+        }
     }
 }

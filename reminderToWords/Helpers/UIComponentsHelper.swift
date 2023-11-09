@@ -63,12 +63,16 @@ struct UIComponentsHelper {
     
     static func createTextField(placeholder : String ,textColor :UIColor) -> UITextField {
         let textField = UITextField()
+        let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.size.height))
+        textField.leftView = leftPaddingView
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.text = ""
         textField.placeholder = placeholder
         textField.font = UIFont(name: "Poppins-Light", size: 15)
         textField.textColor = textColor
         textField.isUserInteractionEnabled = true
+        textField.backgroundColor = UIColor.init(hex: "#E8E8E8")
         return textField
     }
     
@@ -103,6 +107,17 @@ struct UIComponentsHelper {
         shapeLayer.lineWidth = lineWidth
         return shapeLayer
     }
+    
+    static func createIconImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(named: "wordIcon")
+        imageView.tintColor = .label
+        return imageView
+    }
+    
 }
 
 

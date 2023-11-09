@@ -9,12 +9,14 @@ import UIKit
 
 class LoginScreenView: UIView {
     
-    private let emailLabel = UIComponentsHelper.createCustomLabel(text: "Email", size: 20, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#7F00FF"), fontName: "Poppins-SemiBold")
-    private let passwordLabel = UIComponentsHelper.createCustomLabel(text: "Password", size: 20, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#7F00FF"), fontName: "Poppins-SemiBold")
-    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your email...", textColor: UIColor.black)
-    let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tEnter your password...", textColor: UIColor.black)
-    let loginButton = UIComponentsHelper.createCustomButton(buttonTitle: "Login", titleColor: UIColor.init(hex: "#7F00FF"), buttonBackGroundColor: UIColor.white, UIColorName: "Poppins-SemiBold")
-    let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "Register", titleColor: UIColor.init(hex: "#7F00FF"), buttonBackGroundColor: UIColor.white, UIColorName: "Poppins-SemiBold")
+    let signLabel = UIComponentsHelper.createCustomLabel(text: "Sign In", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
+    let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Sign in to your account", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Poppins-Light")
+    let iconImageView = UIComponentsHelper.createIconImageView()
+    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail...", textColor: UIColor.black)
+    let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tPassword...", textColor: UIColor.black)
+    let signInButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign In", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Poppins-SemiBold")
+    let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "New User? Create Account", titleColor: UIColor.init(hex: "#205AFF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
+    let forgotPasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Forgot Password?", titleColor: UIColor.init(hex: "#1180FF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,28 +34,29 @@ class LoginScreenView: UIView {
     
     private func setupSubview() {
         addSubview(emailTextField)
+        addSubview(signLabel)
+        addSubview(signDescriptionLabel)
+        addSubview(iconImageView)
+        addSubview(forgotPasswordButton)
         addSubview(passwordTextField)
-        addSubview(emailLabel)
-        addSubview(passwordLabel)
-        addSubview(loginButton)
+        addSubview(signInButton)
         addSubview(registerButton)
     }
     
     private func configureUI() {
         
-        emailLabel.anchor(top: self.safeAreaLayoutGuide.topAnchor, paddingTop: 150, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        passwordLabel.anchor(top: emailTextField.bottomAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        emailTextField.anchor(top: emailLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 300, height: 45, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        passwordTextField.anchor(top: passwordLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 300, height: 45, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        loginButton.anchor(top: passwordTextField.bottomAnchor, paddingTop: 50, bottom:nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 150, height: 35, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        registerButton.anchor(top: loginButton.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 150, height: 35, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        emailTextField.anchor(top: safeAreaLayoutGuide.topAnchor, paddingTop: 180, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        passwordTextField.anchor(top: emailTextField.bottomAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        signInButton.anchor(top: passwordTextField.bottomAnchor, paddingTop: 20, bottom:nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        registerButton.anchor(top: signInButton.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 300, height: 35, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        forgotPasswordButton.anchor(top:registerButton.bottomAnchor, paddingTop: 15, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 200, height: 35, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        iconImageView.anchor(top:safeAreaLayoutGuide.topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 90, height: 90, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        signLabel.anchor(top:iconImageView.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 75, height: 25, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        signDescriptionLabel.anchor(top:signLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 200, height: 20, centerXAnchor: centerXAnchor, centerYAnchor:nil)
         
-        emailTextField.layer.cornerRadius = 10
-        emailTextField.layer.borderWidth = 1.0
-        emailTextField.layer.borderColor = UIColor.init(hex: "#7F00FF").cgColor
+        emailTextField.layer.cornerRadius = 20
+        passwordTextField.layer.cornerRadius = 20
+        passwordTextField.isSecureTextEntry = true
         
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.layer.borderWidth = 1.0
-        passwordTextField.layer.borderColor = UIColor.init(hex: "#7F00FF").cgColor
     }
 }
