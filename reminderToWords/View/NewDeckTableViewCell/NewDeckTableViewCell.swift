@@ -7,10 +7,11 @@
 
 import UIKit
 
-class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
+class NewDeckTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#3B5BA5"), fontName: "Poppins-SemiBold")
     let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...", textColor : UIColor.black)
+    weak var delegate : TextFieldDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -19,18 +20,11 @@ class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
     
     private func configureViewCell(){
         setSubviews()
-        setupUI()   
-        deckNameTextField.delegate = self
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(with text: String, tag: Int, delegate: UITextFieldDelegate) {
-        deckNameTextField.text = text
-        deckNameTextField.tag = tag
-        deckNameTextField.delegate = delegate
     }
     
     private func setupUI() {
@@ -38,7 +32,12 @@ class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
         deckLabel.adjustsFontSizeToFitWidth = false
         deckLabel.anchor(top: topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
         deckNameTextField.anchor(top: deckLabel.bottomAnchor, paddingTop: 10, bottom: bottomAnchor, paddingBottom: 5, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
-        
+    }
+    
+    func configure(with text: String, tag: Int, delegate: TextFieldDelegate) {
+        deckNameTextField.text = text
+        deckNameTextField.tag = tag
+        deckNameTextField.delegate = delegate as? UITextFieldDelegate
     }
     
     private func setSubviews() {
@@ -46,3 +45,4 @@ class NewDeckTableViewCell: UITableViewCell,UITextFieldDelegate {
         contentView.addSubview(deckNameTextField)
     }
 }
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80A633E2B054C44007BF642 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80A633D2B054C44007BF642 /* DataModel.swift */; };
 		E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */; };
 		E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */; };
 		E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */; };
@@ -42,7 +43,6 @@
 		E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDA2AFAB9A40077A8BD /* AuthService.swift */; };
 		E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */; };
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
-		E8698B172AEB2F5100CC7144 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B162AEB2F5100CC7144 /* Deck.swift */; };
 		E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */; };
 		E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559D2AF2D840006F2612 /* CardViewController.swift */; };
 		E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559F2AF2DB46006F2612 /* CardView.swift */; };
@@ -96,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E80A633D2B054C44007BF642 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckTableViewCell.swift; sourceTree = "<group>"; };
 		E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckColorTableViewCell.swift; sourceTree = "<group>"; };
 		E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		E8697CDA2AFAB9A40077A8BD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		E8698B162AEB2F5100CC7144 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		E87E559D2AF2D840006F2612 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		E87E559F2AF2DB46006F2612 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -206,12 +206,12 @@
 			path = NewDeckTableViewCell;
 			sourceTree = "<group>";
 		};
-		E83FFE3F2ADE8AFB00C9A01A /* NewDeck */ = {
+		E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */ = {
 			isa = PBXGroup;
 			children = (
 				E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */,
 			);
-			path = NewDeck;
+			path = NewDeckVC;
 			sourceTree = "<group>";
 		};
 		E83FFE422ADE8EB900C9A01A /* NewDeckBackGround */ = {
@@ -244,9 +244,9 @@
 		E858E16F2AD760EF00E37212 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E8698B162AEB2F5100CC7144 /* Deck.swift */,
 				E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */,
 				E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */,
+				E80A633D2B054C44007BF642 /* DataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				E87E559C2AF2D817006F2612 /* ConfigureCardController */,
 				E88B60612AE7FBF00005649A /* OnboardingVC */,
 				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
-				E83FFE3F2ADE8AFB00C9A01A /* NewDeck */,
+				E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */,
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
 			);
@@ -336,8 +336,8 @@
 		E858E1A82AD83D4800E37212 /* HomePageVC */ = {
 			isa = PBXGroup;
 			children = (
-				E8C6B61D2AEAD015004F1BAC /* CollectionViewCell */,
 				E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */,
+				E8C6B61D2AEAD015004F1BAC /* CollectionViewCell */,
 				E8698B142AEB2A8900CC7144 /* DetailViewController.swift */,
 			);
 			path = HomePageVC;
@@ -678,7 +678,6 @@
 				E8BD25D12AFCA024009E6597 /* ForgotPasswordView.swift in Sources */,
 				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */,
-				E8698B172AEB2F5100CC7144 /* Deck.swift in Sources */,
 				E8D75F192AF981B600CD4857 /* RegisterViewController.swift in Sources */,
 				E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */,
 				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
@@ -687,6 +686,7 @@
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,
+				E80A633E2B054C44007BF642 /* DataModel.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,
 				E8BD25CB2AFC3586009E6597 /* Validator.swift in Sources */,
 			);

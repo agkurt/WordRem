@@ -11,16 +11,15 @@ protocol ImagePickerDelegate : AnyObject {
     func didTapButton(_ button : UIButton)
     func didSelectButtonInCell(_ cell : DeckImageTableViewCell)
 }
-// MARK - CREATE PROTOCOL FOR TEXTFIELD
-protocol TextFieldDelegate {
-    func sendValue( _ value: [String])
+protocol TextFieldDelegate: AnyObject {
+    func sendTextFieldValue(deckNames: [String])
 }
 
-class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+final class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private var tableView = UITableView()
     private var newDeckView = NewDeckView()
-    var values : [String] = []
+    var deckNames : [String] = [""]
     var selectedImage: UIImage?
     
     override func viewDidLoad() {
@@ -40,7 +39,6 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         configureView()
         tableView.separatorStyle = .none
         title = "New Deck"
-        values = Array(repeating: "", count: 3)
         view.backgroundColor = UIColor.white
     }
     
@@ -88,7 +86,16 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
     }
     
     @objc func doneButtonTapped() {
-        sendValue(values)
+        let dataModel = DataModel(deckName: deckNames)
+        AuthService.shared.addDataToFirebase(dataModel) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                print("wrong data \(error.localizedDescription)")
+            } else {
+                print("successfully data")
+                sendTextFieldValue(deckNames: deckNames)
+            }
+        }
     }
     
     @objc func cancelButtonTapped() {
@@ -125,15 +132,23 @@ class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate 
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let tag = textField.tag
+        
+        if tag >= deckNames.count {
+            while tag >= deckNames.count {
+                deckNames.append("")
+            }
+        }
+        
+        deckNames[tag] = text
+        return true
+    }
 }
 
-extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , TextFieldDelegate, UITextFieldDelegate {
-    
-    func sendValue(_ value: [String]) {
-        let homePageVC = HomePageCollectionViewController()
-        homePageVC.values = value
-        navigationController?.pushViewController(homePageVC, animated: true)
-    }
+extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -142,11 +157,11 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "deckCell") as? NewDeckTableViewCell else {
                 fatalError("Wrong cell file")
             }
+            cell.configure(with: deckNames[indexPath.row], tag: indexPath.row, delegate: self)
             cell.backgroundColor = UIColor.white
-            cell.configure(with: values[indexPath.row], tag: indexPath.row, delegate: self)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -169,7 +184,7 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
                 fatalError("Wrong cell identifier")
             }
             cell.selectionStyle = .none
-            cell.backgroundColor = UIColor.white           
+            cell.backgroundColor = UIColor.white
             return cell
         }
     }
@@ -188,13 +203,6 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , T
         
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        let tag = textField.tag
-        values[tag] = text
-        return true
-    }
 }
 
 extension NewDeckViewController : ImagePickerDelegate {
@@ -209,10 +217,14 @@ extension NewDeckViewController : ImagePickerDelegate {
         }
         cell.delegate?.didTapButton(button)
     }
-    
 }
 
-
-
-
-
+extension NewDeckViewController : TextFieldDelegate {
+    
+    func sendTextFieldValue(deckNames: [String]) {
+        let vc = HomePageCollectionViewController()
+        vc.deckNames = deckNames
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}

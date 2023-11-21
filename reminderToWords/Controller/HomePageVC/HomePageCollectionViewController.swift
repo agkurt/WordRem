@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Firebase
 
 class HomePageCollectionViewController : UICollectionViewController {
     
     var homePageView : HomePageView!
     let newdeckvc = NewDeckViewController()
-    var values: [String] = []
+    var deckNames : [String] = []
+    
     // MARK - COMPOSITIONAL LAYOUT
     
     init() {
@@ -30,33 +33,25 @@ class HomePageCollectionViewController : UICollectionViewController {
             return section
         }
     }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return values.count
+        print(deckNames.count)
+        return deckNames.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deckViewCell", for: indexPath) as! DeckCellCollectionViewCell
-            cell.backgroundColor = .lightGray
-            cell.configure(with: values[indexPath.item])
-            return cell
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-            cell.backgroundColor = .lightGray
-            return cell
-        default :
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-            cell.backgroundColor = .lightGray
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deckCell", for: indexPath) as?  DeckCellCollectionViewCell else {
+            fatalError("")
         }
+        cell.configure(text: deckNames[indexPath.row])
+        return cell
+        
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            
-            let vc = CardViewController()
-            vc.title = " \(indexPath.row)"
-            navigationController?.pushViewController(vc, animated: true)
+        let vc = CardViewController()
+        vc.title = " \(indexPath.row)"
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -66,15 +61,70 @@ class HomePageCollectionViewController : UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         setupUI()
-        collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckViewCell")
+        fetchCurrentUserDecksData()
     }
     
+    func fetchCurrentUserDecksData() {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            print("User is not logged in")
+            return
+        }
+
+        let db = Firestore.firestore()
+        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
+
+        userDecksRef.getDocuments { [weak self] (snapshot, error) in
+            guard let self = self else { return }
+
+            if let error = error {
+                print("Error fetching user decks: \(error.localizedDescription)")
+                return
+            }
+
+            guard let snapshot = snapshot else {
+                print("No decks available for this user")
+                return
+            }
+
+            var fetchedDeckNames: [String] = []
+
+            for document in snapshot.documents {
+                let deckData = document.data()
+                print("Deck Document ID: \(document.documentID), Data: \(deckData)")
+
+                if let deckNameArray = deckData["deckName"] as? [String] {
+                    for deckName in deckNameArray {
+                        fetchedDeckNames.append(deckName)
+                    }
+                }
+
+            }
+
+            // Assign the fetched data to deckNames array
+            self.deckNames = fetchedDeckNames
+            print("Fetched Deck Names: \(self.deckNames)") // Add this line to check the value
+
+            // Reload collectionView on the main thread after fetching all data
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                print("Reloaded CollectionView")
+                print("Deck Names Count: \(self.deckNames.count)") // Check the count after reloading
+            }
+        }
+    }
+
+
+
+
     private let cellId = "cellId"
     
     private func setupUI() {
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckCell")
         homePageView = HomePageView(frame: self.view.frame)
         self.view.addSubview(homePageView)
         title = "ReminderToWords"
@@ -82,7 +132,7 @@ class HomePageCollectionViewController : UICollectionViewController {
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
         navigatorControllerSet()
     }
-
+    
     private func addTargetButton() {
         homePageView.newCardButton.addTarget(self, action: #selector(newCardButtonTapped), for: .touchUpInside)
         homePageView.importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
@@ -113,11 +163,17 @@ class HomePageCollectionViewController : UICollectionViewController {
         AuthService.shared.signOut { [weak self] error in
             guard let self = self else {return}
             if let error = error {
-                
             }
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()
             }
         }
     }
+}
+
+extension HomePageCollectionViewController:TextFieldDelegate {
+    
+    func sendTextFieldValue(deckNames: [String]) {
+            self.deckNames = deckNames
+        }
 }

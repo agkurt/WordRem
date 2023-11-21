@@ -9,7 +9,6 @@ import UIKit
 
 class DeckCellCollectionViewCell: UICollectionViewCell {
     
-    var label: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,10 +18,14 @@ class DeckCellCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with text: String) {
-        
-        label = UILabel()
-        
+    let label : UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Poppins-SemiBold", size: 20)
+        label.textColor = UIColor.orange
+        return label
+    }()
+    
+    func configure(text: String) {
         label.text = text
         label.textAlignment = .center
         

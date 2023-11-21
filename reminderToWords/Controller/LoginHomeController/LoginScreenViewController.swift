@@ -37,8 +37,6 @@ class LoginScreenViewController: UIViewController {
             let vc = ForgotPasswordViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
     }
     
     @objc private func loginButtonTapped() {

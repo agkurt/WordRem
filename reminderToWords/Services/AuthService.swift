@@ -42,13 +42,13 @@ class AuthService {
                     "username": username,
                     "email": email,
                     "password": password
-                    ]) { error in
-                        if let error = error {
-                            completion(false , error)
-                            return
-                        }
-                        completion(true , nil)
+                ]) { error in
+                    if let error = error {
+                        completion(false , error)
+                        return
                     }
+                    completion(true , nil)
+                }
         }
     }
     
@@ -66,7 +66,7 @@ class AuthService {
             }else {
                 completion(nil, nil)
             }
-        
+            
         }
     }
     /// SignOut for firebase
@@ -86,9 +86,23 @@ class AuthService {
             completion(error)
         }
     }
-
+    
+    public func addDataToFirebase(_ dataModel :DataModel , completion : @escaping (Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Current user not found."]))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(uid).collection("decks").addDocument(data: [
+            "deckName": dataModel.deckName
+        ]) { error in
+            completion(error)
+        }
+        
+    }
 }
-
 
 
 

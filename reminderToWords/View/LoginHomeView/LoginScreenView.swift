@@ -17,6 +17,7 @@ class LoginScreenView: UIView {
     let signInButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign In", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Poppins-SemiBold")
     let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "New User? Create Account", titleColor: UIColor.init(hex: "#205AFF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
     let forgotPasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Forgot Password?", titleColor: UIColor.init(hex: "#1180FF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
