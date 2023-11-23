@@ -102,8 +102,7 @@ class HomePageCollectionViewController : UICollectionViewController {
                 }
 
             }
-
-            // Assign the fetched data to deckNames array
+            
             self.deckNames = fetchedDeckNames
             print("Fetched Deck Names: \(self.deckNames)") // Add this line to check the value
 
@@ -115,10 +114,6 @@ class HomePageCollectionViewController : UICollectionViewController {
             }
         }
     }
-
-
-
-
     private let cellId = "cellId"
     
     private func setupUI() {

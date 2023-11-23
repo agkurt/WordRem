@@ -12,9 +12,9 @@ class RegisterView: UIView {
     let signLabel = UIComponentsHelper.createCustomLabel(text: "Sign Up", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
     let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Create Your Account", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Poppins-Light")
     let iconImageView = UIComponentsHelper.createIconImageView()
-    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail...", textColor: UIColor.black)
-    let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tPassword...", textColor: UIColor.black)
-    let usernameTextField = UIComponentsHelper.createTextField(placeholder: "\tUsername...", textColor: UIColor.black)
+    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail...", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
+    let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tPassword...", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
+    let usernameTextField = UIComponentsHelper.createTextField(placeholder: "\tUsername...", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
     let signUpButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign Up", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Poppins-SemiBold")
     let backSignInButton = UIComponentsHelper.createCustomButton(buttonTitle: "Already have an account? Sign In", titleColor: UIColor.init(hex: "#205AFF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
 

@@ -13,7 +13,7 @@ class ForgotPasswordView : UIView {
     let signLabel = UIComponentsHelper.createCustomLabel(text: "Forgot Password", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
     let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Reset Your Password", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Poppins-Light")
     let iconImageView = UIComponentsHelper.createIconImageView()
-    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail", textColor: UIColor.black)
+    let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
     let signUpButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign Up", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Poppins-SemiBold")
   
     

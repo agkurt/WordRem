@@ -85,17 +85,31 @@ final class NewDeckViewController : UIViewController, UIImagePickerControllerDel
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    @objc func doneButtonTapped() {
+    func checkEmptyTextField() {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? NewDeckTableViewCell else {
+            fatalError("Wrong cell file")
+        }
+        
+        guard let deckNameTextField = cell.deckNameTextField.text, !deckNameTextField.isEmpty else {
+            print("Tüm alanları doldurunuz")
+            return
+        }
+        
         let dataModel = DataModel(deckName: deckNames)
         AuthService.shared.addDataToFirebase(dataModel) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                print("wrong data \(error.localizedDescription)")
+                print("Wrong data \(error.localizedDescription)")
             } else {
-                print("successfully data")
-                sendTextFieldValue(deckNames: deckNames)
+                print("Successfully saved data")
+                // Burada koşula göre geçiş yapılabilir
+                self.sendTextFieldValue(deckNames: self.deckNames)
             }
         }
+    }
+    
+    @objc func doneButtonTapped() {
+        checkEmptyTextField()
     }
     
     @objc func cancelButtonTapped() {
@@ -171,7 +185,7 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , U
             cell.backgroundColor = UIColor.white
             cell.selectionStyle = .none
             return cell
-        case 2:
+        default :
             guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
                 fatalError("Wrong cell identifier")
             }
@@ -179,22 +193,15 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , U
             cell.delegate = self
             cell.selectionStyle = .none
             return cell
-        default :
-            guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
-                fatalError("Wrong cell identifier")
-            }
-            cell.selectionStyle = .none
-            cell.backgroundColor = UIColor.white
-            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0 :
-            return 60
+            return 100
         case 1:
-            return 120
+            return 200
         case 2:
             return 200
         default:
@@ -222,9 +229,14 @@ extension NewDeckViewController : ImagePickerDelegate {
 extension NewDeckViewController : TextFieldDelegate {
     
     func sendTextFieldValue(deckNames: [String]) {
-        let vc = HomePageCollectionViewController()
-        vc.deckNames = deckNames
-        navigationController?.pushViewController(vc, animated: true)
+        let hasEmptyField = deckNames.contains { $0.isEmpty }
+        if hasEmptyField {
+            print("Tüm alanları doldurunuz")
+        } else {
+            let vc = HomePageCollectionViewController()
+            vc.deckNames = deckNames
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

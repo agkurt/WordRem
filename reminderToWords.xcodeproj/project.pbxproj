@@ -15,6 +15,7 @@
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */; };
 		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
+		E8552E552B0FB81400BCDE3E /* CardNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8552E542B0FB81400BCDE3E /* CardNameModel.swift */; };
 		E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1722AD7619700E37212 /* Ext + UIView.swift */; };
 		E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1752AD7622000E37212 /* Ext + UIColor .swift */; };
 		E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1772AD7624400E37212 /* SplashScreenView.swift */; };
@@ -76,6 +77,7 @@
 		E8E358D82AD755CE00EE32E6 /* reminderToWordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358D72AD755CE00EE32E6 /* reminderToWordsTests.swift */; };
 		E8E358E22AD755CE00EE32E6 /* reminderToWordsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358E12AD755CE00EE32E6 /* reminderToWordsUITests.swift */; };
 		E8E358E42AD755CE00EE32E6 /* reminderToWordsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E358E32AD755CE00EE32E6 /* reminderToWordsUITestsLaunchTests.swift */; };
+		E8EDEDDE2B10104B0051E511 /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDEDDD2B10104B0051E511 /* CardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,7 @@
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8552E542B0FB81400BCDE3E /* CardNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNameModel.swift; sourceTree = "<group>"; };
 		E858E1722AD7619700E37212 /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		E858E1752AD7622000E37212 /* Ext + UIColor .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIColor .swift"; sourceTree = "<group>"; };
 		E858E1772AD7624400E37212 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		E8E358DD2AD755CE00EE32E6 /* reminderToWordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = reminderToWordsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E358E12AD755CE00EE32E6 /* reminderToWordsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reminderToWordsUITests.swift; sourceTree = "<group>"; };
 		E8E358E32AD755CE00EE32E6 /* reminderToWordsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reminderToWordsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E8EDEDDD2B10104B0051E511 /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +234,14 @@
 			path = ImportVC;
 			sourceTree = "<group>";
 		};
+		E8552E562B0FB94D00BCDE3E /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E8698B142AEB2A8900CC7144 /* DetailViewController.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
 		E858E16E2AD760C700E37212 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +259,7 @@
 				E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */,
 				E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */,
 				E80A633D2B054C44007BF642 /* DataModel.swift */,
+				E8552E542B0FB81400BCDE3E /* CardNameModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				E8D75F1A2AF981DD00CD4857 /* LoginHomeView */,
-				E87E559B2AF2D800006F2612 /* ConfigureCardView */,
+				E87E559B2AF2D800006F2612 /* CardView */,
 				E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */,
 				E82420BC2ADFF43E00B6993D /* NewDeckTableViewCell */,
 				E83FFE422ADE8EB900C9A01A /* NewDeckBackGround */,
@@ -269,12 +282,13 @@
 			isa = PBXGroup;
 			children = (
 				E8D75F152AF9816A00CD4857 /* LoginHomeController */,
-				E87E559C2AF2D817006F2612 /* ConfigureCardController */,
+				E87E559C2AF2D817006F2612 /* CardViewController */,
 				E88B60612AE7FBF00005649A /* OnboardingVC */,
 				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
 				E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */,
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
+				E8552E562B0FB94D00BCDE3E /* DetailViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -338,7 +352,6 @@
 			children = (
 				E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */,
 				E8C6B61D2AEAD015004F1BAC /* CollectionViewCell */,
-				E8698B142AEB2A8900CC7144 /* DetailViewController.swift */,
 			);
 			path = HomePageVC;
 			sourceTree = "<group>";
@@ -375,20 +388,21 @@
 			path = DetailTableViewCell;
 			sourceTree = "<group>";
 		};
-		E87E559B2AF2D800006F2612 /* ConfigureCardView */ = {
+		E87E559B2AF2D800006F2612 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
 				E87E559F2AF2DB46006F2612 /* CardView.swift */,
 			);
-			path = ConfigureCardView;
+			path = CardView;
 			sourceTree = "<group>";
 		};
-		E87E559C2AF2D817006F2612 /* ConfigureCardController */ = {
+		E87E559C2AF2D817006F2612 /* CardViewController */ = {
 			isa = PBXGroup;
 			children = (
 				E87E559D2AF2D840006F2612 /* CardViewController.swift */,
+				E8EDEDDC2B10102C0051E511 /* CardViewCell */,
 			);
-			path = ConfigureCardController;
+			path = CardViewController;
 			sourceTree = "<group>";
 		};
 		E88B60612AE7FBF00005649A /* OnboardingVC */ = {
@@ -487,6 +501,14 @@
 				E8E358E32AD755CE00EE32E6 /* reminderToWordsUITestsLaunchTests.swift */,
 			);
 			path = reminderToWordsUITests;
+			sourceTree = "<group>";
+		};
+		E8EDEDDC2B10102C0051E511 /* CardViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8EDEDDD2B10104B0051E511 /* CardTableViewCell.swift */,
+			);
+			path = CardViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -662,12 +684,14 @@
 				E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */,
 				E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */,
 				E8D75F172AF981AB00CD4857 /* LoginScreenViewController.swift in Sources */,
+				E8EDEDDE2B10104B0051E511 /* CardTableViewCell.swift in Sources */,
 				E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */,
 				E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */,
 				E8E358C52AD755CB00EE32E6 /* SplashScreenViewController.swift in Sources */,
 				E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */,
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E8D75F1C2AF981EF00CD4857 /* LoginScreenView.swift in Sources */,
+				E8552E552B0FB81400BCDE3E /* CardNameModel.swift in Sources */,
 				E8D75F1E2AF981F800CD4857 /* RegisterView.swift in Sources */,
 				E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,

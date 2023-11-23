@@ -1,17 +1,16 @@
 //
-//  DeckCellCollectionViewCell.swift
+//  CardTableViewCell.swift
 //  reminderToWords
 //
-//  Created by Ahmet Göktürk Kurt on 25.10.2023.
+//  Created by Ahmet Göktürk Kurt on 24.11.2023.
 //
 
 import UIKit
 
-class DeckCellCollectionViewCell: UICollectionViewCell {
+class CardTableViewCell: UITableViewCell {
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {

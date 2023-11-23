@@ -9,6 +9,10 @@ import UIKit
 
 class CardViewController: UIViewController {
     
+    public var frontName : [String] = []
+    public var backName : [String] = []
+    public var cardDescription : [String] = []
+    
     let tableView = UITableView()
     var cardView = CardView()
     
@@ -32,7 +36,8 @@ class CardViewController: UIViewController {
         tableView.dataSource = self
         view.addSubview(tableView)
         tableView.pin(to: view)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cardCell")
+        
     }
     
     private func configureCardView() {
@@ -46,24 +51,40 @@ class CardViewController: UIViewController {
     }
     
     @objc func didTapNewCardButton() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
             let vc = DetailViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
 }
 
 extension CardViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return frontName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell") as? CardTableViewCell else {
             fatalError("wrong identifier")
         }
+        cell.configure(text: frontName[indexPath.row])
+        cell.selectionStyle = .none
         cell.backgroundColor = .white
         return cell
     }
+    
+    
+}
+
+extension CardViewController: SendTextFieldDelegate {
+    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String]) {
+        self.frontName = frontName
+        self.backName = backName
+        self.cardDescription = cardDescription
+    }
+    
+    
 }

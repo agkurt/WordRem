@@ -61,7 +61,7 @@ struct UIComponentsHelper {
         return view
     }
     
-    static func createTextField(placeholder : String ,textColor :UIColor) -> UITextField {
+    static func createTextField(placeholder : String ,textColor :UIColor, backgroundColor : UIColor) -> UITextField {
         let textField = UITextField()
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.size.height))
         textField.leftView = leftPaddingView
@@ -72,7 +72,7 @@ struct UIComponentsHelper {
         textField.font = UIFont(name: "Poppins-Light", size: 15)
         textField.textColor = textColor
         textField.isUserInteractionEnabled = true
-        textField.backgroundColor = UIColor.init(hex: "#E8E8E8")
+        textField.backgroundColor = backgroundColor
         return textField
     }
     

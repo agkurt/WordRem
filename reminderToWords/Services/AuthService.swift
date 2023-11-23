@@ -13,13 +13,8 @@ import FirebaseFirestore
 class AuthService {
     
     public static let shared = AuthService()
-    // comand + option + questionMark
-    /// A method to register user
-    /// - Parameters:
-    ///   - userRequest: the user information
-    ///   - completion: A completion with two values ...
-    ///   - Bool : wasRegistered -determines if the user was registered and save in the database correctly
     public func registerUser(with userRequest:RegisterUserRequest, completion : @escaping (Bool,Error?) -> Void) {
+        
         let username = userRequest.username ?? ""
         let password = userRequest.password ?? ""
         let email = userRequest.email ?? ""
@@ -58,8 +53,6 @@ class AuthService {
         
         Auth.auth().signIn(withEmail: email, password: password) {
             result , error in
-            // -MARK
-            // check bool
             if let error = error {
                 completion(nil, error)
                 return
@@ -69,9 +62,7 @@ class AuthService {
             
         }
     }
-    /// SignOut for firebase
-    /// - Parameter completion: completion description
-    /// - Do : hata olma olasılığı için
+    
     public func signOut(completion : @escaping (Error?) -> Void) {
         do {
             try Auth.auth().signOut()
@@ -102,7 +93,29 @@ class AuthService {
         }
         
     }
+    // MARK TRY
+    func addCardNameDataToFirebase(_ cardNameDataModels: [CardNameModel], completion: @escaping (Error?) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Current user not found."]))
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        let batch = db.batch()
+
+        for model in cardNameDataModels {
+            let documentRef = db.collection("users").document(uid).collection("decks").document()
+            batch.setData([
+                "frontName": model.frontName,
+                "backName": model.backName,
+                "cardDescription": model.cardDescription
+            ], forDocument: documentRef)
+        }
+
+        batch.commit { error in
+            completion(error)
+        }
+    }
+
 }
-
-
-
