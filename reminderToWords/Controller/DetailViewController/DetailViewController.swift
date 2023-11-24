@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
     private var frontName : [String] = [""]
     private var backName : [String] = [""]
     private var cardDescription : [String] = [""]
-    private var cardInfo: [(front: String, back: String, description: String)] = [("","","")]
+    public var homePageVc = HomePageCollectionViewController()
     private var tableView = UITableView()
     
     private let identifier = "detailCell"
@@ -52,24 +52,18 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func didTapDoneButton() {
-        sendTextField(frontName, backName, cardDescription)
         configureFirebaseData()
     }
     
     private func configureFirebaseData() {
-        var cardModels: [CardNameModel] = []
-        
-        for info in cardInfo {
-            let cardNameModel = CardNameModel(frontName: [info.front], backName: [info.back], cardDescription: [info.description])
-            cardModels.append(cardNameModel)
-        }
-        
-        AuthService.shared.addCardNameDataToFirebase(cardModels) { [weak self] error in
+        let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
+        AuthService.shared.addCardNameDataToFirebase(cardNameModel) { [weak self] error in
             guard let self = self else {return}
             if let error = error {
                 print("wrong data \(error.localizedDescription)")
             }else {
                 print("successfuly saved data")
+                self.sendTextField(self.frontName, self.backName, self.cardDescription)
             }
         }
         DispatchQueue.main.async { [weak self] in
@@ -81,7 +75,7 @@ class DetailViewController: UIViewController {
     
 }
 
-extension DetailViewController : UITableViewDelegate , UITableViewDataSource {
+extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return frontName.count
@@ -91,8 +85,7 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? DetailTableViewCell else {
             fatalError("wrong identifier ")
         }
-        let info = cardInfo[indexPath.row]
-        cell.configureCell(delegate: self, frontText: info.front, tag: indexPath.row, backText: info.back, descriptionText: info.description)
+        cell.configureCell(delegate: self, frontText: frontName[indexPath.row], tag: indexPath.row, backText: backName[indexPath.row], descriptionText: cardDescription[indexPath.row])
         
         cell.selectionStyle = .none
         cell.backgroundColor = .white
@@ -114,39 +107,41 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? DetailTableViewCell else {
-            fatalError("wrong identifier")
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let tag = textField.tag
+        
+        if tag >= frontName.count {
+            while tag >= frontName.count {
+                frontName.append("")
+            }
         }
         
-           let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-           let tag = textField.tag
-           
-           if tag >= cardInfo.count {
-               cardInfo.append(("", "", ""))
-           }
-           
-           if textField == cell.frontTextField {
-               cardInfo[tag].front = text
-           } else if textField == cell.backTextField {
-               cardInfo[tag].back = text
-           } else if textField == cell.cardDescription {
-               cardInfo[tag].description = text
-           }
-           
-           return true
-       }
+        if tag >= backName.count {
+            while tag >= backName.count {
+                backName.append("")
+            }
+        }
+        
+        if tag >= cardDescription.count {
+            while tag >= cardDescription.count {
+                cardDescription.append("")
+            }
+        }
+        
+        frontName[tag] = text
+        backName[tag] = text
+        cardDescription[tag] = text
+        
+        return true
+    }
 }
 
 extension DetailViewController : SendTextFieldDelegate {
     
     func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String]) {
-            cardInfo = [] // Önceki verileri temizle
-            
-            for i in 0..<frontName.count {
-                let front = frontName[i]
-                let back = backName[i]
-                let description = cardDescription[i]
-                cardInfo.append((front, back, description))
-            }
-        }
+        let vc = CardViewController()
+        vc.frontName = frontName
+        vc.backName = backName
+        vc.cardDescription = cardDescription
+    }
 }

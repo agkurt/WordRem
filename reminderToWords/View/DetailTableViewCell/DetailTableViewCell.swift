@@ -30,9 +30,6 @@ class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
     private func setupTableViewCell() {
         setupUI()
         configureUI()
-        frontTextField.delegate = self
-        backTextField.delegate = self
-        cardDescription.delegate = self
     }
     
     public func configureCell(delegate : SendTextFieldDelegate , frontText: String,tag :Int, backText: String, descriptionText: String) {

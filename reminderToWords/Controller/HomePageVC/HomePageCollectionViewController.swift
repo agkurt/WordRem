@@ -35,7 +35,6 @@ class HomePageCollectionViewController : UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(deckNames.count)
         return deckNames.count
     }
     

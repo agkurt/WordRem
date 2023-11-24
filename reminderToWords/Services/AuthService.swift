@@ -14,7 +14,6 @@ class AuthService {
     
     public static let shared = AuthService()
     public func registerUser(with userRequest:RegisterUserRequest, completion : @escaping (Bool,Error?) -> Void) {
-        
         let username = userRequest.username ?? ""
         let password = userRequest.password ?? ""
         let email = userRequest.email ?? ""
@@ -86,7 +85,8 @@ class AuthService {
         
         let db = Firestore.firestore()
         
-        db.collection("users").document(uid).collection("decks").addDocument(data: [
+        db.collection("users").document(uid).collection("decks")
+            .addDocument(data: [
             "deckName": dataModel.deckName
         ]) { error in
             completion(error)
@@ -94,28 +94,22 @@ class AuthService {
         
     }
     // MARK TRY
-    func addCardNameDataToFirebase(_ cardNameDataModels: [CardNameModel], completion: @escaping (Error?) -> Void) {
+    public func addCardNameDataToFirebase(_ cardNameDataModel: CardNameModel, completion: @escaping (Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {
             completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Current user not found."]))
             return
         }
-
+        
         let db = Firestore.firestore()
-
-        let batch = db.batch()
-
-        for model in cardNameDataModels {
-            let documentRef = db.collection("users").document(uid).collection("decks").document()
-            batch.setData([
-                "frontName": model.frontName,
-                "backName": model.backName,
-                "cardDescription": model.cardDescription
-            ], forDocument: documentRef)
-        }
-
-        batch.commit { error in
-            completion(error)
-        }
+        
+        db.collection("users").document(uid).collection("decks")
+            .addDocument(data: [
+                "frontName": cardNameDataModel.frontName,
+                "backName": cardNameDataModel.backName,
+                "cardDescription": cardNameDataModel.cardDescription
+            ]) { error in
+                completion(error)
+            }
     }
-
+    
 }

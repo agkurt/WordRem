@@ -102,7 +102,6 @@ final class NewDeckViewController : UIViewController, UIImagePickerControllerDel
                 print("Wrong data \(error.localizedDescription)")
             } else {
                 print("Successfully saved data")
-                // Burada koşula göre geçiş yapılabilir
                 self.sendTextFieldValue(deckNames: self.deckNames)
             }
         }

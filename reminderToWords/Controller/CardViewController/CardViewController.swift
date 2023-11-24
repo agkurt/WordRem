@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class CardViewController: UIViewController {
     
     public var frontName : [String] = []
     public var backName : [String] = []
     public var cardDescription : [String] = []
+    var fetchedCardNameModels: [String] = []
     
     let tableView = UITableView()
     var cardView = CardView()
@@ -19,6 +22,7 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        fetchCurrentUserDecksData()
     }
     
     private func setupTableView() {
@@ -30,7 +34,7 @@ class CardViewController: UIViewController {
         cardView.createNewCard.isUserInteractionEnabled = true
         title = "Cards"
     }
-     
+    
     private func configureTableView() {
         tableView.delegate  = self
         tableView.dataSource = self
@@ -58,6 +62,60 @@ class CardViewController: UIViewController {
         }
     }
     
+    func fetchCurrentUserDecksData() {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            print("User is not logged in")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
+        
+        userDecksRef.getDocuments { [weak self] (snapshot, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error fetching user decks: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                print("No decks available for this user")
+                return
+            }
+
+            
+            for document in snapshot.documents {
+                let deckData = document.data()
+                print("Deck Document ID: \(document.documentID), Data: \(deckData)")
+                
+                if let frontNames = deckData["frontName"] as? [String],
+                   let backNames = deckData["backName"] as? [String],
+                   let cardDescriptions = deckData["cardDescription"] as? [String] {
+                    
+                    for index in 0..<frontNames.count {
+                        let cardNameModel = CardNameModel(
+                            frontName: [frontNames[index]],
+                            backName: [backNames[index]],
+                            cardDescription: [cardDescriptions[index]]
+                        )
+                        fetchedCardNameModels.append(contentsOf: frontNames)
+                        fetchedCardNameModels.append(contentsOf: backNames)
+                        fetchedCardNameModels.append(contentsOf: cardDescriptions)
+                    }
+                }
+            }
+            self.frontName = fetchedCardNameModels
+            self.backName = fetchedCardNameModels
+            self.cardDescription = fetchedCardNameModels
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                print("Reloaded TableView")
+                print("Deck Names Count: \(self.frontName.count)")
+            }
+        }
+    }
 }
 
 extension CardViewController : UITableViewDelegate , UITableViewDataSource {
@@ -70,13 +128,11 @@ extension CardViewController : UITableViewDelegate , UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell") as? CardTableViewCell else {
             fatalError("wrong identifier")
         }
-        cell.configure(text: frontName[indexPath.row])
+        cell.configure(text: fetchedCardNameModels[indexPath.row])
         cell.selectionStyle = .none
         cell.backgroundColor = .white
         return cell
     }
-    
-    
 }
 
 extension CardViewController: SendTextFieldDelegate {
@@ -85,6 +141,5 @@ extension CardViewController: SendTextFieldDelegate {
         self.backName = backName
         self.cardDescription = cardDescription
     }
-    
-    
+
 }
