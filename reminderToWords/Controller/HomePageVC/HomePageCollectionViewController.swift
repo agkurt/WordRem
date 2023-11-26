@@ -151,6 +151,8 @@ class HomePageCollectionViewController : UICollectionViewController {
     private func navigatorControllerSet() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
+        navigationItem.leftBarButtonItem = nil
+
     }
     
     @objc func didTapLogoutButton() {

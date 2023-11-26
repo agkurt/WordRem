@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SendTextFieldDelegate : AnyObject{
-    func sendTextField(_ frontName :[String],_ backName :[String],_ cardDescription : [String])
+    func sendTextField(_ frontName :[String],_ backName :[String],_ cardDescription : [String],_ fetchedCardNameModels : [String])
 }
 
 class DetailViewController: UIViewController {
@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     private var frontName : [String] = [""]
     private var backName : [String] = [""]
     private var cardDescription : [String] = [""]
+    private var fetchedCardNameModels : [String] = [""]
     public var homePageVc = HomePageCollectionViewController()
     private var tableView = UITableView()
     
@@ -63,7 +64,7 @@ class DetailViewController: UIViewController {
                 print("wrong data \(error.localizedDescription)")
             }else {
                 print("successfuly saved data")
-                self.sendTextField(self.frontName, self.backName, self.cardDescription)
+                self.sendTextField(self.frontName, self.backName, self.cardDescription, self.fetchedCardNameModels)
             }
         }
         DispatchQueue.main.async { [weak self] in
@@ -107,41 +108,34 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UI
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let cell = textField.superview?.superview as? DetailTableViewCell,
+              let indexPath = tableView.indexPath(for: cell) else {
+            return false
+        }
+        
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        let tag = textField.tag
         
-        if tag >= frontName.count {
-            while tag >= frontName.count {
-                frontName.append("")
-            }
+        if textField == cell.frontTextField {
+            frontName[indexPath.row] = text
+        } else if textField == cell.backTextField {
+            backName[indexPath.row] = text
+        } else if textField == cell.cardDescription {
+            cardDescription[indexPath.row] = text
         }
-        
-        if tag >= backName.count {
-            while tag >= backName.count {
-                backName.append("")
-            }
-        }
-        
-        if tag >= cardDescription.count {
-            while tag >= cardDescription.count {
-                cardDescription.append("")
-            }
-        }
-        
-        frontName[tag] = text
-        backName[tag] = text
-        cardDescription[tag] = text
         
         return true
     }
 }
 
+
 extension DetailViewController : SendTextFieldDelegate {
-    
-    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String]) {
+    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String]) {
         let vc = CardViewController()
         vc.frontName = frontName
         vc.backName = backName
         vc.cardDescription = cardDescription
+        vc.fetchedCardNameModels = fetchedCardNameModels
     }
+    
+    
 }

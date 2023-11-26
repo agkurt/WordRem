@@ -16,6 +16,8 @@ class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
     public let backTextField = UIComponentsHelper.createTextField(placeholder: "Back card", textColor: UIColor.black, backgroundColor: UIColor.clear)
     public let cardDescription = UIComponentsHelper.createTextField(placeholder: "Description", textColor: UIColor.black, backgroundColor: UIColor.clear)
     
+    public var fetchedCardNameModels : [String] = []
+    
     weak var delegate :SendTextFieldDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,6 +35,7 @@ class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     public func configureCell(delegate : SendTextFieldDelegate , frontText: String,tag :Int, backText: String, descriptionText: String) {
+        
         frontTextField.text = frontText
         backTextField.text = backText
         cardDescription.text = descriptionText
@@ -45,7 +48,7 @@ class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
         backTextField.delegate = delegate as? UITextFieldDelegate
         cardDescription.delegate = delegate as? UITextFieldDelegate
         
-        
+
     }
     
     private func setupUI() {
