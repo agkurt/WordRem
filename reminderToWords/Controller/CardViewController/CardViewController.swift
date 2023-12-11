@@ -25,9 +25,11 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        print("veriler geldi")
         fetchCurrentUserDecksData()
         print("lastDeckId: \(deckId)")
         print("cardID : \(cardId)")
+        print("fetch içerisi : \(fetchedCardNameModels)")
     }
     
     private func setupTableView() {
@@ -104,15 +106,10 @@ class CardViewController: UIViewController {
                 return
             }
             
-            self.fetchedCardNameModels = []
-            var cardIds: [String] = []
-            
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")
-                
-                cardIds.append(document.documentID)
-                
+                                
                 if let frontNames = deckData["frontName"] as? [String],
                    let backNames = deckData["backName"] as? [String],
                    let cardDescriptions = deckData["cardDescription"] as? [String] {
@@ -122,9 +119,6 @@ class CardViewController: UIViewController {
                     self.fetchedCardNameModels.append(contentsOf: cardDescriptions)
                 }
             }
-            
-            // cardIds dizisini kullanabilirsiniz (belki başka bir yerde ihtiyacınız olur)
-            print("Card IDs: \(cardIds)")
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

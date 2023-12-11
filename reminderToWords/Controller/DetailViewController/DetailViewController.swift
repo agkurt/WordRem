@@ -12,7 +12,7 @@ protocol SendTextFieldDelegate : AnyObject{
 }
 
 class DetailViewController: UIViewController {
-    
+        
     private var frontName : [String] = [""]
     private var backName : [String] = [""]
     private var cardDescription : [String] = [""]
@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     
     private func configureNavigationController() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDoneButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDoneButton))
+   
     }
     
     @objc private func didTapDoneButton() {
@@ -68,16 +68,16 @@ class DetailViewController: UIViewController {
                 print("wrong data \(error.localizedDescription)")
             }else {
                 print("successfuly saved data")
-                self.sendTextField(self.frontName, self.backName, self.cardDescription, self.fetchedCardNameModels)
+                
             }
         }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             let vc = CardViewController()
+            vc.deckId = self.deckId
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 }
 
 extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate {
@@ -140,3 +140,4 @@ extension DetailViewController : SendTextFieldDelegate {
         vc.fetchedCardNameModels = fetchedCardNameModels
     }
 }
+

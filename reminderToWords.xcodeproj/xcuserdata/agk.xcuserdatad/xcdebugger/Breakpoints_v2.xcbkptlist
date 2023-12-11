@@ -3,4 +3,54 @@
    uuid = "CF8E1C28-BC5C-4B34-BCB2-2F594D8F82AB"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09B7C827-5CE9-4AD8-BFF4-D9EE4DC55CBD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "reminderToWords/Controller/CardViewController/CardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "fetchCurrentUserDecksData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "09B7C827-5CE9-4AD8-BFF4-D9EE4DC55CBD - 50ba898311d27f30"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.CardViewController.fetchCurrentUserDecksData() -&gt; ()"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/CardViewController/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "09B7C827-5CE9-4AD8-BFF4-D9EE4DC55CBD - 50ba898311d27f30"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "reminderToWords.CardViewController.fetchCurrentUserDecksData() -&gt; ()"
+                  moduleName = "reminderToWords"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agk/Documents/reminderToWords/reminderToWords/reminderToWords/Controller/CardViewController/CardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
