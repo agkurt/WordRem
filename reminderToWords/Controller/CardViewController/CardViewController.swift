@@ -9,21 +9,25 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+
 class CardViewController: UIViewController {
     
     public var frontName : [String] = []
     public var backName : [String] = []
     public var cardDescription : [String] = []
     var fetchedCardNameModels: [String] = []
-    
+    public var deckId : String = ""
+    public var deckNames : [String] = []
     let tableView = UITableView()
     var cardView = CardView()
+    public var cardId :String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         fetchCurrentUserDecksData()
-        
+        print("lastDeckId: \(deckId)")
+        print("cardID : \(cardId)")
     }
     
     private func setupTableView() {
@@ -72,57 +76,65 @@ class CardViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             let vc = DetailViewController()
+            vc.deckId = self.deckId
+            vc.deckName = self.deckNames
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func fetchCurrentUserDecksData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
-          print("User is not logged in")
-          return
+            print("User is not logged in")
+            return
         }
-         
+        
         let db = Firestore.firestore()
-        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
-         
+        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName")
+        
         userDecksRef.getDocuments { [weak self] (snapshot, error) in
-          guard let self = self else { return }
-           
-          if let error = error {
-            print("Error fetching user decks: \(error.localizedDescription)")
-            return
-          }
-           
-          guard let snapshot = snapshot else {
-            print("No decks available for this user")
-            return
-          }
-
-          for document in snapshot.documents { // anlık veri
-            let deckData = document.data()
-            print("Deck Document ID: \(document.documentID), Data: \(deckData)")
-             
-            if let frontNames = deckData["frontName"] as? [String],
-              let backNames = deckData["backName"] as? [String],
-              let cardDescriptions = deckData["cardDescription"] as? [String] {
-
-                fetchedCardNameModels.append(contentsOf: frontNames)
-                fetchedCardNameModels.append(contentsOf: backNames)
-                fetchedCardNameModels.append(contentsOf: cardDescriptions)
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error fetching deck data: \(error.localizedDescription)")
+                return
             }
-          }
-          self.frontName = fetchedCardNameModels
-          self.backName = fetchedCardNameModels
-          self.cardDescription = fetchedCardNameModels
-           
-          DispatchQueue.main.async {
-            self.tableView.reloadData()
-            print("Reloaded TableView")
-            print("Deck Names Count: \(self.frontName.count)")
-          }
+            
+            guard let snapshot = snapshot else {
+                print("Deck not found")
+                return
+            }
+            
+            self.fetchedCardNameModels = []
+            var cardIds: [String] = []
+            
+            for document in snapshot.documents {
+                let deckData = document.data()
+                print("Deck Document ID: \(document.documentID), Data: \(deckData)")
+                
+                cardIds.append(document.documentID)
+                
+                if let frontNames = deckData["frontName"] as? [String],
+                   let backNames = deckData["backName"] as? [String],
+                   let cardDescriptions = deckData["cardDescription"] as? [String] {
+                    
+                    self.fetchedCardNameModels.append(contentsOf: frontNames)
+                    self.fetchedCardNameModels.append(contentsOf: backNames)
+                    self.fetchedCardNameModels.append(contentsOf: cardDescriptions)
+                }
+            }
+            
+            // cardIds dizisini kullanabilirsiniz (belki başka bir yerde ihtiyacınız olur)
+            print("Card IDs: \(cardIds)")
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                print("Reloaded TableView")
+                print("Card Name Count: \(self.fetchedCardNameModels.count)")
+            }
         }
-      }
     }
+}
+
 extension CardViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

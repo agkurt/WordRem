@@ -17,19 +17,22 @@ class DetailViewController: UIViewController {
     private var backName : [String] = [""]
     private var cardDescription : [String] = [""]
     private var fetchedCardNameModels : [String] = [""]
+    public var deckName : [String] = [""]
     public var homePageVc = HomePageCollectionViewController()
     private var tableView = UITableView()
-    
+    public var deckId :String = ""
     private let identifier = "detailCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        print("detailviewcontroller deckId \(deckId)")
     }
     
     private func setupTableView() {
         configureTableView()
         setupCell()
-        setTableViewDelegate()
+        setTableViewDelegate()  
     }
     
     private func configureTableView() {
@@ -50,6 +53,7 @@ class DetailViewController: UIViewController {
     
     private func configureNavigationController() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDoneButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(didTapDoneButton))
     }
     
     @objc private func didTapDoneButton() {
@@ -58,7 +62,7 @@ class DetailViewController: UIViewController {
     
     private func configureFirebaseData() {
         let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
-        AuthService.shared.addCardNameDataToFirebase(cardNameModel) { [weak self] error in
+        AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) { [weak self] error in
             guard let self = self else {return}
             if let error = error {
                 print("wrong data \(error.localizedDescription)")
@@ -79,7 +83,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return frontName.count
+        return fetchedCardNameModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,7 +131,6 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UI
     }
 }
 
-
 extension DetailViewController : SendTextFieldDelegate {
     func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String]) {
         let vc = CardViewController()
@@ -136,6 +139,4 @@ extension DetailViewController : SendTextFieldDelegate {
         vc.cardDescription = cardDescription
         vc.fetchedCardNameModels = fetchedCardNameModels
     }
-    
-    
 }

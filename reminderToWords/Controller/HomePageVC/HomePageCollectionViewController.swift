@@ -14,6 +14,7 @@ class HomePageCollectionViewController : UICollectionViewController {
     var homePageView : HomePageView!
     let newdeckvc = NewDeckViewController()
     var deckNames : [String] = []
+    var deckIds : [String] = []
     
     // MARK - COMPOSITIONAL LAYOUT
     
@@ -43,15 +44,16 @@ class HomePageCollectionViewController : UICollectionViewController {
             fatalError("")
         }
         cell.configure(text: deckNames[indexPath.row])
+        
         return cell
         
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CardViewController()
-        vc.title = " \(indexPath.row)"
+        vc.deckId = deckIds[indexPath.row]
+        vc.deckNames = deckNames
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -71,40 +73,41 @@ class HomePageCollectionViewController : UICollectionViewController {
             print("User is not logged in")
             return
         }
-
+        
         let db = Firestore.firestore()
         let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
-
+        
         userDecksRef.getDocuments { [weak self] (snapshot, error) in
             guard let self = self else { return }
-
+            
             if let error = error {
                 print("Error fetching user decks: \(error.localizedDescription)")
                 return
             }
-
+            
             guard let snapshot = snapshot else {
                 print("No decks available for this user")
                 return
             }
-
+            
             var fetchedDeckNames: [String] = []
-
+            
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")
-
+                
                 if let deckNameArray = deckData["deckName"] as? [String] {
                     for deckName in deckNameArray {
                         fetchedDeckNames.append(deckName)
+                        deckIds.append(document.documentID)
+                        print("deckID: \(deckIds)")
                     }
                 }
-
             }
             
             self.deckNames = fetchedDeckNames
             print("Fetched Deck Names: \(self.deckNames)") // Add this line to check the value
-
+            
             // Reload collectionView on the main thread after fetching all data
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -152,7 +155,7 @@ class HomePageCollectionViewController : UICollectionViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
         navigationItem.leftBarButtonItem = nil
-
+        
     }
     
     @objc func didTapLogoutButton() {
@@ -170,6 +173,6 @@ class HomePageCollectionViewController : UICollectionViewController {
 extension HomePageCollectionViewController:TextFieldDelegate {
     
     func sendTextFieldValue(deckNames: [String]) {
-            self.deckNames = deckNames
-        }
+        self.deckNames = deckNames
+    }
 }

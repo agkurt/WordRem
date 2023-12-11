@@ -12,7 +12,9 @@ import FirebaseFirestore
 
 class AuthService {
     
+    var vc = CardViewController()
     public static let shared = AuthService()
+    var deckId : [String] = []
     public func registerUser(with userRequest:RegisterUserRequest, completion : @escaping (Bool,Error?) -> Void) {
         let username = userRequest.username ?? ""
         let password = userRequest.password ?? ""
@@ -84,32 +86,27 @@ class AuthService {
         }
         
         let db = Firestore.firestore()
+        let data : [String:Any] = ["deckName": dataModel.deckName]
         
         db.collection("users").document(uid).collection("decks")
-            .addDocument(data: [
-            "deckName": dataModel.deckName
-        ]) { error in
-            completion(error)
-        }
+            .addDocument(data: data){ error in
+                completion(error)
+            }
         
     }
-    // MARK TRY
-    public func addCardNameDataToFirebase(_ cardNameDataModel: CardNameModel, completion: @escaping (Error?) -> Void) {
+    
+    public func addCardNameDataToFirebase(_ cardNameDataModel: CardNameModel, deckId: String, completion: @escaping (Error?) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else {
             completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Current user not found."]))
             return
         }
         
         let db = Firestore.firestore()
+        let data : [String:Any] = ["frontName": cardNameDataModel.frontName, "backName":cardNameDataModel.backName,"cardDescription":cardNameDataModel.cardDescription]
         
-        db.collection("users").document(uid).collection("decks")
-            .addDocument(data: [
-                "frontName": cardNameDataModel.frontName,
-                "backName": cardNameDataModel.backName,
-                "cardDescription": cardNameDataModel.cardDescription
-            ]) { error in
+        db.collection("users").document(uid).collection("decks").document(deckId).collection("cardName")
+            .addDocument(data: data) { error in
                 completion(error)
             }
     }
-    
 }
