@@ -18,8 +18,8 @@ class HomePageView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        setupStackView()
-        configureUI()
+        //setupStackView()
+        //configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -31,10 +31,10 @@ class HomePageView : UIView {
     }
     
     func configureUI() {
-        self.addSubview(viewForButton)
-        self.addSubview(stackViewButtons)
+        //self.addSubview(viewForButton)
+        //self.addSubview(stackViewButtons)
         stackViewButtons.anchor(top: nil, paddingTop: 0, bottom: self.bottomAnchor, paddingBottom: 20, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: self.centerXAnchor, centerYAnchor: nil)
-        viewForButton.anchor(top: nil, paddingTop: 0, bottom: self.bottomAnchor, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 0, right: self.rightAnchor, paddingRight: 0, width: 0, height: 100, centerXAnchor: self.centerXAnchor, centerYAnchor: nil)
+        //viewForButton.anchor(top: nil, paddingTop: 0, bottom: self.bottomAnchor, paddingBottom: 0, left: self.leftAnchor, paddingLeft: 0, right: self.rightAnchor, paddingRight: 0, width: 0, height: 100, centerXAnchor: self.centerXAnchor, centerYAnchor: nil)
     }
 
     

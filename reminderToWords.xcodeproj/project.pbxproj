@@ -15,6 +15,8 @@
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */; };
 		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
+		E84E4FF92B29181A00EA2266 /* Ext + HomePageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */; };
+		E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E4FFB2B29193500EA2266 /* TabBarController.swift */; };
 		E8552E552B0FB81400BCDE3E /* CardNameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8552E542B0FB81400BCDE3E /* CardNameModel.swift */; };
 		E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1722AD7619700E37212 /* Ext + UIView.swift */; };
 		E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1752AD7622000E37212 /* Ext + UIColor .swift */; };
@@ -41,12 +43,15 @@
 		E858E1A42AD82F0000E37212 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */; };
 		E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */; };
 		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
+		E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */; };
 		E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDA2AFAB9A40077A8BD /* AuthService.swift */; };
 		E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */; };
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
 		E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */; };
 		E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559D2AF2D840006F2612 /* CardViewController.swift */; };
 		E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559F2AF2DB46006F2612 /* CardView.swift */; };
+		E882A4B42B287AF6006B795C /* Ext + CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */; };
+		E882A4B72B28C242006B795C /* RecycleBinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882A4B62B28C242006B795C /* RecycleBinController.swift */; };
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
@@ -106,6 +111,8 @@
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + HomePageCollectionView.swift"; sourceTree = "<group>"; };
+		E84E4FFB2B29193500EA2266 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E8552E542B0FB81400BCDE3E /* CardNameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNameModel.swift; sourceTree = "<group>"; };
 		E858E1722AD7619700E37212 /* Ext + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIView.swift"; sourceTree = "<group>"; };
 		E858E1752AD7622000E37212 /* Ext + UIColor .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + UIColor .swift"; sourceTree = "<group>"; };
@@ -132,12 +139,15 @@
 		E858E1912AD82F0000E37212 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewController.swift; sourceTree = "<group>"; };
 		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E8697CDA2AFAB9A40077A8BD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E8698B192AEBFDB900CC7144 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		E87E559D2AF2D840006F2612 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		E87E559F2AF2DB46006F2612 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + CardViewController.swift"; sourceTree = "<group>"; };
+		E882A4B62B28C242006B795C /* RecycleBinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinController.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
 		E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -234,6 +244,14 @@
 			path = ImportVC;
 			sourceTree = "<group>";
 		};
+		E84E4FFA2B29192500EA2266 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				E84E4FFB2B29193500EA2266 /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 		E8552E562B0FB94D00BCDE3E /* DetailViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,12 +299,15 @@
 		E858E1712AD760F800E37212 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E8690FAF2B2A5FC3004EAA12 /* ProfileViewController */,
+				E84E4FFA2B29192500EA2266 /* TabBarController */,
+				E882A4B52B28C236006B795C /* RecycleBinController */,
 				E8D75F152AF9816A00CD4857 /* LoginHomeController */,
+				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E87E559C2AF2D817006F2612 /* CardViewController */,
 				E88B60612AE7FBF00005649A /* OnboardingVC */,
 				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
 				E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */,
-				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
 				E8552E562B0FB94D00BCDE3E /* DetailViewController */,
 			);
@@ -298,6 +319,8 @@
 			children = (
 				E858E1722AD7619700E37212 /* Ext + UIView.swift */,
 				E858E1752AD7622000E37212 /* Ext + UIColor .swift */,
+				E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */,
+				E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -372,6 +395,14 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		E8690FAF2B2A5FC3004EAA12 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		E8697CDE2AFABBC80077A8BD /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +434,14 @@
 				E8EDEDDC2B10102C0051E511 /* CardViewCell */,
 			);
 			path = CardViewController;
+			sourceTree = "<group>";
+		};
+		E882A4B52B28C236006B795C /* RecycleBinController */ = {
+			isa = PBXGroup;
+			children = (
+				E882A4B62B28C242006B795C /* RecycleBinController.swift */,
+			);
+			path = RecycleBinController;
 			sourceTree = "<group>";
 		};
 		E88B60612AE7FBF00005649A /* OnboardingVC */ = {
@@ -686,9 +725,12 @@
 				E8D75F172AF981AB00CD4857 /* LoginScreenViewController.swift in Sources */,
 				E8EDEDDE2B10104B0051E511 /* CardTableViewCell.swift in Sources */,
 				E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */,
+				E84E4FF92B29181A00EA2266 /* Ext + HomePageCollectionView.swift in Sources */,
+				E882A4B72B28C242006B795C /* RecycleBinController.swift in Sources */,
 				E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */,
 				E8E358C52AD755CB00EE32E6 /* SplashScreenViewController.swift in Sources */,
 				E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */,
+				E882A4B42B287AF6006B795C /* Ext + CardViewController.swift in Sources */,
 				E8E358C12AD755CB00EE32E6 /* AppDelegate.swift in Sources */,
 				E8D75F1C2AF981EF00CD4857 /* LoginScreenView.swift in Sources */,
 				E8552E552B0FB81400BCDE3E /* CardNameModel.swift in Sources */,
@@ -707,8 +749,10 @@
 				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
 				E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */,
+				E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
+				E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */,
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,
 				E80A633E2B054C44007BF642 /* DataModel.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,

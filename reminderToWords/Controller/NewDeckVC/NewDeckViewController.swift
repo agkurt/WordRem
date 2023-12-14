@@ -232,8 +232,7 @@ extension NewDeckViewController : TextFieldDelegate {
         if hasEmptyField {
             print("Tüm alanları doldurunuz")
         } else {
-            let vc = HomePageCollectionViewController()
-            vc.deckNames = deckNames
+            let vc = TabBarController()
             navigationController?.pushViewController(vc, animated: true)
         }
     }

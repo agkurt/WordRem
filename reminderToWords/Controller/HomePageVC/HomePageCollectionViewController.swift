@@ -9,12 +9,13 @@ import UIKit
 import FirebaseFirestore
 import Firebase
 
-class HomePageCollectionViewController : UICollectionViewController {
+class HomePageCollectionViewController : UICollectionViewController,UITabBarDelegate {
     
     var homePageView : HomePageView!
     let newdeckvc = NewDeckViewController()
     var deckNames : [String] = []
     var deckIds : [String] = []
+    var fetchedDeckNames: [String] = []
     
     // MARK - COMPOSITIONAL LAYOUT
     
@@ -66,6 +67,7 @@ class HomePageCollectionViewController : UICollectionViewController {
         collectionView.dataSource = self
         setupUI()
         fetchCurrentUserDecksData()
+        title = "Decks"
     }
     
     func fetchCurrentUserDecksData() {
@@ -89,9 +91,7 @@ class HomePageCollectionViewController : UICollectionViewController {
                 print("No decks available for this user")
                 return
             }
-            
-            var fetchedDeckNames: [String] = []
-            
+                        
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")
@@ -124,11 +124,11 @@ class HomePageCollectionViewController : UICollectionViewController {
         collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckCell")
         homePageView = HomePageView(frame: self.view.frame)
         self.view.addSubview(homePageView)
-        title = "ReminderToWords"
         addTargetButton()
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
         navigatorControllerSet()
     }
+    
     
     private func addTargetButton() {
         homePageView.newCardButton.addTarget(self, action: #selector(newCardButtonTapped), for: .touchUpInside)

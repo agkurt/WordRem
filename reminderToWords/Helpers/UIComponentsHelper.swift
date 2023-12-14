@@ -53,6 +53,16 @@ struct UIComponentsHelper {
         return stackView
     }
     
+    static func createCustomStackView(axis : NSLayoutConstraint.Axis , spacing : CGFloat , distribution :UIStackView.Distribution,aligment:UIStackView.Alignment   ) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = axis
+        stackView.alignment = aligment
+        stackView.spacing = spacing
+        stackView.distribution = distribution
+        return stackView
+    }
+    
     static func createView() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +123,7 @@ struct UIComponentsHelper {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 20
         imageView.contentMode = .scaleToFill
-        imageView.image = UIImage(named: "wordIcon")
+        imageView.image = UIImage(named: "InAppLogo")
         imageView.tintColor = .label
         return imageView
     }

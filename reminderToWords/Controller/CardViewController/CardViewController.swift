@@ -12,26 +12,25 @@ import FirebaseAuth
 
 class CardViewController: UIViewController {
     
-    public var frontName : [String] = []
-    public var backName : [String] = []
-    public var cardDescription : [String] = []
+    var frontName : [String] = []
+    var backName : [String] = []
+    var cardDescription : [String] = []
     var fetchedCardNameModels: [String] = []
     public var deckId : String = ""
     public var deckNames : [String] = []
     let tableView = UITableView()
     var cardView = CardView()
     public var cardId :String = ""
-    
+    var deletedItems: (frontName: String, backName: String, cardDescription: String)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        print("veriler geldi")
         fetchCurrentUserDecksData()
-        print("lastDeckId: \(deckId)")
-        print("cardID : \(cardId)")
-        print("fetch içerisi : \(fetchedCardNameModels)")
+        title = "Cards"
+        
     }
-    
+
     private func setupTableView() {
         configureTableView()
         configureNavigationItem()
@@ -40,13 +39,53 @@ class CardViewController: UIViewController {
         configureCardView()
         cardView.createNewCard.addTarget(self, action: #selector(didTapNewCardButton), for: .touchUpInside)
         cardView.createNewCard.isUserInteractionEnabled = true
-        title = "Cards"
+        tableView.separatorStyle = .none
     }
     
     private func configureNavigationItem() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Undo", style: .plain, target: self, action: #selector(undoButton))
     }
     
+    @objc private func undoButton() {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            print("User is not logged in")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let deletedItemsRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("deletedItems")
+        
+        deletedItemsRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching deleted items: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = snapshot else { return }
+            
+            for document in snapshot.documents {
+                let deletedFrontName = document.get("frontName") as? String ?? ""
+                let deletedBackName = document.get("backName") as? String ?? ""
+                let deletedCardDescription = document.get("cardDescription") as? String ?? ""
+                
+                document.reference.delete()
+                
+                self.frontName.append(deletedFrontName)
+                self.backName.append(deletedBackName)
+                self.cardDescription.append(deletedCardDescription)
+            }
+            
+            // TableView'i yenile
+            self.tableView.reloadData()
+        }
+    }
+    
+    func update(with deckId: String) {
+            self.deckId = deckId
+           
+        }
+
     @objc private func didtapBackButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
@@ -109,7 +148,7 @@ class CardViewController: UIViewController {
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")
-                                
+                
                 if let frontNames = deckData["frontName"] as? [String],
                    let backNames = deckData["backName"] as? [String],
                    let cardDescriptions = deckData["cardDescription"] as? [String] {
@@ -117,44 +156,18 @@ class CardViewController: UIViewController {
                     self.fetchedCardNameModels.append(contentsOf: frontNames)
                     self.fetchedCardNameModels.append(contentsOf: backNames)
                     self.fetchedCardNameModels.append(contentsOf: cardDescriptions)
+                    
+                    self.frontName.append(contentsOf: frontNames)
+                    self.backName.append(contentsOf: backNames)
+                    self.cardDescription.append(contentsOf: cardDescriptions)
+                    
                 }
             }
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 print("Reloaded TableView")
                 print("Card Name Count: \(self.fetchedCardNameModels.count)")
             }
         }
-    }
-}
-
-extension CardViewController : UITableViewDelegate , UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedCardNameModels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell") as? CardTableViewCell else {
-            fatalError("wrong identifier")
-        }
-        cell.configure(text: fetchedCardNameModels[indexPath.row])
-        cell.selectionStyle = .none
-        cell.backgroundColor = .white
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-
-}
-
-extension CardViewController: SendTextFieldDelegate {
-    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String]) {
-        self.frontName = frontName
-        self.backName = backName
-        self.cardDescription = cardDescription
     }
 }
