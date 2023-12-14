@@ -14,6 +14,8 @@
 		<string>Gilroy-Light.ttf</string>
 		<string>Gilroy-Medium.ttf</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.&quot; </string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

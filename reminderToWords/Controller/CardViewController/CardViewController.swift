@@ -22,7 +22,7 @@ class CardViewController: UIViewController {
     var cardView = CardView()
     public var cardId :String = ""
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -30,7 +30,7 @@ class CardViewController: UIViewController {
         title = "Cards"
         
     }
-
+    
     private func setupTableView() {
         configureTableView()
         configureNavigationItem()
@@ -48,6 +48,10 @@ class CardViewController: UIViewController {
     }
     
     @objc private func undoButton() {
+        fetchedFirebaseDeletedItemsData()
+    }
+    
+    func fetchedFirebaseDeletedItemsData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
             print("User is not logged in")
             return
@@ -82,10 +86,10 @@ class CardViewController: UIViewController {
     }
     
     func update(with deckId: String) {
-            self.deckId = deckId
-           
-        }
-
+        self.deckId = deckId
+        
+    }
+    
     @objc private func didtapBackButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
@@ -104,9 +108,9 @@ class CardViewController: UIViewController {
     }
     
     func performCardAddAction() {
-            let addViewController = DetailViewController() // Burada "Card" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
-            navigationController?.pushViewController(addViewController, animated: true)
-        }
+        let addViewController = DetailViewController() // Burada "Card" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
+        navigationController?.pushViewController(addViewController, animated: true)
+    }
     
     private func configureCardView() {
         cardView.translatesAutoresizingMaskIntoConstraints = false

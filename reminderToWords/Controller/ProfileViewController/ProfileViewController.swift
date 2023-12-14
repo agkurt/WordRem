@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     
-    private lazy var customView: ProfileView = {
+    private lazy var profileView: ProfileView = {
         let view = ProfileView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -18,19 +20,20 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        fetchEmailAndUsernameData()
     }
     
     private func setupView() {
-        view.addSubview(customView)
+        view.addSubview(profileView)
         
         NSLayoutConstraint.activate([
-            customView.topAnchor.constraint(equalTo: view.topAnchor),
-            customView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            customView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            customView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            profileView.topAnchor.constraint(equalTo: view.topAnchor),
+            profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        customView.button.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        profileView.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
     }
     
     @objc func didTapLogoutButton() {
@@ -42,5 +45,34 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func fetchEmailAndUsernameData() {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            print("User is not logged in")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(currentUserUID)
+        
+        userRef.getDocument { [weak self] (document, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error fetching user data: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let document = document else {
+                print("User document not found")
+                return
+            }
+            
+            if let email = document["email"] as? String,
+               let username = document["username"] as? String {
+                profileView.emailLabel.text = email
+                profileView.userNameLabel.text = username
+                print("User Email: \(email), Username: \(username)")
+            }
+        }
+    }
 }
-
