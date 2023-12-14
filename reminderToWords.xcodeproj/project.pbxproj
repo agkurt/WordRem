@@ -44,6 +44,27 @@
 		E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */; };
 		E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E858E1AB2AD83E3E00E37212 /* HomePageView.swift */; };
 		E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */; };
+		E8690FC52B2A8346004EAA12 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB12B2A8345004EAA12 /* Gilroy-SemiBold.ttf */; };
+		E8690FC62B2A8346004EAA12 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB22B2A8345004EAA12 /* Gilroy-Bold.ttf */; };
+		E8690FC72B2A8346004EAA12 /* Gilroy-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB32B2A8345004EAA12 /* Gilroy-BlackItalic.ttf */; };
+		E8690FC82B2A8346004EAA12 /* Gilroy-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB42B2A8345004EAA12 /* Gilroy-ExtraBoldItalic.ttf */; };
+		E8690FC92B2A8346004EAA12 /* Gilroy-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB52B2A8345004EAA12 /* Gilroy-RegularItalic.ttf */; };
+		E8690FCA2B2A8346004EAA12 /* Gilroy-UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB62B2A8345004EAA12 /* Gilroy-UltraLight.ttf */; };
+		E8690FCB2B2A8346004EAA12 /* Gilroy-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB72B2A8345004EAA12 /* Gilroy-Black.ttf */; };
+		E8690FCC2B2A8346004EAA12 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB82B2A8345004EAA12 /* Gilroy-Medium.ttf */; };
+		E8690FCD2B2A8346004EAA12 /* Gilroy-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FB92B2A8345004EAA12 /* Gilroy-BoldItalic.ttf */; };
+		E8690FCE2B2A8346004EAA12 /* Gilroy-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBA2B2A8345004EAA12 /* Gilroy-MediumItalic.ttf */; };
+		E8690FCF2B2A8346004EAA12 /* Gilroy-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBB2B2A8345004EAA12 /* Gilroy-LightItalic.ttf */; };
+		E8690FD02B2A8346004EAA12 /* Gilroy-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBC2B2A8345004EAA12 /* Gilroy-Heavy.ttf */; };
+		E8690FD12B2A8346004EAA12 /* Gilroy-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBD2B2A8345004EAA12 /* Gilroy-SemiBoldItalic.ttf */; };
+		E8690FD22B2A8346004EAA12 /* Gilroy-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBE2B2A8345004EAA12 /* Gilroy-Thin.ttf */; };
+		E8690FD32B2A8346004EAA12 /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FBF2B2A8345004EAA12 /* Gilroy-Light.ttf */; };
+		E8690FD42B2A8346004EAA12 /* Gilroy-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FC02B2A8345004EAA12 /* Gilroy-HeavyItalic.ttf */; };
+		E8690FD52B2A8346004EAA12 /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FC12B2A8345004EAA12 /* Gilroy-Regular.ttf */; };
+		E8690FD62B2A8346004EAA12 /* Gilroy-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FC22B2A8346004EAA12 /* Gilroy-ThinItalic.ttf */; };
+		E8690FD72B2A8346004EAA12 /* Gilroy-UltraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FC32B2A8346004EAA12 /* Gilroy-UltraLightItalic.ttf */; };
+		E8690FD82B2A8346004EAA12 /* Gilroy-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8690FC42B2A8346004EAA12 /* Gilroy-ExtraBold.ttf */; };
+		E8690FDB2B2B2BF9004EAA12 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8690FDA2B2B2BF9004EAA12 /* ProfileView.swift */; };
 		E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDA2AFAB9A40077A8BD /* AuthService.swift */; };
 		E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */; };
 		E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8698B142AEB2A8900CC7144 /* DetailViewController.swift */; };
@@ -140,6 +161,27 @@
 		E858E1A62AD83D4400E37212 /* HomePageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageCollectionViewController.swift; sourceTree = "<group>"; };
 		E858E1AB2AD83E3E00E37212 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E8690FB12B2A8345004EAA12 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
+		E8690FB22B2A8345004EAA12 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
+		E8690FB32B2A8345004EAA12 /* Gilroy-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-BlackItalic.ttf"; sourceTree = "<group>"; };
+		E8690FB42B2A8345004EAA12 /* Gilroy-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		E8690FB52B2A8345004EAA12 /* Gilroy-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-RegularItalic.ttf"; sourceTree = "<group>"; };
+		E8690FB62B2A8345004EAA12 /* Gilroy-UltraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-UltraLight.ttf"; sourceTree = "<group>"; };
+		E8690FB72B2A8345004EAA12 /* Gilroy-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Black.ttf"; sourceTree = "<group>"; };
+		E8690FB82B2A8345004EAA12 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
+		E8690FB92B2A8345004EAA12 /* Gilroy-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E8690FBA2B2A8345004EAA12 /* Gilroy-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-MediumItalic.ttf"; sourceTree = "<group>"; };
+		E8690FBB2B2A8345004EAA12 /* Gilroy-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-LightItalic.ttf"; sourceTree = "<group>"; };
+		E8690FBC2B2A8345004EAA12 /* Gilroy-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Heavy.ttf"; sourceTree = "<group>"; };
+		E8690FBD2B2A8345004EAA12 /* Gilroy-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		E8690FBE2B2A8345004EAA12 /* Gilroy-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Thin.ttf"; sourceTree = "<group>"; };
+		E8690FBF2B2A8345004EAA12 /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		E8690FC02B2A8345004EAA12 /* Gilroy-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		E8690FC12B2A8345004EAA12 /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
+		E8690FC22B2A8346004EAA12 /* Gilroy-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ThinItalic.ttf"; sourceTree = "<group>"; };
+		E8690FC32B2A8346004EAA12 /* Gilroy-UltraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-UltraLightItalic.ttf"; sourceTree = "<group>"; };
+		E8690FC42B2A8346004EAA12 /* Gilroy-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-ExtraBold.ttf"; sourceTree = "<group>"; };
+		E8690FDA2B2B2BF9004EAA12 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E8697CDA2AFAB9A40077A8BD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E8697CDC2AFABB860077A8BD /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		E8698B142AEB2A8900CC7144 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +327,7 @@
 		E858E1702AD760F400E37212 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E8690FD92B2B2BDE004EAA12 /* ProfileView */,
 				E8D75F1A2AF981DD00CD4857 /* LoginHomeView */,
 				E87E559B2AF2D800006F2612 /* CardView */,
 				E8698B182AEBFD9C00CC7144 /* DetailTableViewCell */,
@@ -403,6 +446,41 @@
 			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
+		E8690FB02B2A832B004EAA12 /* GilroyFont */ = {
+			isa = PBXGroup;
+			children = (
+				E8690FB72B2A8345004EAA12 /* Gilroy-Black.ttf */,
+				E8690FB32B2A8345004EAA12 /* Gilroy-BlackItalic.ttf */,
+				E8690FB22B2A8345004EAA12 /* Gilroy-Bold.ttf */,
+				E8690FB92B2A8345004EAA12 /* Gilroy-BoldItalic.ttf */,
+				E8690FC42B2A8346004EAA12 /* Gilroy-ExtraBold.ttf */,
+				E8690FB42B2A8345004EAA12 /* Gilroy-ExtraBoldItalic.ttf */,
+				E8690FBC2B2A8345004EAA12 /* Gilroy-Heavy.ttf */,
+				E8690FC02B2A8345004EAA12 /* Gilroy-HeavyItalic.ttf */,
+				E8690FBF2B2A8345004EAA12 /* Gilroy-Light.ttf */,
+				E8690FBB2B2A8345004EAA12 /* Gilroy-LightItalic.ttf */,
+				E8690FB82B2A8345004EAA12 /* Gilroy-Medium.ttf */,
+				E8690FBA2B2A8345004EAA12 /* Gilroy-MediumItalic.ttf */,
+				E8690FC12B2A8345004EAA12 /* Gilroy-Regular.ttf */,
+				E8690FB52B2A8345004EAA12 /* Gilroy-RegularItalic.ttf */,
+				E8690FB12B2A8345004EAA12 /* Gilroy-SemiBold.ttf */,
+				E8690FBD2B2A8345004EAA12 /* Gilroy-SemiBoldItalic.ttf */,
+				E8690FBE2B2A8345004EAA12 /* Gilroy-Thin.ttf */,
+				E8690FC22B2A8346004EAA12 /* Gilroy-ThinItalic.ttf */,
+				E8690FB62B2A8345004EAA12 /* Gilroy-UltraLight.ttf */,
+				E8690FC32B2A8346004EAA12 /* Gilroy-UltraLightItalic.ttf */,
+			);
+			path = GilroyFont;
+			sourceTree = "<group>";
+		};
+		E8690FD92B2B2BDE004EAA12 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				E8690FDA2B2B2BF9004EAA12 /* ProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
 		E8697CDE2AFABBC80077A8BD /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +589,7 @@
 		E8E358BF2AD755CB00EE32E6 /* reminderToWords */ = {
 			isa = PBXGroup;
 			children = (
+				E8690FB02B2A832B004EAA12 /* GilroyFont */,
 				E858E17D2AD824EC00E37212 /* Helpers */,
 				E858E1742AD7619B00E37212 /* Extensions */,
 				E858E1712AD760F800E37212 /* Controller */,
@@ -670,27 +749,47 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8690FC82B2A8346004EAA12 /* Gilroy-ExtraBoldItalic.ttf in Resources */,
 				E858E1972AD82F0000E37212 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				E858E1932AD82F0000E37212 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				E858E1952AD82F0000E37212 /* Poppins-LightItalic.ttf in Resources */,
 				E858E1942AD82F0000E37212 /* Poppins-ExtraBold.ttf in Resources */,
+				E8690FD62B2A8346004EAA12 /* Gilroy-ThinItalic.ttf in Resources */,
 				E858E19F2AD82F0000E37212 /* Poppins-ExtraLight.ttf in Resources */,
+				E8690FD02B2A8346004EAA12 /* Gilroy-Heavy.ttf in Resources */,
 				E858E19C2AD82F0000E37212 /* Poppins-SemiBold.ttf in Resources */,
+				E8690FD32B2A8346004EAA12 /* Gilroy-Light.ttf in Resources */,
+				E8690FCC2B2A8346004EAA12 /* Gilroy-Medium.ttf in Resources */,
 				E858E1962AD82F0000E37212 /* Poppins-Black.ttf in Resources */,
 				E858E1A12AD82F0000E37212 /* Poppins-MediumItalic.ttf in Resources */,
 				E858E1982AD82F0000E37212 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				E858E1A42AD82F0000E37212 /* Poppins-Regular.ttf in Resources */,
 				E858E1A32AD82F0000E37212 /* Poppins-Medium.ttf in Resources */,
+				E8690FCE2B2A8346004EAA12 /* Gilroy-MediumItalic.ttf in Resources */,
+				E8690FC92B2A8346004EAA12 /* Gilroy-RegularItalic.ttf in Resources */,
+				E8690FC72B2A8346004EAA12 /* Gilroy-BlackItalic.ttf in Resources */,
+				E8690FD72B2A8346004EAA12 /* Gilroy-UltraLightItalic.ttf in Resources */,
 				E858E1A22AD82F0000E37212 /* OFL.txt in Resources */,
+				E8690FCF2B2A8346004EAA12 /* Gilroy-LightItalic.ttf in Resources */,
 				E858E19E2AD82F0000E37212 /* Poppins-Bold.ttf in Resources */,
 				E858E1A02AD82F0000E37212 /* Poppins-BoldItalic.ttf in Resources */,
+				E8690FD82B2A8346004EAA12 /* Gilroy-ExtraBold.ttf in Resources */,
 				E858E1922AD82F0000E37212 /* Poppins-Italic.ttf in Resources */,
+				E8690FC62B2A8346004EAA12 /* Gilroy-Bold.ttf in Resources */,
+				E8690FCD2B2A8346004EAA12 /* Gilroy-BoldItalic.ttf in Resources */,
 				E858E19D2AD82F0000E37212 /* Poppins-BlackItalic.ttf in Resources */,
+				E8690FCA2B2A8346004EAA12 /* Gilroy-UltraLight.ttf in Resources */,
 				E8E358CD2AD755CE00EE32E6 /* LaunchScreen.storyboard in Resources */,
+				E8690FD52B2A8346004EAA12 /* Gilroy-Regular.ttf in Resources */,
 				E8E358CA2AD755CE00EE32E6 /* Assets.xcassets in Resources */,
+				E8690FC52B2A8346004EAA12 /* Gilroy-SemiBold.ttf in Resources */,
 				E858E19B2AD82F0000E37212 /* Poppins-ThinItalic.ttf in Resources */,
 				E8BD25B62AFBD7A7009E6597 /* GoogleService-Info.plist in Resources */,
+				E8690FD12B2A8346004EAA12 /* Gilroy-SemiBoldItalic.ttf in Resources */,
+				E8690FCB2B2A8346004EAA12 /* Gilroy-Black.ttf in Resources */,
+				E8690FD22B2A8346004EAA12 /* Gilroy-Thin.ttf in Resources */,
 				E858E19A2AD82F0000E37212 /* Poppins-Light.ttf in Resources */,
+				E8690FD42B2A8346004EAA12 /* Gilroy-HeavyItalic.ttf in Resources */,
 				E858E1992AD82F0000E37212 /* Poppins-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,6 +855,7 @@
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,
 				E80A633E2B054C44007BF642 /* DataModel.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,
+				E8690FDB2B2B2BF9004EAA12 /* ProfileView.swift in Sources */,
 				E8BD25CB2AFC3586009E6597 /* Validator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -928,12 +1028,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7T569GVN5Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -944,9 +1045,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -961,12 +1063,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7T569GVN5Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -977,9 +1080,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

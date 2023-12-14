@@ -9,14 +9,14 @@ import UIKit
 
 class LoginScreenView: UIView {
     
-    let signLabel = UIComponentsHelper.createCustomLabel(text: "Sign In", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
-    let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Sign in to your account", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Poppins-Light")
+    let signLabel = UIComponentsHelper.createCustomLabel(text: "Sign In", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Gilroy-Medium")
+    let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Sign in to your account", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Gilroy-Light")
     let iconImageView = UIComponentsHelper.createIconImageView()
     let emailTextField = UIComponentsHelper.createTextField(placeholder: "\tEmail...", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
     let passwordTextField = UIComponentsHelper.createTextField(placeholder: "\tPassword...", textColor: UIColor.black, backgroundColor:  UIColor.init(hex: "#E8E8E8"))
-    let signInButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign In", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Poppins-SemiBold")
-    let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "New User? Create Account", titleColor: UIColor.init(hex: "#205AFF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
-    let forgotPasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Forgot Password?", titleColor: UIColor.init(hex: "#1180FF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Poppins-SemiBold")
+    let signInButton = UIComponentsHelper.createCustomButton(buttonTitle: "Sign In", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#205AFF"), UIColorName: "Gilroy-Medium")
+    let registerButton = UIComponentsHelper.createCustomButton(buttonTitle: "New User? Create Account", titleColor: UIColor.init(hex: "#205AFF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Medium")
+    let forgotPasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Forgot Password?", titleColor: UIColor.init(hex: "#1180FF"), buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Medium")
     
 
     override init(frame: CGRect) {

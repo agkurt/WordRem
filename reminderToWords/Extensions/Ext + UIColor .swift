@@ -48,3 +48,11 @@ extension UIColor {
         return nil
     }
 }
+
+extension UIColor {
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+    
+    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 255)
+}

@@ -89,7 +89,7 @@ class CardViewController: UIViewController {
     @objc private func didtapBackButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
-            let vc = HomePageCollectionViewController()
+            let vc = TabBarController()
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -102,6 +102,11 @@ class CardViewController: UIViewController {
         tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cardCell")
         
     }
+    
+    func performCardAddAction() {
+            let addViewController = DetailViewController() // Burada "Card" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
+            navigationController?.pushViewController(addViewController, animated: true)
+        }
     
     private func configureCardView() {
         cardView.translatesAutoresizingMaskIntoConstraints = false

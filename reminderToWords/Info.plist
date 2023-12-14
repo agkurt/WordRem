@@ -9,6 +9,10 @@
 		<string>Poppins-SemiBold.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 		<string>Poppins-Light.ttf</string>
+		<string>Gilroy-Black.ttf</string>
+		<string>Gilroy-Bold.ttf</string>
+		<string>Gilroy-Light.ttf</string>
+		<string>Gilroy-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

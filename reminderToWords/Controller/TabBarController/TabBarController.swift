@@ -11,7 +11,7 @@ import Foundation
 class TabBarController : UITabBarController {
     
     lazy var btnMiddle : UIButton = {
-       let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         btn.setTitle("", for: .normal)
         btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1.0)
         btn.layer.cornerRadius = 30
@@ -35,25 +35,23 @@ class TabBarController : UITabBarController {
     }
     
     @objc func didTapButton() {
-            if let navigationController = self.navigationController {
-                if let rootViewController = navigationController.viewControllers.first {
-                    if rootViewController is HomePageCollectionViewController {
-                        let vc = NewDeckViewController()
-                        navigationController.pushViewController(vc, animated: true)
-                    } else if rootViewController is CardViewController {
-                        let vc = DetailViewController()
-                        navigationController.pushViewController(vc, animated: true)
-                    } else {
-                        print("Root view controller, HomePageCollectionViewController veya CardViewController değil.")
-                    }
-                } else {
-                    print("Navigation Controller içinde hiçbir görünüm yok.")
-                }
+        if let selectedViewController = selectedViewController {
+            if let selectedNavigationController = selectedViewController as? UINavigationController {
+                let rootViewController = selectedNavigationController.viewControllers.first
+                performActionForViewController(rootViewController)
             } else {
-                print("Navigation Controller yok.")
+                performActionForViewController(selectedViewController)
             }
-        
         }
+    }
+    
+    func performActionForViewController(_ viewController: UIViewController?) {
+        if let homeViewController = viewController as? HomePageCollectionViewController {
+            homeViewController.performHomeAddAction()
+        } else if let cardViewController = viewController as? CardViewController {
+            cardViewController.performCardAddAction()
+        }
+    }
     
     func setupCustomTabBar() {
         let path : UIBezierPath = getPathForTabBar()

@@ -56,6 +56,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         vc.deckNames = deckNames
         navigationController?.pushViewController(vc, animated: true)
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -67,8 +68,12 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         collectionView.dataSource = self
         setupUI()
         fetchCurrentUserDecksData()
-        title = "Decks"
     }
+    
+    func performHomeAddAction() {
+            let addViewController = NewDeckViewController() // Burada "Home" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
+            navigationController?.pushViewController(addViewController, animated: true)
+        }
     
     func fetchCurrentUserDecksData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
@@ -155,6 +160,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
         navigationItem.leftBarButtonItem = nil
+        navigationItem.title = "Decks"
         
     }
     

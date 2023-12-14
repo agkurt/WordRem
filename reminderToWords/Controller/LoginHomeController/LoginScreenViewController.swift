@@ -89,7 +89,6 @@ extension LoginScreenViewController : UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == loginView.emailTextField {
-            // Eğer emailTextField ise, sadece ilk harfi küçük yap
             let email = loginView.emailTextField.text ?? ""
             if let range = Range(range, in: email) {
                 let newText = email.replacingCharacters(in: range, with: string)
@@ -104,6 +103,15 @@ extension LoginScreenViewController : UITextFieldDelegate {
                 textField.text = newText.prefix(1).lowercased() + newText.dropFirst()
                 return false
             }
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginView.emailTextField {
+            loginView.passwordTextField.becomeFirstResponder() // Şifre alanına geçiş yap
+        } else if textField == loginView.passwordTextField {
+            textField.resignFirstResponder() // Klavyeyi kapat
         }
         return true
     }
