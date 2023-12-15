@@ -9,21 +9,24 @@ import UIKit
 
 class ProfileView: UIView {
     
-    let logoutButton = UIComponentsHelper.createCustomButton(buttonTitle: "Logout", titleColor:UIColor.white, buttonBackGroundColor: UIColor.blue, UIColorName: "Gilroy-Bold")
-    let profileLabel = UIComponentsHelper.createCustomLabel(text: "Profile", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Bold")
-    let emailLabel = UIComponentsHelper.createCustomLabel(text: "", size: 15, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
-    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Gilroy-Bold")
-    let emailTitleLabel = UIComponentsHelper.createCustomLabel(text: "Email", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.orange, fontName: "Gilroy-Bold")
+    let logoutButton = UIComponentsHelper.createCustomButton(buttonTitle: "Logout", titleColor:UIColor.red, buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Bold")
+    let emailLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
+    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
+    let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
+    let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome User", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Gilroy-Bold")
+    let changeEmailButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Email", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
+    
     
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .mainBlue
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
-        view.addSubview(userNameLabel)
-        
+        view.addSubview(welcomeLabel)
+
         profileImageView.anchor(top: view.topAnchor, paddingTop: 88, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 120, height: 120,centerXAnchor: view.centerXAnchor,centerYAnchor: nil)
-        userNameLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 15, bottom: nil, paddingBottom: 0, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
+        welcomeLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 25, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0,centerXAnchor: view.centerXAnchor,centerYAnchor: nil)
+        
         profileImageView.layer.cornerRadius = 120 / 2
         
         return view
@@ -39,7 +42,7 @@ class ProfileView: UIView {
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,18 +52,57 @@ class ProfileView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+   
     
     private func setupView() {
         backgroundColor = .white
         addSubview(containerView)
         addSubview(logoutButton)
         addSubview(emailLabel)
-        addSubview(emailTitleLabel)
+        addSubview(changePasswordButton)
+        addSubview(userNameLabel)
+        addSubview(changeEmailButton)
+        createSystemIcon()
         
         containerView.anchor(top: topAnchor, paddingTop: 0, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 0, right: rightAnchor, paddingRight: 0, width: 0, height: 300, centerXAnchor: nil, centerYAnchor: nil)
-        logoutButton.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 100, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 100, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
-        emailLabel.anchor(top: emailTitleLabel.bottomAnchor, paddingTop: 5, bottom: nil, paddingBottom: 0, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
-        emailTitleLabel.anchor(top: containerView.bottomAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        logoutButton.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 120, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 100, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        emailLabel.anchor(top: containerView.bottomAnchor, paddingTop: 45, bottom: nil, paddingBottom: 0, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        changePasswordButton.anchor(top: nil, paddingTop: 0, bottom: logoutButton.topAnchor, paddingBottom: 10, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 200, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        userNameLabel.anchor(top: emailLabel.bottomAnchor, paddingTop: 25, bottom: nil, paddingBottom: 0, left: emailLabel.leftAnchor, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        changeEmailButton.anchor(top:nil, paddingTop: 0, bottom: changePasswordButton.topAnchor, paddingBottom: 10, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 200, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        
+        userNameLabel.textAlignment = .left
+        
     }
     
+    private func createSystemIcon() {
+        let mailIconSize: CGFloat = 35
+        let mailIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: mailIconSize, height: mailIconSize))
+        let profileIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: mailIconSize, height: mailIconSize))
+        
+        profileIcon.contentMode = .scaleAspectFit
+        profileIcon.image = UIImage(named: "profile")
+        profileIcon.tintColor = .blue
+        profileIcon.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(profileIcon)
+        
+        mailIcon.contentMode = .scaleAspectFit
+        mailIcon.image = UIImage(named: "email")
+        mailIcon.tintColor = .blue
+        mailIcon.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(mailIcon)
+        
+        NSLayoutConstraint.activate([
+            mailIcon.widthAnchor.constraint(equalToConstant: mailIconSize),
+            mailIcon.heightAnchor.constraint(equalToConstant: mailIconSize),
+            mailIcon.centerYAnchor.constraint(equalTo: emailLabel.centerYAnchor),
+            mailIcon.trailingAnchor.constraint(equalTo: emailLabel.leadingAnchor, constant: -5),
+            
+            profileIcon.widthAnchor.constraint(equalToConstant: mailIconSize),
+            profileIcon.heightAnchor.constraint(equalToConstant: mailIconSize),
+            profileIcon.centerYAnchor.constraint(equalTo: userNameLabel.centerYAnchor),
+            profileIcon.trailingAnchor.constraint(equalTo: userNameLabel.leadingAnchor, constant: -5),
+        ])
+    }
+
 }

@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E80A633E2B054C44007BF642 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80A633D2B054C44007BF642 /* DataModel.swift */; };
+		E8211ADE2B2CE6A400B73397 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8211ADD2B2CE6A400B73397 /* PasswordController.swift */; };
 		E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */; };
+		E83328132B2CE703006302E6 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83328122B2CE703006302E6 /* PasswordView.swift */; };
 		E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */; };
 		E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */; };
 		E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */; };
@@ -125,7 +127,9 @@
 
 /* Begin PBXFileReference section */
 		E80A633D2B054C44007BF642 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		E8211ADD2B2CE6A400B73397 /* PasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
 		E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckTableViewCell.swift; sourceTree = "<group>"; };
+		E83328122B2CE703006302E6 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckColorTableViewCell.swift; sourceTree = "<group>"; };
 		E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckImageTableViewCell.swift; sourceTree = "<group>"; };
 		E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				E8690FAD2B2A5FBE004EAA12 /* ProfileViewController.swift */,
+				E8211ADD2B2CE6A400B73397 /* PasswordController.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				E8690FDA2B2B2BF9004EAA12 /* ProfileView.swift */,
+				E83328122B2CE703006302E6 /* PasswordView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -838,6 +844,7 @@
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
 				E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
+				E83328132B2CE703006302E6 /* PasswordView.swift in Sources */,
 				E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */,
 				E8BD25D12AFCA024009E6597 /* ForgotPasswordView.swift in Sources */,
@@ -853,6 +860,7 @@
 				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
 				E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */,
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,
+				E8211ADE2B2CE6A400B73397 /* PasswordController.swift in Sources */,
 				E80A633E2B054C44007BF642 /* DataModel.swift in Sources */,
 				E858E1782AD7624400E37212 /* SplashScreenView.swift in Sources */,
 				E8690FDB2B2B2BF9004EAA12 /* ProfileView.swift in Sources */,

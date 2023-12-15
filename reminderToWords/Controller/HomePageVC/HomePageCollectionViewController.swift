@@ -111,13 +111,12 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             }
             
             self.deckNames = fetchedDeckNames
-            print("Fetched Deck Names: \(self.deckNames)") // Add this line to check the value
+            print("Fetched Deck Names: \(self.deckNames)")
             
-            // Reload collectionView on the main thread after fetching all data
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 print("Reloaded CollectionView")
-                print("Deck Names Count: \(self.deckNames.count)") // Check the count after reloading
+                print("Deck Names Count: \(self.deckNames.count)") 
             }
         }
     }

@@ -34,7 +34,17 @@ class ProfileViewController: UIViewController {
         ])
         
         profileView.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
+        profileView.changePasswordButton.addTarget(self, action: #selector(didTapChangePasswordButton), for: .touchUpInside)
     }
+    
+    @objc func didTapChangePasswordButton() {
+        DispatchQueue.main.async {
+            let vc = PasswordController()
+            vc.modalPresentationStyle = .fullScreen
+            
+        }
+    }
+
     
     @objc func didTapLogoutButton() {
         AuthService.shared.signOut { [weak self] error in
