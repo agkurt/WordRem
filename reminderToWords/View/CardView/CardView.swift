@@ -9,7 +9,17 @@ import UIKit
 
 class CardView: UIView {
     
-    let createNewCard = UIComponentsHelper.createCustomButton(buttonTitle: "Create New Card", titleColor: UIColor.white, buttonBackGroundColor: UIColor.blue, UIColorName: "Poppins-SemiBold")
+    lazy var btnMiddle : UIButton = {
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        btn.setTitle("", for: .normal)
+        btn.backgroundColor = UIColor.mainBlue
+        btn.layer.cornerRadius = 30
+        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowOpacity = 0.2
+        btn.layer.shadowOffset = CGSize(width: 4, height: 4)
+        btn.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        return btn
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,14 +37,16 @@ class CardView: UIView {
     }
     
     private func setSubviews() {
-        addSubview(createNewCard)
+        addSubview(btnMiddle)
     }
     
     private func setupUI() {
+        btnMiddle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createNewCard.widthAnchor.constraint(equalToConstant: 200),
-            createNewCard.centerXAnchor.constraint(equalTo: centerXAnchor),
-            createNewCard.bottomAnchor.constraint(equalTo: bottomAnchor)
+            btnMiddle.centerXAnchor.constraint(equalTo: centerXAnchor),
+            btnMiddle.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:-5),
+            btnMiddle.widthAnchor.constraint(equalToConstant: 60),
+            btnMiddle.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }

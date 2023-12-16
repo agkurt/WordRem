@@ -177,32 +177,18 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , U
             cell.backgroundColor = UIColor.white
             cell.selectionStyle = .none
             return cell
-        case 1:
-            guard let cell  = tableView.dequeueReusableCell(withIdentifier: "colorCell") as? DeckColorTableViewCell else {
-                fatalError("Wrong cell identifier")
-            }
-            cell.backgroundColor = UIColor.white
-            cell.selectionStyle = .none
-            return cell
-        default :
-            guard let cell  = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
-                fatalError("Wrong cell identifier")
-            }
-            cell.backgroundColor = UIColor.white
-            cell.delegate = self
-            cell.selectionStyle = .none
-            return cell
-        }
+        default:
+              let emptyCell = UITableViewCell()
+              emptyCell.backgroundColor = UIColor.white
+              emptyCell.selectionStyle = .none
+              return emptyCell
+          }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0 :
             return 100
-        case 1:
-            return 200
-        case 2:
-            return 200
         default:
             return 200
         }

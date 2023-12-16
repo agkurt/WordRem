@@ -15,7 +15,6 @@
 		E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */; };
 		E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */; };
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
-		E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */; };
 		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
 		E84E4FF92B29181A00EA2266 /* Ext + HomePageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */; };
 		E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E4FFB2B29193500EA2266 /* TabBarController.swift */; };
@@ -134,7 +133,6 @@
 		E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckImageTableViewCell.swift; sourceTree = "<group>"; };
 		E83FFE402ADE8B0F00C9A01A /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
-		E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + HomePageCollectionView.swift"; sourceTree = "<group>"; };
 		E84E4FFB2B29193500EA2266 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -282,14 +280,6 @@
 			path = NewDeckBackGround;
 			sourceTree = "<group>";
 		};
-		E83FFE452ADEB2AE00C9A01A /* ImportVC */ = {
-			isa = PBXGroup;
-			children = (
-				E83FFE462ADEB2C900C9A01A /* ImportViewController.swift */,
-			);
-			path = ImportVC;
-			sourceTree = "<group>";
-		};
 		E84E4FFA2B29192500EA2266 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,7 +343,6 @@
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E87E559C2AF2D817006F2612 /* CardViewController */,
 				E88B60612AE7FBF00005649A /* OnboardingVC */,
-				E83FFE452ADEB2AE00C9A01A /* ImportVC */,
 				E83FFE3F2ADE8AFB00C9A01A /* NewDeckVC */,
 				E858E1A52AD83B5C00E37212 /* SplashVc */,
 				E8552E562B0FB94D00BCDE3E /* DetailViewController */,
@@ -857,7 +846,6 @@
 				E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */,
 				E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
-				E83FFE472ADEB2C900C9A01A /* ImportViewController.swift in Sources */,
 				E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */,
 				E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */,
 				E8211ADE2B2CE6A400B73397 /* PasswordController.swift in Sources */,
@@ -1053,7 +1041,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1088,7 +1076,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

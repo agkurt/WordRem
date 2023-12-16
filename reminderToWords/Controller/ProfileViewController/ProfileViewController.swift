@@ -35,13 +35,18 @@ class ProfileViewController: UIViewController {
         
         profileView.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
         profileView.changePasswordButton.addTarget(self, action: #selector(didTapChangePasswordButton), for: .touchUpInside)
+        profileView.changeEmailButton.addTarget(self, action: #selector(didTapChangeEmailButton), for: .touchUpInside)
+    }
+    
+    @objc func didTapChangeEmailButton() {
+        print("tıklandı")
     }
     
     @objc func didTapChangePasswordButton() {
         DispatchQueue.main.async {
             let vc = PasswordController()
-            vc.modalPresentationStyle = .fullScreen
-            
+            vc.modalPresentationStyle = .popover
+            self.present(vc, animated: true)
         }
     }
 

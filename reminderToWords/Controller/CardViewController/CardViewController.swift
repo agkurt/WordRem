@@ -37,9 +37,8 @@ class CardViewController: UIViewController {
         cardView = CardView(frame: self.view.frame)
         self.view.addSubview(cardView)
         configureCardView()
-        cardView.createNewCard.addTarget(self, action: #selector(didTapNewCardButton), for: .touchUpInside)
-        cardView.createNewCard.isUserInteractionEnabled = true
         tableView.separatorStyle = .none
+        cardView.btnMiddle.addTarget(self, action: #selector(didTapbtnMiddleButton), for: .touchUpInside)
     }
     
     private func configureNavigationItem() {
@@ -104,12 +103,11 @@ class CardViewController: UIViewController {
         view.addSubview(tableView)
         tableView.pin(to: view)
         tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cardCell")
-        
     }
     
     func performCardAddAction() {
-        let addViewController = DetailViewController() // Burada "Card" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
-        navigationController?.pushViewController(addViewController, animated: true)
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func configureCardView() {
@@ -122,13 +120,14 @@ class CardViewController: UIViewController {
         ])
     }
     
-    @objc func didTapNewCardButton() {
+    @objc func didTapbtnMiddleButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             let vc = DetailViewController()
             vc.deckId = self.deckId
             vc.deckName = self.deckNames
             self.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     

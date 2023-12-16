@@ -17,7 +17,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     var deckIds : [String] = []
     var fetchedDeckNames: [String] = []
     
-    // MARK - COMPOSITIONAL LAYOUT
     
     init() {
         super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
@@ -30,7 +29,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             item.contentInsets.trailing = 15
             item.contentInsets.leading = 15
             item.contentInsets.bottom = 15
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(150)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
@@ -45,7 +44,8 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             fatalError("")
         }
         cell.configure(text: deckNames[indexPath.row])
-        
+        cell.backgroundColor = UIColor.random
+        cell.layer.cornerRadius = 20
         return cell
         
     }
@@ -56,7 +56,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         vc.deckNames = deckNames
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -71,9 +71,9 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     }
     
     func performHomeAddAction() {
-            let addViewController = NewDeckViewController() // Burada "Home" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
-            navigationController?.pushViewController(addViewController, animated: true)
-        }
+        let addViewController = NewDeckViewController() // Burada "Home" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
+        navigationController?.pushViewController(addViewController, animated: true)
+    }
     
     func fetchCurrentUserDecksData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
@@ -96,7 +96,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
                 print("No decks available for this user")
                 return
             }
-                        
+            
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")
@@ -116,7 +116,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 print("Reloaded CollectionView")
-                print("Deck Names Count: \(self.deckNames.count)") 
+                print("Deck Names Count: \(self.deckNames.count)")
             }
         }
     }
@@ -135,8 +135,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     
     
     private func addTargetButton() {
-        homePageView.newCardButton.addTarget(self, action: #selector(newCardButtonTapped), for: .touchUpInside)
-        homePageView.importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
         homePageView.infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
     }
     
@@ -145,11 +143,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func importButtonTapped() {
-        let vc = ImportViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        
-    }
+
     
     @objc func infoButtonTapped() {
         print("infoButtonTapped tapped")
@@ -157,16 +151,15 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     
     private func navigatorControllerSet() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.orange
         navigationItem.leftBarButtonItem = nil
         navigationItem.title = "Decks"
         
+        
     }
-    
     @objc func didTapLogoutButton() {
         AuthService.shared.signOut { [weak self] error in
             guard let self = self else {return}
-            if let error = error {
+            if let _ = error {
             }
             if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                 sceneDelegate.checkAuthentication()

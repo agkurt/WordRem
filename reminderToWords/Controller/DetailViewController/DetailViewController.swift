@@ -62,8 +62,7 @@ class DetailViewController: UIViewController {
     
     private func configureFirebaseData() {
         let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
-        AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) { [weak self] error in
-            guard let self = self else {return}
+        AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) {  error in
             if let error = error {
                 print("wrong data \(error.localizedDescription)")
             }else {

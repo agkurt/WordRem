@@ -18,7 +18,7 @@ class NewDeckTableViewCell: UITableViewCell {
         configureViewCell()
     }
     
-    private func configureViewCell(){
+    private func configureViewCell(){  
         setSubviews()
         setupUI()
     }
@@ -31,12 +31,13 @@ class NewDeckTableViewCell: UITableViewCell {
         deckLabel.numberOfLines = 0
         deckLabel.adjustsFontSizeToFitWidth = false
         deckLabel.anchor(top: topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
-        deckNameTextField.anchor(top: deckLabel.bottomAnchor, paddingTop: 10, bottom: bottomAnchor, paddingBottom: 5, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 350, height: 50, centerXAnchor: nil, centerYAnchor: nil)
+        deckNameTextField.anchor(top: deckLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         
         
         deckNameTextField.layer.borderWidth = 1.0
         deckNameTextField.layer.borderColor = UIColor(hex: "#3B5BA5").cgColor
         deckNameTextField.layer.cornerRadius = 10
+       
         
     }
     

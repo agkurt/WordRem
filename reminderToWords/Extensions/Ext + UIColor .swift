@@ -56,3 +56,14 @@ extension UIColor {
     
     static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 255)
 }
+
+extension UIColor {
+    static var random: UIColor {
+        return UIColor(
+            red: CGFloat.random(in: 0...1),
+            green: CGFloat.random(in: 0...1),
+            blue: CGFloat.random(in: 0...1),
+            alpha: 1.0
+        )
+    }
+}
