@@ -16,7 +16,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     var deckNames : [String] = []
     var deckIds : [String] = []
     var fetchedDeckNames: [String] = []
-    
+    var activityIndicator: UIActivityIndicatorView!
     
     init() {
         super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
@@ -70,8 +70,9 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         fetchCurrentUserDecksData()
     }
     
+    
     func performHomeAddAction() {
-        let addViewController = NewDeckViewController() // Burada "Home" view controller'a özel ekleme controller'ınızı oluşturun veya gösterin.
+        let addViewController = NewDeckViewController()
         navigationController?.pushViewController(addViewController, animated: true)
     }
     
@@ -80,6 +81,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             print("User is not logged in")
             return
         }
+        activityIndicator.startAnimating()
         
         let db = Firestore.firestore()
         let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
@@ -115,11 +117,13 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.activityIndicator.stopAnimating()
                 print("Reloaded CollectionView")
                 print("Deck Names Count: \(self.deckNames.count)")
             }
         }
     }
+    
     private let cellId = "cellId"
     
     private func setupUI() {
@@ -131,8 +135,16 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         addTargetButton()
         homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
         navigatorControllerSet()
+        createActivityIndicator()
     }
     
+    private func createActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .black
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+    }
     
     private func addTargetButton() {
         homePageView.infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
@@ -143,7 +155,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         navigationController?.pushViewController(vc, animated: true)
     }
     
-
     
     @objc func infoButtonTapped() {
         print("infoButtonTapped tapped")

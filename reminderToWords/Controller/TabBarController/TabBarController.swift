@@ -13,7 +13,7 @@ class TabBarController : UITabBarController {
     lazy var btnMiddle : UIButton = {
         let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         btn.setTitle("", for: .normal)
-        btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1.0)
+        btn.backgroundColor = UIColor.mainBlue
         btn.layer.cornerRadius = 30
         btn.layer.shadowColor = UIColor.black.cgColor
         btn.layer.shadowOpacity = 0.2

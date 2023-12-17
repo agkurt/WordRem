@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>&quot;Uygulama, fotoğraf çekme işlemi için kameraya erişim gerektirir. Fotoğraflarınızı çekmek için izin vermek ister misiniz?&quot;</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.twinflare.reminderToWords</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-SemiBold.ttf</string>
@@ -14,8 +16,6 @@
 		<string>Gilroy-Light.ttf</string>
 		<string>Gilroy-Medium.ttf</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.&quot; </string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -33,5 +33,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

@@ -178,11 +178,12 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , U
             cell.selectionStyle = .none
             return cell
         default:
-              let emptyCell = UITableViewCell()
-              emptyCell.backgroundColor = UIColor.white
-              emptyCell.selectionStyle = .none
-              return emptyCell
-          }
+                // Boş bir hücre dön
+                let emptyCell = UITableViewCell()
+                emptyCell.backgroundColor = UIColor.white
+                emptyCell.selectionStyle = .none
+                return emptyCell
+            }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

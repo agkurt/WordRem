@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardNameModel {
+struct CardNameModel :Decodable {
     let frontName : [String?]
     let backName : [String?]
     let cardDescription: [String?]

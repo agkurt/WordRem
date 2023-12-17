@@ -9,7 +9,6 @@ import UIKit
 
 class PasswordView : UIView {
     
-    
     let signLabel = UIComponentsHelper.createCustomLabel(text: "Change Password", size: 20, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
     let signDescriptionLabel = UIComponentsHelper.createCustomLabel(text: "Change Your Password", size: 15, labelBackGroundColor: .clear, textColor: UIColor.gray, fontName: "Poppins-Light")
     let iconImageView = UIComponentsHelper.createIconImageView()

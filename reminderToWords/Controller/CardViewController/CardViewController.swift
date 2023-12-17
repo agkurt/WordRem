@@ -8,9 +8,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwipeCellKit
 
-
-class CardViewController: UIViewController {
+class CardViewController: UICollectionViewController, SwipeCollectionViewCellDelegate {
     
     var frontName : [String] = []
     var backName : [String] = []
@@ -18,27 +18,47 @@ class CardViewController: UIViewController {
     var fetchedCardNameModels: [String] = []
     public var deckId : String = ""
     public var deckNames : [String] = []
-    let tableView = UITableView()
     var cardView = CardView()
     public var cardId :String = ""
+    var options = SwipeTableOptions()
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
+    
+    init() {
+        super.init(collectionViewLayout: CardViewController.createLayout())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionNumber, env) ->
+            NSCollectionLayoutSection? in
+            let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+            item.contentInsets.trailing = 15
+            item.contentInsets.leading = 15
+            item.contentInsets.bottom = 15
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200)), subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        options.expansionStyle = .destructive(automaticallyDelete: false)
         fetchCurrentUserDecksData()
         title = "Cards"
-        
     }
     
     private func setupTableView() {
-        configureTableView()
+        configureCollectionView()
         configureNavigationItem()
-        cardView = CardView(frame: self.view.frame)
         self.view.addSubview(cardView)
         configureCardView()
-        tableView.separatorStyle = .none
         cardView.btnMiddle.addTarget(self, action: #selector(didTapbtnMiddleButton), for: .touchUpInside)
+        
     }
     
     private func configureNavigationItem() {
@@ -79,8 +99,7 @@ class CardViewController: UIViewController {
                 self.cardDescription.append(deletedCardDescription)
             }
             
-            // TableView'i yenile
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
@@ -97,12 +116,12 @@ class CardViewController: UIViewController {
         }
     }
     
-    private func configureTableView() {
-        tableView.delegate  = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        tableView.pin(to: view)
-        tableView.register(CardTableViewCell.self, forCellReuseIdentifier: "cardCell")
+    private func configureCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+        collectionView.pin(to: view)
+        collectionView.register(CardTableViewCell.self, forCellWithReuseIdentifier: "cardCell")
     }
     
     func performCardAddAction() {
@@ -115,8 +134,8 @@ class CardViewController: UIViewController {
         NSLayoutConstraint.activate([
             cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cardView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor),
-            cardView.widthAnchor.constraint(equalToConstant: 200),
-            cardView.heightAnchor.constraint(equalToConstant: 100)
+            cardView.widthAnchor.constraint(equalToConstant: 60),
+            cardView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
@@ -130,6 +149,8 @@ class CardViewController: UIViewController {
             
         }
     }
+    
+    
     
     func fetchCurrentUserDecksData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
@@ -172,10 +193,50 @@ class CardViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
-                print("Reloaded TableView")
+                self.collectionView.reloadData()
+                print("Reloaded CollectionView")
                 print("Card Name Count: \(self.fetchedCardNameModels.count)")
             }
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return frontName.count
+    }
+
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
+            fatalError("")
+        }
+        cell.delegate = self
+        cell.backgroundColor = UIColor.random
+        cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
+        cell.layer.cornerRadius = 20
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            self.frontName.remove(at: indexPath.row)
+            self.backName.remove(at: indexPath.row)
+            self.cardDescription.remove(at: indexPath.row)
+            action.fulfill(with: .delete)
+        }
+        deleteAction.image = UIImage(named: "delete")
+        
+        return [deleteAction]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
+    }
+
 }
+

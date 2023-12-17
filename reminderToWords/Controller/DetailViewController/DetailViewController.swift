@@ -60,6 +60,8 @@ class DetailViewController: UIViewController {
         configureFirebaseData()
     }
     
+   
+    
     private func configureFirebaseData() {
         let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
         AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) {  error in
@@ -67,7 +69,6 @@ class DetailViewController: UIViewController {
                 print("wrong data \(error.localizedDescription)")
             }else {
                 print("successfuly saved data")
-                
             }
         }
         DispatchQueue.main.async { [weak self] in

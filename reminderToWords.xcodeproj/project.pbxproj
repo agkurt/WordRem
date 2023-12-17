@@ -73,10 +73,11 @@
 		E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559D2AF2D840006F2612 /* CardViewController.swift */; };
 		E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87E559F2AF2DB46006F2612 /* CardView.swift */; };
 		E882A4B42B287AF6006B795C /* Ext + CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */; };
-		E882A4B72B28C242006B795C /* RecycleBinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E882A4B62B28C242006B795C /* RecycleBinController.swift */; };
 		E88B60602AE7FBC70005649A /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = E88B605F2AE7FBC70005649A /* UIOnboarding */; };
 		E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60622AE7FC020005649A /* OnboardingViewController.swift */; };
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
+		E88F541C2B2E486200903336 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E88F541B2B2E486200903336 /* SwipeCellKit */; };
+		E89413612B2F10B800A44B76 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E89413602B2F10B800A44B76 /* FirebaseMessaging */; };
 		E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */; };
 		E8BD25B62AFBD7A7009E6597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BD25B52AFBD7A7009E6597 /* GoogleService-Info.plist */; };
 		E8BD25B92AFBD926009E6597 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25B82AFBD926009E6597 /* FirebaseAnalytics */; };
@@ -191,9 +192,9 @@
 		E87E559D2AF2D840006F2612 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		E87E559F2AF2DB46006F2612 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + CardViewController.swift"; sourceTree = "<group>"; };
-		E882A4B62B28C242006B795C /* RecycleBinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinController.swift; sourceTree = "<group>"; };
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		E89413622B2F115100A44B76 /* reminderToWords.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = reminderToWords.entitlements; sourceTree = "<group>"; };
 		E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		E8BD25B52AFBD7A7009E6597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8BD25CA2AFC3586009E6597 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -224,8 +225,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E89413612B2F10B800A44B76 /* FirebaseMessaging in Frameworks */,
 				E8BD25C32AFBD926009E6597 /* FirebaseDatabaseSwift in Frameworks */,
 				E8BD25C12AFBD926009E6597 /* FirebaseDatabase in Frameworks */,
+				E88F541C2B2E486200903336 /* SwipeCellKit in Frameworks */,
 				E8BD25BB2AFBD926009E6597 /* FirebaseAnalyticsSwift in Frameworks */,
 				E8BD25C92AFBD926009E6597 /* FirebaseStorage in Frameworks */,
 				E8BD25BF2AFBD926009E6597 /* FirebaseAuth in Frameworks */,
@@ -338,7 +341,6 @@
 			children = (
 				E8690FAF2B2A5FC3004EAA12 /* ProfileViewController */,
 				E84E4FFA2B29192500EA2266 /* TabBarController */,
-				E882A4B52B28C236006B795C /* RecycleBinController */,
 				E8D75F152AF9816A00CD4857 /* LoginHomeController */,
 				E858E1A82AD83D4800E37212 /* HomePageVC */,
 				E87E559C2AF2D817006F2612 /* CardViewController */,
@@ -509,14 +511,6 @@
 			path = CardViewController;
 			sourceTree = "<group>";
 		};
-		E882A4B52B28C236006B795C /* RecycleBinController */ = {
-			isa = PBXGroup;
-			children = (
-				E882A4B62B28C242006B795C /* RecycleBinController.swift */,
-			);
-			path = RecycleBinController;
-			sourceTree = "<group>";
-		};
 		E88B60612AE7FBF00005649A /* OnboardingVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +578,7 @@
 		E8E358BF2AD755CB00EE32E6 /* reminderToWords */ = {
 			isa = PBXGroup;
 			children = (
+				E89413622B2F115100A44B76 /* reminderToWords.entitlements */,
 				E8690FB02B2A832B004EAA12 /* GilroyFont */,
 				E858E17D2AD824EC00E37212 /* Helpers */,
 				E858E1742AD7619B00E37212 /* Extensions */,
@@ -651,6 +646,8 @@
 				E8BD25C42AFBD926009E6597 /* FirebaseFirestore */,
 				E8BD25C62AFBD926009E6597 /* FirebaseFirestoreSwift */,
 				E8BD25C82AFBD926009E6597 /* FirebaseStorage */,
+				E88F541B2B2E486200903336 /* SwipeCellKit */,
+				E89413602B2F10B800A44B76 /* FirebaseMessaging */,
 			);
 			productName = reminderToWords;
 			productReference = E8E358BD2AD755CB00EE32E6 /* reminderToWords.app */;
@@ -727,6 +724,7 @@
 			packageReferences = (
 				E88B605E2AE7FBC60005649A /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 				E8BD25B72AFBD926009E6597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E88F541A2B2E486200903336 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = E8E358BE2AD755CB00EE32E6 /* Products */;
 			projectDirPath = "";
@@ -820,7 +818,6 @@
 				E8EDEDDE2B10104B0051E511 /* CardTableViewCell.swift in Sources */,
 				E8698B152AEB2A8900CC7144 /* DetailViewController.swift in Sources */,
 				E84E4FF92B29181A00EA2266 /* Ext + HomePageCollectionView.swift in Sources */,
-				E882A4B72B28C242006B795C /* RecycleBinController.swift in Sources */,
 				E83FFE412ADE8B0F00C9A01A /* NewDeckViewController.swift in Sources */,
 				E8E358C52AD755CB00EE32E6 /* SplashScreenViewController.swift in Sources */,
 				E88B60632AE7FC020005649A /* OnboardingViewController.swift in Sources */,
@@ -1024,6 +1021,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = reminderToWords/reminderToWords.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1031,7 +1029,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Uygulama, fotoğraf çekme işlemi için kameraya erişim gerektirir. Fotoğraflarınızı çekmek için izin vermek ister misiniz?\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.\" ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1059,6 +1058,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = reminderToWords/reminderToWords.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1066,7 +1066,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Uygulama, fotoğraf çekme işlemi için kameraya erişim gerektirir. Fotoğraflarınızı çekmek için izin vermek ister misiniz?\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.\" ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1211,6 +1212,14 @@
 				minimumVersion = 2.0.3;
 			};
 		};
+		E88F541A2B2E486200903336 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
 		E8BD25B72AFBD926009E6597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1226,6 +1235,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E88B605E2AE7FBC60005649A /* XCRemoteSwiftPackageReference "UIOnboarding" */;
 			productName = UIOnboarding;
+		};
+		E88F541B2B2E486200903336 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E88F541A2B2E486200903336 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
+		E89413602B2F10B800A44B76 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8BD25B72AFBD926009E6597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		E8BD25B82AFBD926009E6597 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

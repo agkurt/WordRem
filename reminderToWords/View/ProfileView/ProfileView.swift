@@ -11,15 +11,15 @@ class ProfileView: UIView {
     
     let logoutButton = UIComponentsHelper.createCustomButton(buttonTitle: "Logout", titleColor:UIColor.red, buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Bold")
     let emailLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
-    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
-    let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor(hex: "#fe989b", alpha: 1.0), UIColorName: "Gilroy-Bold")
+    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
+    let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
     let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome User", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Gilroy-Bold")
-    let changeEmailButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Email", titleColor: UIColor.white, buttonBackGroundColor: UIColor(hex: "#fe989b", alpha: 1.0), UIColorName: "Gilroy-Bold")
+    let changeEmailButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Email", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
     
     
     lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: "#fe989b", alpha: 1.0)
+        view.backgroundColor = UIColor.mainBlue
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
         view.addSubview(welcomeLabel)

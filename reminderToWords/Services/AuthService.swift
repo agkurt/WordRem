@@ -12,8 +12,8 @@ import FirebaseFirestore
 
 class AuthService {
     
-    var vc = CardViewController()
     public static let shared = AuthService()
+    var vc = CardViewController()
     var deckId : [String] = []
     public func registerUser(with userRequest:RegisterUserRequest, completion : @escaping (Bool,Error?) -> Void) {
         let username = userRequest.username ?? ""
