@@ -102,7 +102,10 @@ class AuthService {
         }
         
         let db = Firestore.firestore()
-        let data : [String:Any] = ["frontName": cardNameDataModel.frontName, "backName":cardNameDataModel.backName,"cardDescription":cardNameDataModel.cardDescription]
+        let data : [String:Any] = ["frontName": cardNameDataModel.frontName,
+                                   "backName":cardNameDataModel.backName,
+                                   "cardDescription":cardNameDataModel.cardDescription,
+                                   "cardId": cardNameDataModel.cardId]
         
         db.collection("users").document(uid).collection("decks").document(deckId).collection("cardName")
             .addDocument(data: data) { error in

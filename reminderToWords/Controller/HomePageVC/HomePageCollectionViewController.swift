@@ -99,6 +99,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
                 return
             }
             
+            
             for document in snapshot.documents {
                 let deckData = document.data()
                 print("Deck Document ID: \(document.documentID), Data: \(deckData)")

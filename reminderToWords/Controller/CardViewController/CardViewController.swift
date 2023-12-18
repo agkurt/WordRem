@@ -8,9 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import SwipeCellKit
 
-class CardViewController: UICollectionViewController, SwipeCollectionViewCellDelegate {
+class CardViewController: UICollectionViewController {
     
     var frontName : [String] = []
     var backName : [String] = []
@@ -18,9 +17,9 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
     var fetchedCardNameModels: [String] = []
     public var deckId : String = ""
     public var deckNames : [String] = []
+    var selectedCells: Set<Int> = []
     var cardView = CardView()
     public var cardId :String = ""
-    var options = SwipeTableOptions()
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
     
     init() {
@@ -47,7 +46,6 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        options.expansionStyle = .destructive(automaticallyDelete: false)
         fetchCurrentUserDecksData()
         title = "Cards"
     }
@@ -62,50 +60,45 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
     }
     
     private func configureNavigationItem() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Undo", style: .plain, target: self, action: #selector(undoButton))
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
+        navigationItem.rightBarButtonItems = [
+            editButtonItem,
+            UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapTrashButton))
+
+        ]
     }
     
-    @objc private func undoButton() {
-        fetchedFirebaseDeletedItemsData()
+    @objc private func didTapTrashButton(_ sender : UIButton) {
+        print("tıklandı")
     }
     
-    func fetchedFirebaseDeletedItemsData() {
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
-            print("User is not logged in")
-            return
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        collectionView.allowsMultipleSelection = editing
+        
+        collectionView.indexPathsForSelectedItems?.forEach({ (indexPath) in
+            collectionView.deselectItem(at: indexPath, animated: false)
+        })
+        collectionView.indexPathsForVisibleItems.forEach { (indexPath) in
+            let cell = collectionView.cellForItem(at: indexPath) as! CardTableViewCell
+            cell.isEditing = editing
         }
-        
-        let db = Firestore.firestore()
-        let deletedItemsRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("deletedItems")
-        
-        deletedItemsRef.getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error fetching deleted items: \(error.localizedDescription)")
-                return
+       
+    }
+    private func deleteSelectedItems(_ sender: UIBarButtonItem) {
+        if let selectedItems = collectionView.indexPathsForSelectedItems {
+            let items = selectedItems.map { $0.item }.sorted().reversed()
+            for item in items {
+                fetchedCardNameModels.remove(at: item)
             }
-            
-            guard let snapshot = snapshot else { return }
-            
-            for document in snapshot.documents {
-                let deletedFrontName = document.get("frontName") as? String ?? ""
-                let deletedBackName = document.get("backName") as? String ?? ""
-                let deletedCardDescription = document.get("cardDescription") as? String ?? ""
-                
-                document.reference.delete()
-                
-                self.frontName.append(deletedFrontName)
-                self.backName.append(deletedBackName)
-                self.cardDescription.append(deletedCardDescription)
-            }
-            
-            self.collectionView.reloadData()
         }
     }
+    
+    
     
     func update(with deckId: String) {
         self.deckId = deckId
-        
     }
     
     @objc private func didtapBackButton() {
@@ -144,13 +137,12 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
             guard let self = self else {return}
             let vc = DetailViewController()
             vc.deckId = self.deckId
+            vc.cardId = self.cardId
             vc.deckName = self.deckNames
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }
-    
-    
     
     func fetchCurrentUserDecksData() {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
@@ -176,7 +168,9 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
             
             for document in snapshot.documents {
                 let deckData = document.data()
-                print("Deck Document ID: \(document.documentID), Data: \(deckData)")
+                cardId = document.documentID
+                print("selamss - \(cardId)")
+                print("Card Document ID: \(document.documentID), Data: \(deckData)")
                 
                 if let frontNames = deckData["frontName"] as? [String],
                    let backNames = deckData["backName"] as? [String],
@@ -203,40 +197,24 @@ class CardViewController: UICollectionViewController, SwipeCollectionViewCellDel
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return frontName.count
     }
-
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
             fatalError("")
         }
-        cell.delegate = self
+        cell.word.text = fetchedCardNameModels[indexPath.row]
+        cell.isEditing = isEditing
         cell.backgroundColor = UIColor.random
         cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
         cell.layer.cornerRadius = 20
         return cell
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            self.frontName.remove(at: indexPath.row)
-            self.backName.remove(at: indexPath.row)
-            self.cardDescription.remove(at: indexPath.row)
-            action.fulfill(with: .delete)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isEditing {
+            let selectedData = fetchedCardNameModels[indexPath.row]
         }
-        deleteAction.image = UIImage(named: "delete")
-        
-        return [deleteAction]
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        options.transitionStyle = .border
-        return options
     }
 
 }
-

@@ -11,4 +11,5 @@ struct CardNameModel :Decodable {
     let frontName : [String?]
     let backName : [String?]
     let cardDescription: [String?]
+    let cardId : String
 }

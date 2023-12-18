@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     public var homePageVc = HomePageCollectionViewController()
     private var tableView = UITableView()
     public var deckId :String = ""
+    public var cardId : String = ""
     private let identifier = "detailCell"
     
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class DetailViewController: UIViewController {
    
     
     private func configureFirebaseData() {
-        let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
+        let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription, cardId: cardId)
         AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) {  error in
             if let error = error {
                 print("wrong data \(error.localizedDescription)")
@@ -74,6 +75,7 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             let vc = CardViewController()
+            vc.cardId = self.cardId
             vc.deckId = self.deckId
             navigationController?.pushViewController(vc, animated: true)
         }
