@@ -10,7 +10,7 @@ import UIKit
 class CardView: UIView {
     
     lazy var btnMiddle : UIButton = {
-        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let btn = UIButton()
         btn.setTitle("", for: .normal)
         btn.backgroundColor = UIColor.mainBlue
         btn.layer.cornerRadius = 30
@@ -25,7 +25,6 @@ class CardView: UIView {
         super.init(frame: frame)
         configureView()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

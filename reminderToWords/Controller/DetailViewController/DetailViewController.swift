@@ -75,7 +75,6 @@ class DetailViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
             let vc = CardViewController()
-            vc.cardId = self.cardId
             vc.deckId = self.deckId
             navigationController?.pushViewController(vc, animated: true)
         }

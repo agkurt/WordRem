@@ -112,4 +112,91 @@ class AuthService {
                 completion(error)
             }
     }
+    public func fetchCurrentUserDecksData(completion: @escaping ([String]?, [String]?, Error?) -> Void) {
+            guard let currentUserUID = Auth.auth().currentUser?.uid else {
+                completion(nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+                return
+            }
+            
+            let db = Firestore.firestore()
+            let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
+            
+            userDecksRef.getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(nil, nil, error)
+                    return
+                }
+                
+                var fetchedDeckNames = [String]()
+                var deckIds = [String]()
+                
+                for document in snapshot?.documents ?? [] {
+                    let deckData = document.data()
+                    if let deckNameArray = deckData["deckName"] as? [String] {
+                        for deckName in deckNameArray {
+                            fetchedDeckNames.append(deckName)
+                            deckIds.append(document.documentID)
+                        }
+                    }
+                }
+                
+                completion(fetchedDeckNames, deckIds, nil)
+            }
+        }
+    
+    public func fetchCurrentUserCardsData(deckId: String, completion: @escaping ([String]?, [String]?, [String]?,String?, Error?) -> Void) {
+           guard let currentUserUID = Auth.auth().currentUser?.uid else {
+               completion(nil, nil, nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+               return
+           }
+           
+           let db = Firestore.firestore()
+           let userDecksRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName")
+           
+           userDecksRef.getDocuments { (snapshot, error) in
+               if let error = error {
+                   completion(nil, nil, nil,nil , error)
+                   return
+               }
+               
+               var cardIds = ""
+               var frontNames = [String]()
+               var backNames = [String]()
+               var cardDescriptions = [String]()
+               
+               for document in snapshot?.documents ?? [] {
+                   let deckData = document.data()
+                   if let frontNameArray = deckData["frontName"] as? [String],
+                      let backNameArray = deckData["backName"] as? [String],
+                      let cardDescriptionArray = deckData["cardDescription"] as? [String] {
+                       
+                       frontNames.append(contentsOf: frontNameArray)
+                       backNames.append(contentsOf: backNameArray)
+                       cardDescriptions.append(contentsOf: cardDescriptionArray)
+                       cardIds.append(document.documentID)
+                   }
+               }
+               
+               completion(frontNames, backNames, cardDescriptions, cardIds ,nil)
+           }
+       }
+    
+    func deleteCardFromFirebase(cardID: String, completion: @escaping (Error?) -> Void) {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userCardRef = db.collection("users").document(currentUserUID).collection("cards").document(cardID)
+        
+        userCardRef.delete { error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            completion(nil) // No error, deletion successful
+        }
+    }
+
 }

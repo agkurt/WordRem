@@ -220,7 +220,7 @@ extension NewDeckViewController : TextFieldDelegate {
             print("Tüm alanları doldurunuz")
         } else {
             let vc = TabBarController()
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.popViewController(animated: true)
         }
     }
     

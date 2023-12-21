@@ -67,12 +67,15 @@ class TabBarController : UITabBarController {
         self.tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
     }
     
-    func addSomeTabItems() {
+    func addSomeTabItems() { // burayı incele
+    
         let vc1 = HomePageCollectionViewController()
+        let navigationController = UINavigationController(rootViewController: vc1)
         let vc2 = ProfileViewController()
+        let navigationController2 = UINavigationController(rootViewController: vc2)
         vc1.title = "Home"
         vc2.title = "Profile"
-        setViewControllers([vc1, vc2], animated: false)
+        setViewControllers([vc1, navigationController2], animated: false)
         guard let items = tabBar.items else { return}
         items[0].image = UIImage(systemName: "house.fill")
         items[1].image = UIImage(systemName: "star.fill")

@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         fetchEmailAndUsernameData()
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func setupView() {

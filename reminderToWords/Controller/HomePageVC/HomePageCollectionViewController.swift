@@ -11,7 +11,6 @@ import Firebase
 
 class HomePageCollectionViewController : UICollectionViewController,UITabBarDelegate {
     
-    var homePageView : HomePageView!
     let newdeckvc = NewDeckViewController()
     var deckNames : [String] = []
     var deckIds : [String] = []
@@ -46,6 +45,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         cell.configure(text: deckNames[indexPath.row])
         cell.backgroundColor = UIColor.random
         cell.layer.cornerRadius = 20
+        
         return cell
         
     }
@@ -68,62 +68,29 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         collectionView.dataSource = self
         setupUI()
         fetchCurrentUserDecksData()
+        
     }
     
+    private func fetchCurrentUserDecksData() {
+        AuthService.shared.fetchCurrentUserDecksData { fetchedDeckNames, deckIds, error in
+            if let error = error {
+                print("Error fetching deck data: \(error.localizedDescription)")
+                return
+            }
+            
+            if let fetchedDeckNames = fetchedDeckNames, let deckIds = deckIds {
+                self.deckNames = fetchedDeckNames
+                self.deckIds = deckIds
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     func performHomeAddAction() {
         let addViewController = NewDeckViewController()
         navigationController?.pushViewController(addViewController, animated: true)
     }
     
-    func fetchCurrentUserDecksData() {
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
-            print("User is not logged in")
-            return
-        }
-        activityIndicator.startAnimating()
-        
-        let db = Firestore.firestore()
-        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
-        
-        userDecksRef.getDocuments { [weak self] (snapshot, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error fetching user decks: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let snapshot = snapshot else {
-                print("No decks available for this user")
-                return
-            }
-            
-            
-            for document in snapshot.documents {
-                let deckData = document.data()
-                print("Deck Document ID: \(document.documentID), Data: \(deckData)")
-                
-                if let deckNameArray = deckData["deckName"] as? [String] {
-                    for deckName in deckNameArray {
-                        fetchedDeckNames.append(deckName)
-                        deckIds.append(document.documentID)
-                        print("deckID: \(deckIds)")
-                    }
-                }
-            }
-            
-            self.deckNames = fetchedDeckNames
-            print("Fetched Deck Names: \(self.deckNames)")
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.activityIndicator.stopAnimating()
-                print("Reloaded CollectionView")
-                print("Deck Names Count: \(self.deckNames.count)")
-            }
-        }
-    }
     
     private let cellId = "cellId"
     
@@ -131,10 +98,7 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckCell")
-        homePageView = HomePageView(frame: self.view.frame)
-        self.view.addSubview(homePageView)
-        addTargetButton()
-        homePageView.anchor(top: nil, paddingTop: 0, bottom: view.bottomAnchor, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 370, height: 80, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
+               
         navigatorControllerSet()
         createActivityIndicator()
     }
@@ -147,10 +111,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         activityIndicator.center = view.center
     }
     
-    private func addTargetButton() {
-        homePageView.infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-    }
-    
     @objc func newCardButtonTapped() {
         let vc = NewDeckViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -161,13 +121,13 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         print("infoButtonTapped tapped")
     }
     
+    // incele
     private func navigatorControllerSet() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(didTapLogoutButton))
         navigationItem.leftBarButtonItem = nil
         navigationItem.title = "Decks"
-        
-        
     }
+    
     @objc func didTapLogoutButton() {
         AuthService.shared.signOut { [weak self] error in
             guard let self = self else {return}

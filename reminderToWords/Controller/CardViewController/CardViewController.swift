@@ -8,19 +8,22 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwipeCellKit
+
 
 class CardViewController: UICollectionViewController {
-    
+
     var frontName : [String] = []
     var backName : [String] = []
     var cardDescription : [String] = []
-    var fetchedCardNameModels: [String] = []
     public var deckId : String = ""
     public var deckNames : [String] = []
-    var selectedCells: Set<Int> = []
     var cardView = CardView()
-    public var cardId :String = ""
+    public var cardIds : String = ""
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
+    var showingFront = true
+    let refreshController = UIRefreshControl()
+    
     
     init() {
         super.init(collectionViewLayout: CardViewController.createLayout())
@@ -46,8 +49,7 @@ class CardViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        fetchCurrentUserDecksData()
-        title = "Cards"
+        fetchCurrentUserCardsData()
     }
     
     private func setupTableView() {
@@ -61,41 +63,20 @@ class CardViewController: UICollectionViewController {
     
     private func configureNavigationItem() {
         navigationItem.leftBarButtonItem =
-            UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
+        UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
         navigationItem.rightBarButtonItems = [
-            editButtonItem,
-            UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapTrashButton))
-
+            //editButtonItem,
+            UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapRecycleButton))
+            
         ]
     }
     
-    @objc private func didTapTrashButton(_ sender : UIButton) {
-        print("tıklandı")
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        collectionView.allowsMultipleSelection = editing
+    @objc private func didTapRecycleButton() {
+        let vc = RecycleBinController()
+        vc.deckId = deckId
+        navigationController?.pushViewController(vc, animated: true)
         
-        collectionView.indexPathsForSelectedItems?.forEach({ (indexPath) in
-            collectionView.deselectItem(at: indexPath, animated: false)
-        })
-        collectionView.indexPathsForVisibleItems.forEach { (indexPath) in
-            let cell = collectionView.cellForItem(at: indexPath) as! CardTableViewCell
-            cell.isEditing = editing
-        }
-       
     }
-    private func deleteSelectedItems(_ sender: UIBarButtonItem) {
-        if let selectedItems = collectionView.indexPathsForSelectedItems {
-            let items = selectedItems.map { $0.item }.sorted().reversed()
-            for item in items {
-                fetchedCardNameModels.remove(at: item)
-            }
-        }
-    }
-    
-    
     
     func update(with deckId: String) {
         self.deckId = deckId
@@ -104,8 +85,7 @@ class CardViewController: UICollectionViewController {
     @objc private func didtapBackButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
-            let vc = TabBarController()
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.popToRootViewController(animated: true)
         }
     }
     
@@ -115,6 +95,7 @@ class CardViewController: UICollectionViewController {
         view.addSubview(collectionView)
         collectionView.pin(to: view)
         collectionView.register(CardTableViewCell.self, forCellWithReuseIdentifier: "cardCell")
+        collectionView.refreshControl?.endRefreshing()
     }
     
     func performCardAddAction() {
@@ -137,84 +118,126 @@ class CardViewController: UICollectionViewController {
             guard let self = self else {return}
             let vc = DetailViewController()
             vc.deckId = self.deckId
-            vc.cardId = self.cardId
             vc.deckName = self.deckNames
+            vc.cardId = self.cardIds
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }
     
-    func fetchCurrentUserDecksData() {
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
-            print("User is not logged in")
-            return
-        }
-        
-        let db = Firestore.firestore()
-        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName")
-        
-        userDecksRef.getDocuments { [weak self] (snapshot, error) in
-            guard let self = self else { return }
-            
+    func fetchCurrentUserCardsData() {
+        AuthService.shared.fetchCurrentUserCardsData(deckId: deckId) { frontNames, backNames, cardDescriptions,cardIds ,error  in
             if let error = error {
-                print("Error fetching deck data: \(error.localizedDescription)")
+                // Hata durumunu ele al
+                print("Error fetching card data: \(error.localizedDescription)")
                 return
             }
             
-            guard let snapshot = snapshot else {
-                print("Deck not found")
-                return
-            }
-            
-            for document in snapshot.documents {
-                let deckData = document.data()
-                cardId = document.documentID
-                print("selamss - \(cardId)")
-                print("Card Document ID: \(document.documentID), Data: \(deckData)")
+            if let frontNames = frontNames, let backNames = backNames, let cardDescriptions = cardDescriptions, let cardIds = cardIds {
+                self.frontName = frontNames
+                self.backName = backNames
+                self.cardDescription = cardDescriptions
+                self.cardIds = cardIds
                 
-                if let frontNames = deckData["frontName"] as? [String],
-                   let backNames = deckData["backName"] as? [String],
-                   let cardDescriptions = deckData["cardDescription"] as? [String] {
-                    
-                    self.fetchedCardNameModels.append(contentsOf: frontNames)
-                    self.fetchedCardNameModels.append(contentsOf: backNames)
-                    self.fetchedCardNameModels.append(contentsOf: cardDescriptions)
-                    
-                    self.frontName.append(contentsOf: frontNames)
-                    self.backName.append(contentsOf: backNames)
-                    self.cardDescription.append(contentsOf: cardDescriptions)
-                    
-                }
-            }
-            DispatchQueue.main.async {
+                //                NotificationProvider.scheduleNotification(title: "WordMean", date: <#T##Date#>, id: <#T##String#>, word: <#T##String#>, wordMean: <#T##String#>, wordDescription: <#T##String#>)
                 self.collectionView.reloadData()
-                print("Reloaded CollectionView")
-                print("Card Name Count: \(self.fetchedCardNameModels.count)")
             }
         }
+    }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        collectionView.allowsMultipleSelection = editing
+        collectionView.indexPathsForVisibleItems.forEach { indexPath in
+            if let cell = collectionView.cellForItem(at: indexPath) as? CardTableViewCell {
+                cell.isEditing = editing
+            }
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
+            fatalError("")
+        }
+        cell.delegate = self
+        
+        
+        cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
+        cell.isEditing = isEditing
+        cell.word.isHidden = false
+        cell.wordMean.isHidden = true
+        cell.wordDescription.isHidden = true
+        cell.backgroundColor = UIColor.random
+        cell.layer.cornerRadius = 20
+        return cell
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("cardIds içeriği \(cardIds)")
+       
+            guard let cell = collectionView.cellForItem(at: indexPath) as?
+                    CardTableViewCell else {return}
+            
+            UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromTop, animations: {
+                if self.showingFront {
+                    cell.wordMean.text = self.backName[indexPath.row]
+                    cell.wordDescription.text = self.cardDescription[indexPath.row]
+                    
+                    cell.word.isHidden = true
+                    cell.wordMean.isHidden = false
+                    cell.wordDescription.isHidden = false
+                    
+                    self.showingFront = false
+                } else {
+                    cell.word.text = self.frontName[indexPath.row]
+                    cell.wordDescription.text = ""
+                    
+                    cell.word.isHidden = false
+                    cell.wordMean.isHidden = true
+                    cell.wordDescription.isHidden = true
+                    
+                    self.showingFront = true
+                }
+            }, completion: nil)
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return frontName.count
     }
     
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
-            fatalError("")
+}
+
+extension CardViewController : SwipeCollectionViewCellDelegate {
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            AuthService.shared.deleteCardFromFirebase(cardID: self.cardIds) { error in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                    return
+                }
+                self.frontName.remove(at: indexPath.row)
+                self.backName.remove(at: indexPath.row)
+                self.cardDescription.remove(at: indexPath.row)
+                collectionView.reloadData()
+                action.fulfill(with: .delete)
+                action.image = UIImage(named: "delete")
+            }
         }
-        cell.word.text = fetchedCardNameModels[indexPath.row]
-        cell.isEditing = isEditing
-        cell.backgroundColor = UIColor.random
-        cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
-        cell.layer.cornerRadius = 20
-        return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isEditing {
-            let selectedData = fetchedCardNameModels[indexPath.row]
-        }
+        
+        return [deleteAction]
     }
 
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
+    }
+    
 }
+    
+   
