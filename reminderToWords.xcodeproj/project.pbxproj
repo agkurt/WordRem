@@ -13,8 +13,7 @@
 		E82C3E422B34D78D003052EE /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E412B34D78D003052EE /* NewDeckViewController.swift */; };
 		E82C3E442B34E17A003052EE /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E432B34E17A003052EE /* ReminderManager.swift */; };
 		E82C3E462B34E199003052EE /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E452B34E199003052EE /* TaskModel.swift */; };
-		E82C3E482B3508B9003052EE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E472B3508B9003052EE /* ActivityIndicator.swift */; };
-		E82C3E4A2B350D34003052EE /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E492B350D34003052EE /* ThemeColor.swift */; };
+		E82C3E4C2B35560E003052EE /* NotificationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E4B2B35560E003052EE /* NotificationExt.swift */; };
 		E83328132B2CE703006302E6 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83328122B2CE703006302E6 /* PasswordView.swift */; };
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
@@ -85,7 +84,7 @@
 		E89E69A52B33545E00E4725E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A42B33545E00E4725E /* NotificationProvider.swift */; };
 		E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */; };
 		E8BD25B62AFBD7A7009E6597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BD25B52AFBD7A7009E6597 /* GoogleService-Info.plist */; };
-		E8BD25B92AFBD926009E6597 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25B82AFBD926009E6597 /* FirebaseAnalytics */; };
+		E8BD25B92AFBD926009E6597 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25B82AFBD926009E6597 /* FirebaseAnalytics */; settings = {ATTRIBUTES = (Required, ); }; };
 		E8BD25BB2AFBD926009E6597 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25BA2AFBD926009E6597 /* FirebaseAnalyticsSwift */; };
 		E8BD25BD2AFBD926009E6597 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25BC2AFBD926009E6597 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		E8BD25BF2AFBD926009E6597 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E8BD25BE2AFBD926009E6597 /* FirebaseAuth */; };
@@ -137,8 +136,7 @@
 		E82C3E412B34D78D003052EE /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		E82C3E432B34E17A003052EE /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		E82C3E452B34E199003052EE /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
-		E82C3E472B3508B9003052EE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		E82C3E492B350D34003052EE /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		E82C3E4B2B35560E003052EE /* NotificationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExt.swift; sourceTree = "<group>"; };
 		E83328122B2CE703006302E6 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -369,6 +367,7 @@
 				E858E1752AD7622000E37212 /* Ext + UIColor .swift */,
 				E882A4B32B287AF6006B795C /* Ext + CardViewController.swift */,
 				E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */,
+				E82C3E4B2B35560E003052EE /* NotificationExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -382,8 +381,6 @@
 				E8BD25CC2AFC9437009E6597 /* AlertManager.swift */,
 				E89E69A42B33545E00E4725E /* NotificationProvider.swift */,
 				E82C3E432B34E17A003052EE /* ReminderManager.swift */,
-				E82C3E472B3508B9003052EE /* ActivityIndicator.swift */,
-				E82C3E492B350D34003052EE /* ThemeColor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -858,15 +855,14 @@
 				E8698B1A2AEBFDB900CC7144 /* DetailTableViewCell.swift in Sources */,
 				E858E1A72AD83D4400E37212 /* HomePageCollectionViewController.swift in Sources */,
 				E8BD25D12AFCA024009E6597 /* ForgotPasswordView.swift in Sources */,
-				E82C3E482B3508B9003052EE /* ActivityIndicator.swift in Sources */,
 				E82420BE2ADFF45E00B6993D /* NewDeckTableViewCell.swift in Sources */,
 				E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */,
+				E82C3E4C2B35560E003052EE /* NotificationExt.swift in Sources */,
 				E8D75F192AF981B600CD4857 /* RegisterViewController.swift in Sources */,
 				E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
 				E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */,
 				E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */,
-				E82C3E4A2B350D34003052EE /* ThemeColor.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E82C3E462B34E199003052EE /* TaskModel.swift in Sources */,
 				E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */,
@@ -1058,6 +1054,8 @@
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Uygulama, fotoğraf çekme işlemi için kameraya erişim gerektirir. Fotoğraflarınızı çekmek için izin vermek ister misiniz?\"";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Uygulamamız, size yakın olan etkinlikleri bildirmek için konumunuzu kullanır.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Uygulamamız, arka planda da size yakın olan etkinlikleri bildirmek için konumunuzu kullanır.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.\" ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1068,7 +1066,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1095,6 +1093,8 @@
 				INFOPLIST_FILE = reminderToWords/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WordRem;
 				INFOPLIST_KEY_NSCameraUsageDescription = "\"Uygulama, fotoğraf çekme işlemi için kameraya erişim gerektirir. Fotoğraflarınızı çekmek için izin vermek ister misiniz?\"";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Uygulamamız, size yakın olan etkinlikleri bildirmek için konumunuzu kullanır.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Uygulamamız, arka planda da size yakın olan etkinlikleri bildirmek için konumunuzu kullanır.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Uygulama, fotoğraf galerisine erişim sağlamak için fotoğrafları profil resmi olarak ayarlamak için gereklidir.\" ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1105,7 +1105,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.twinflare.reminderToWords;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

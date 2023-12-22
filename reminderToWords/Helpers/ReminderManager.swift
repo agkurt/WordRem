@@ -34,7 +34,7 @@ class ReminderManager {
     func create(reminder: Reminder) {
         allReminders.insert(reminder, at: 0)
         if let dueDate = reminder.dueDate {
-            NotificationProvider.scheduleNotification(title: reminder.title, date: dueDate, id: reminder.id, frontName: reminder.frontName)
+            NotificationProvider.scheduleNotification(title: reminder.title, date: dueDate, id: reminder.id)
         }
     }
 
@@ -70,4 +70,5 @@ class ReminderManager {
             print("Error loading reminders: \(error)")
         }
     }
+    
 }

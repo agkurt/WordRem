@@ -10,20 +10,19 @@ import UIKit
 import UserNotifications
 
 class NotificationProvider {
-    static func scheduleNotification(title: String, date: Date, id: String, frontName: String) { // Bu satırı değiştirin
+    static func scheduleNotification(title: String, date: Date, id: String) { // Bu satırı değiştirin
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             if settings.authorizationStatus == .authorized {
-                createNotification(title: title, date: date, id: id, frontName: frontName) // Bu satırı değiştirin
+                createNotification(title: title, date: date, id: id) // Bu satırı değiştirin
             } else {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge,.sound]) { success,error  in
                     if success {
-                        createNotification(title: title, date: date, id: id, frontName: frontName) // Bu satırı değiştirin
+                        createNotification(title: title, date: date, id: id) // Bu satırı değiştirin
                     }
                 }
             }
         }
     }
-
 
     static func cancelNotification( identifiers: String) {
         let center = UNUserNotificationCenter.current()
@@ -31,7 +30,7 @@ class NotificationProvider {
     }
     
 
-    static func createNotification(title: String, date: Date, id: String,frontName: String) {
+    static func createNotification(title: String, date: Date, id: String) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.sound = UNNotificationSound.default

@@ -12,5 +12,4 @@ struct Reminder: Codable {
     var title: String
     var dueDate: Date?
     var isCompleted: Bool = false
-    var frontName :String
 }

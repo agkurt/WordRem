@@ -11,9 +11,9 @@ class ProfileView: UIView {
     
     let logoutButton = UIComponentsHelper.createCustomButton(buttonTitle: "Logout", titleColor:UIColor.red, buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Bold")
     let emailLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
-    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Bold")
-    let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
-    let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome ", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.mainBlue, fontName: "Gilroy-Bold")
+    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.init(hex: "#00B4D8"), fontName: "Gilroy-Bold")
+    let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor.init(hex: "#00B4D8"), UIColorName: "Gilroy-Bold")
+    let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome ", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.init(hex: "#00B4D8"), fontName: "Gilroy-Bold")
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -79,8 +79,8 @@ class ProfileView: UIView {
         let mailIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: mailIconSize, height: mailIconSize))
         
         mailIcon.contentMode = .scaleAspectFit
-        mailIcon.image = UIImage(named: "email")
-        mailIcon.tintColor = .blue
+        mailIcon.image = UIImage(systemName: "envelope.circle.fill")
+        mailIcon.tintColor = UIColor.init(hex: "#00B4D8")
         mailIcon.translatesAutoresizingMaskIntoConstraints = false
         addSubview(mailIcon)
         

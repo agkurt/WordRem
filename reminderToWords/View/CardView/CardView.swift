@@ -12,18 +12,23 @@ class CardView: UIView {
     lazy var btnMiddle : UIButton = {
         let btn = UIButton()
         btn.setTitle("", for: .normal)
-        btn.backgroundColor = UIColor.mainBlue
         btn.layer.cornerRadius = 30
-        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowColor = UIColor.white.cgColor
         btn.layer.shadowOpacity = 0.2
         btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        btn.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        btn.backgroundColor = .white // Arka plan rengini ayarla
+        btn.tintColor = UIColor(hex: "#00B4D8", alpha: 1.0)
+
+        
         return btn
     }()
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
+        
     }
     
     required init?(coder: NSCoder) {

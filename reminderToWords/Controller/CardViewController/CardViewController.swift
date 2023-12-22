@@ -19,18 +19,20 @@ class CardViewController: UICollectionViewController {
     public var deckId : String = ""
     public var deckNames : [String] = []
     var cardView = CardView()
+    public var recycleBinId : [String] = []
     public var cardId: [String] = []
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
     var showingFront = true
     var activityIndicator =  UIActivityIndicatorView()
     var loadingView = UIView()
     
+    
     private lazy var emptyLabel : UILabel = {
        let label = UILabel()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.text = "Hiç kart eklemedin, hemen bir kart ekle ve ezberlemeye başla ☻"
+        label.text = "Create Your First Card ☻"
         label.textColor = .gray
         label.center = view.center
         return label
@@ -62,6 +64,7 @@ class CardViewController: UICollectionViewController {
         setupTableView()
         print("\(deckId)")
         print("buraya bak cardview cardıd\(cardId)")
+        print("buraya bak cardview recycleBinId\(recycleBinId)")
         showSpinner()
         configureActivityIndicator()
     }
@@ -86,7 +89,7 @@ class CardViewController: UICollectionViewController {
         UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
         navigationItem.rightBarButtonItems = [
             //editButtonItem,
-            UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"), style: .plain, target: self, action: #selector(didTapRecycleButton))
+            UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"), style: .plain, target: self, action: #selector(didTapRecycleButton)),
             
         ]
     }
@@ -125,7 +128,6 @@ class CardViewController: UICollectionViewController {
         view.addSubview(collectionView)
         collectionView.pin(to: view)
         collectionView.register(CardTableViewCell.self, forCellWithReuseIdentifier: "cardCell")
-        collectionView.refreshControl?.endRefreshing()
     }
     
     func performCardAddAction() {
@@ -182,7 +184,6 @@ class CardViewController: UICollectionViewController {
         AuthService.shared.fetchCurrentUserCardsData(deckId: deckId) { frontNames, backNames, cardDescriptions,cardIds ,error  in
             if let error = error {
                 self.hideSpinner()
-                // Hata durumunu ele al
                 print("Error fetching card data: \(error.localizedDescription)")
                 return
             }
@@ -203,12 +204,11 @@ class CardViewController: UICollectionViewController {
             fatalError("")
         }
         cell.delegate = self
-        
         cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
         cell.word.isHidden = false
         cell.wordMean.isHidden = true
         cell.wordDescription.isHidden = true
-        cell.backgroundColor = UIColor.random
+        cell.backgroundColor = UIColor.next
         cell.layer.cornerRadius = 20
         return cell
     }
@@ -219,7 +219,7 @@ class CardViewController: UICollectionViewController {
             guard let cell = collectionView.cellForItem(at: indexPath) as?
                     CardTableViewCell else {return}
             
-            UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromTop, animations: {
+            UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 if self.showingFront {
                     cell.wordMean.text = self.backName[indexPath.row]
                     cell.wordDescription.text = self.cardDescription[indexPath.row]
@@ -258,7 +258,7 @@ extension CardViewController : SwipeCollectionViewCellDelegate {
         guard orientation == .right else { return nil }
         let cardNameModel = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            AuthService.shared.deleteCardFromFirebase(cardNameModel, cardID: self.cardId[indexPath.row], deckId: self.deckId) { error in
+            AuthService.shared.deleteCardFromFirebase(cardNameModel, cardID: self.cardId[indexPath.row], deckId: self.deckId, recycleBinId: self.recycleBinId) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class DeckCellCollectionViewCell: UICollectionViewCell {
+class DeckCellCollectionViewCell: SwipeCollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

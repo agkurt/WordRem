@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import Firebase
+import SwipeCellKit
 
 class HomePageCollectionViewController : UICollectionViewController,UITabBarDelegate {
     
@@ -23,13 +24,12 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     }
     
     private lazy var emptyLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.text = "Hiç kartlık eklemedin, hemen bir kartlık ekle ve kelimelerini oluştur ☻"
+        label.numberOfLines = 3
+        label.text = "Create Your First Deck ☻"
         label.textColor = .gray
-        label.center = view.center
         return label
     }()
     
@@ -59,8 +59,9 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "deckCell", for: indexPath) as?  DeckCellCollectionViewCell else {
             fatalError("")
         }
+        cell.delegate = self
         cell.configure(text: deckNames[indexPath.row])
-        cell.backgroundColor = UIColor.random
+        cell.backgroundColor = UIColor.next
         cell.layer.cornerRadius = 20
         return cell
         
@@ -85,13 +86,14 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     }
     
     private func configureActivityIndicator() {
-
+        
         view.addSubview(activityIndicator)
         activityIndicator.style = .large
         view.addSubview(loadingView)
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
         
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -101,8 +103,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
             
             loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
         ])
     }
@@ -119,7 +119,6 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         setupUI()
         configureActivityIndicator()
         showSpinner()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +175,8 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     }
     
     
+    
+    
     @objc func infoButtonTapped() {
         print("infoButtonTapped tapped")
     }
@@ -205,3 +206,37 @@ extension HomePageCollectionViewController:TextFieldDelegate {
         self.deckNames = deckNames
     }
 }
+
+extension HomePageCollectionViewController : SwipeCollectionViewCellDelegate {
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        let dataModel = DataModel(deckName: deckNames)
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            AuthService.shared.deleteDeckFromFirebase(dataModel, deckId: self.deckIds[indexPath.row]) { error in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+            
+            self.deckNames.remove(at: indexPath.row)
+            self.deckIds.remove(at: indexPath.row)
+            action.fulfill(with: .delete)
+            action.image = UIImage(named: "delete")
+        }
+        
+        deleteAction.image = UIImage(named: "delete")
+        
+        return [deleteAction]
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
+    }
+}
+

@@ -185,35 +185,35 @@ class AuthService {
         }
     }
     
-    func deleteCardFromFirebase(_ cardNameDataModel: CardNameModel, cardID: String, deckId: String, completion: @escaping (Error?) -> Void) {
+    func deleteCardFromFirebase(_ cardNameDataModel: CardNameModel, cardID: String, deckId: String,recycleBinId:[String]?, completion: @escaping (Error?) -> Void) {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
             completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
             return
         }
         
         let db = Firestore.firestore()
+        var recycleBinId = [String]()
         
         let userCardRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName").document(cardID)
         let userCardRef2 = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("deletedItems").document(cardID)
         
-        // cardName koleksiyonundan belgeyi oku
         userCardRef.getDocument { document, error in
             if let document = document, document.exists {
-                // deleteItems koleksiyonuna belgeyi kopyala
                 if let data = document.data() {
                     userCardRef2.setData(data) { error in
                         if let error = error {
-                            completion(error) // Kopyalama hatası
+                            completion(error)
                             return
                         }
-                        // Belge kopyalandı, şimdi orijinal belgeyi sil
                         userCardRef.delete { error in
                             if let error = error {
                                 print("Firestore Error: \(error.localizedDescription)")
-                                completion(error) // Silme hatası
+                                recycleBinId.append(document.documentID)
+                                print("buraya bakssss \(recycleBinId)")
+                                completion(error)
                                 return
                             }
-                            completion(nil) // Her şey başarılı
+                            completion(nil)
                         }
                     }
                 }
@@ -222,6 +222,37 @@ class AuthService {
             }
         }
     }
-
     
+    func deleteSuccessItemFromToFirebase(deckId: String,recycleBinId: String) {
+        let db = Firestore.firestore()
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {return}
+        
+        let ref = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("deletedItems").document(recycleBinId)
+        
+        ref.delete() { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteDeckFromFirebase(_ DataModel: DataModel, deckId: String, completion: @escaping (Error?) -> Void) {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        let userCardRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId)
+        
+        userCardRef.delete { error in
+            if let error = error {
+                print("Firestore Error: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            completion(nil)
+        }
+    }
 }

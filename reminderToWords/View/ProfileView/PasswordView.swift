@@ -37,10 +37,11 @@ class PasswordView : ForgotPasswordView { // UIView
         signLabel.anchor(top:iconImageView.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 250, height: 25, centerXAnchor: centerXAnchor, centerYAnchor:nil)
         signDescriptionLabel.anchor(top:signLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 250, height: 20, centerXAnchor: centerXAnchor, centerYAnchor:nil)
         emailTextField.anchor(top: signDescriptionLabel.bottomAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
-        signUpButton.anchor(top: emailTextField.bottomAnchor, paddingTop: 20, bottom:nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 350, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
+        signUpButton.anchor(top: emailTextField.bottomAnchor, paddingTop: 20, bottom:nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 250, height: 60, centerXAnchor: centerXAnchor, centerYAnchor:nil)
       
         
         emailTextField.layer.cornerRadius = 20
+        signUpButton.layer.cornerRadius = 20
         
         
     }

@@ -13,8 +13,8 @@ import FirebaseFirestore
 class SuccessCardController : UICollectionViewController {
     
     public var deckId : String = ""
-    private var recycleBinId = ""
     private var recycleData: [String:Any] = [:]
+    var recycleBinId = ""
     private var recycleModel : [String] = []
     private var word : [String] = []
     private var wordMean : [String] = []
@@ -26,7 +26,7 @@ class SuccessCardController : UICollectionViewController {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.text = "Hiç ezberlediğin kart yok, geriye dön kartlarını oluştur ve ezberle☻"
+        label.text = "You don't have any cards memorized, go back and create your cards and memorize them ☻"
         label.textColor = .gray
         label.center = view.center
         return label
@@ -90,8 +90,8 @@ class SuccessCardController : UICollectionViewController {
                 return
             }
             
+    
             for document in snapshot.documents {
-                recycleBinId = document.documentID
                 recycleData = document.data()
                 if let frontName = recycleData["frontName"] as? [String],
                    let backName = recycleData["backName"] as? [String],
@@ -99,12 +99,14 @@ class SuccessCardController : UICollectionViewController {
                     word.append(contentsOf: frontName)
                     wordMean.append(contentsOf: backName)
                     wordDescription.append(contentsOf: cardDescription)
+                    recycleBinId.append(document.documentID)
                 }
                 
             }
             collectionView.reloadData()
         }
     }
+    
 }
 
 extension SuccessCardController {
@@ -122,9 +124,8 @@ extension SuccessCardController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recycleCell", for: indexPath) as? SuccessCardViewCell else {
             fatalError("wrong identifier")
         }
-        
         cell.configure(word[indexPath.row],wordMean[indexPath.row], wordDescription[indexPath.row])
-        cell.backgroundColor = UIColor.random
+        cell.backgroundColor = UIColor.next
         cell.word.isHidden = false
         cell.wordMean.isHidden = true
         cell.wordDescription.isHidden = true
@@ -158,3 +159,5 @@ extension SuccessCardController {
         }, completion: nil)
     }
 }
+
+   

@@ -11,8 +11,9 @@ protocol SendTextFieldDelegate : AnyObject{
     func sendTextField(_ frontName :[String],_ backName :[String],_ cardDescription : [String],_ fetchedCardNameModels : [String], _ cardId: String)
 }
 
-class DetailViewController: UIViewController {
-        
+class DetailViewController: UIViewController,SendTextFieldDelegate {
+
+    
     private var frontName : [String] = [""]
     private var backName : [String] = [""]
     private var cardDescription : [String] = [""]
@@ -23,26 +24,62 @@ class DetailViewController: UIViewController {
     public var deckId :String = ""
     public var cardId : [String] = []
     private let identifier = "detailCell"
+    let notificationCenter = UNUserNotificationCenter.current()
+    var datePicker = UIDatePicker()
+    var reminderLabel = UILabel()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         print("detailviewcontroller deckId \(deckId)")
         print("buraya bak detailView\(cardId)")
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) {
+            (permissionGranted, error) in
+            if(!permissionGranted)
+            {
+                print("Permission Denied")
+            }
+        }
     }
     
     private func setupTableView() {
         configureTableView()
         setupCell()
-        setTableViewDelegate()  
+        setTableViewDelegate()
+        configureDataPicker()
+        tableView.isScrollEnabled = false
     }
+    
+    private func configureDataPicker() {
+        view.addSubview(datePicker)
+        view.addSubview(reminderLabel)
+        
+        reminderLabel.textColor = UIColor.black
+        reminderLabel.font = UIFont(name: "Poppins-Light", size: 15)
+        reminderLabel.text = "Reminder"
+        
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            datePicker.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            datePicker.topAnchor.constraint(equalTo: reminderLabel.bottomAnchor, constant: 10),
+            
+            reminderLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            reminderLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 310),
+        ])
+    }
+    
     
     private func configureTableView() {
         self.view.addSubview(tableView)
         tableView.pin(to: view)
         tableView.backgroundColor = .white
         configureNavigationController()
+
     }
+
     
     private func setupCell() {
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: identifier)
@@ -59,11 +96,71 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func didTapDoneButton() {
+    
+        notificationCenter.getNotificationSettings { (settings) in
+            
+            DispatchQueue.main.async
+            {
+                let title = "WordRem"
+                let message = "It's time to examine your words"
+                let date = self.datePicker.date
+                
+                if(settings.authorizationStatus == .authorized)
+                {
+                    let content = UNMutableNotificationContent()
+                    content.title = title
+                    content.body = message
+                    
+                    let dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+                    
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
+                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                    
+                    self.notificationCenter.add(request) { (error) in
+                        if(error != nil)
+                        {
+                            print("Error " + error.debugDescription)
+                            return
+                        }
+                    }
+                    let ac = UIAlertController(title: "Notification Scheduled", message: "At " + self.formattedDate(date: date), preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in}))
+                    self.present(ac, animated: true)
+                }
+                else
+                {
+                    let ac = UIAlertController(title: "Enable Notifications?", message: "To use this feature you must enable notifications in settings", preferredStyle: .alert)
+                    let goToSettings = UIAlertAction(title: "Settings", style: .default)
+                    { (_) in
+                        guard let setttingsURL = URL(string: UIApplication.openSettingsURLString)
+                        else
+                        {
+                            return
+                        }
+                        
+                        if(UIApplication.shared.canOpenURL(setttingsURL))
+                        {
+                            UIApplication.shared.open(setttingsURL) { (_) in}
+                        }
+                    }
+                    ac.addAction(goToSettings)
+                    ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in}))
+                    self.present(ac, animated: true)
+                }
+            }
+        }
         configureFirebaseData()
+
     }
     
-   
+    func formattedDate(date: Date) -> String
+    {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM y HH:mm"
+        return formatter.string(from: date)
+    }
     
+
     private func configureFirebaseData() {
         let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
         AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) {  error in
@@ -82,6 +179,8 @@ class DetailViewController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+   
+
 }
 
 extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate {
@@ -133,10 +232,6 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UI
         
         return true
     }
-}
-
-extension DetailViewController : SendTextFieldDelegate {
-    
     func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String], _ cardId : String) {
         let vc = CardViewController()
         vc.frontName = frontName
@@ -144,4 +239,6 @@ extension DetailViewController : SendTextFieldDelegate {
         vc.cardDescription = cardDescription
     }
 }
+
+
 

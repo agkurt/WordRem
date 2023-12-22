@@ -10,15 +10,12 @@ import SwipeCellKit
 
 class CardTableViewCell :SwipeCollectionViewCell {
     
-    
     public let word = UIComponentsHelper.createCustomLabel(text: "", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Poppins-SemiBold")
     let wordMean = UIComponentsHelper.createCustomLabel(text: "", size: 25, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Poppins-SemiBold")
-    let wordDescription = UIComponentsHelper.createCustomLabel(text: "", size: 15, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Poppins-SemiBold")
-    let wordLabel = UIComponentsHelper.createCustomLabel(text: "Word", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Poppins-SemiBold")
+    let wordDescription = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Poppins-SemiBold")
 
     var isFrontShowing = true
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViewCell()
@@ -27,21 +24,28 @@ class CardTableViewCell :SwipeCollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 
     private func setupViewCell() {
         addSubview(wordMean)
         addSubview(wordDescription)
         addSubview(word)
         
-        wordMean.anchor(top: topAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        wordMean.anchor(top: topAnchor, paddingTop: 20, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 0, right: rightAnchor, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         
-        wordDescription.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 25, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
+        wordDescription.anchor(top: nil, paddingTop: 0, bottom: bottomAnchor, paddingBottom: 15, left: leftAnchor, paddingLeft: 0, right: rightAnchor, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         
         word.anchor(top: nil, paddingTop: 0, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: centerYAnchor)
+        
   
-        wordDescription.numberOfLines = 3
-  
+        wordDescription.numberOfLines = 2
+        wordDescription.textAlignment = .center
+        
+        word.numberOfLines = 2
+        word.textAlignment = .center
+        
+        wordMean.numberOfLines = 2
+        wordMean.textAlignment = .center
+        
     }
     
     func configure(_ wordText: String,_ wordMeanText: String,_ wordDescriptionText: String) {
@@ -50,5 +54,3 @@ class CardTableViewCell :SwipeCollectionViewCell {
         wordDescription.text = wordDescriptionText
     }
 }
-
-

@@ -13,12 +13,12 @@ class TabBarController : UITabBarController {
     lazy var btnMiddle : UIButton = {
         let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         btn.setTitle("", for: .normal)
-        btn.backgroundColor = UIColor.mainBlue
+        btn.backgroundColor = UIColor.white
         btn.layer.cornerRadius = 30
-        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowColor = UIColor.white.cgColor
         btn.layer.shadowOpacity = 0.2
         btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        btn.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         btn.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return btn
     }()
@@ -58,13 +58,15 @@ class TabBarController : UITabBarController {
         let shape = CAShapeLayer()
         shape.path = path.cgPath
         shape.lineWidth = 3
-        shape.strokeColor = UIColor.white.cgColor
-        shape.fillColor = UIColor.white.cgColor
+        shape.strokeColor = UIColor.clear.cgColor
+        shape.fillColor = UIColor.clear.cgColor
         self.tabBar.layer.insertSublayer(shape, at: 0)
         self.tabBar.itemWidth = 40
+        self.tabBar.backgroundColor = UIColor.clear
         self.tabBar.itemPositioning = .centered
         self.tabBar.itemSpacing = 180
-        self.tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
+        
+        self.tabBar.tintColor = UIColor(hex: "#00B4D8", alpha: 1.0)
     }
     
     func addSomeTabItems() { // burayı incele

@@ -30,27 +30,25 @@ struct UIOnboardingHelper {
     static func setUpFeatures() -> Array<UIOnboardingFeature> {
         return .init([
             .init(icon: .init(named: "feature-1")!,
-                  title: "Kelimeler",
-                  description: "Kelimelerini oluştur ve kaydet."),
+                  title: "Words",
+                  description: "Create and save your words."),
             .init(icon: .init(named: "feature-2")!,
                   title: "App",
-                  description: "Sadece appi aç ve yapabileceğin en iyi pratiği yap"),
+                  description: "Just open the app and practice the best you can"),
             .init(icon: .init(named: "feature-3")!,
-                  title: "Hatırlatıcı",
-                  description: "Oluşturduğun kelimeler uygulamaya kayıtlı kalsın, her girdiğinde tekrar bak. Dilersen hatırlatma oluştur ve otomatik gör.")
+                  title: "Reminder",
+                  description: "The words you create will remain saved in the application, so look at them again every time you enter them. If you wish, create a reminder and see it automatically.")
         ])
     }
     
     static func setUpNotice() -> UIOnboardingTextViewConfiguration {
         return .init(icon: .init(named: "onboarding-notice-icon"),
                      text: "Developed and designed for members of the AGK.",
-                     linkTitle: "Learn more...",
-                     link: "https://www.lukmanascic.ch/portfolio/insignia",
                      tint: .init(named: "camou") ?? .init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0))
     }
     
     static func setUpButton() -> UIOnboardingButtonConfiguration {
-        let button = UIOnboardingButtonConfiguration(title: "Devam Et", backgroundColor: .init(named: "camou") ?? .init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0))
+        let button = UIOnboardingButtonConfiguration(title: "Continue", backgroundColor: .init(named: "camou") ?? .init(red: 0.654, green: 0.618, blue: 0.494, alpha: 1.0))
         return button
     }
 }

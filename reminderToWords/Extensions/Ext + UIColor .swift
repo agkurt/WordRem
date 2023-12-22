@@ -57,13 +57,17 @@ extension UIColor {
     static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 255)
 }
 
+
+
 extension UIColor {
-    static var random: UIColor {
-        return UIColor(
-            red: CGFloat.random(in: 0...1),
-            green: CGFloat.random(in: 0...1),
-            blue: CGFloat.random(in: 0...1),
-            alpha: 1.0
-        )
+    static var colors: [UIColor] = [UIColor.init(hex: "#0077B6"), UIColor.init(hex: "#0096C7"), UIColor.init(hex: "#00B4D8"), UIColor.init(hex: "#48CAE4"), UIColor.init(hex: "#90E0EF"), UIColor.init(hex: "#ADE8F4")]
+    static var currentIndex = 0
+    
+    static var next: UIColor {
+        let color = colors[currentIndex]
+        currentIndex = (currentIndex + 1) % colors.count
+        return color
     }
 }
+
+
