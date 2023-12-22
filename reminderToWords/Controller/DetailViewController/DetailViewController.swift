@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SendTextFieldDelegate : AnyObject{
-    func sendTextField(_ frontName :[String],_ backName :[String],_ cardDescription : [String],_ fetchedCardNameModels : [String])
+    func sendTextField(_ frontName :[String],_ backName :[String],_ cardDescription : [String],_ fetchedCardNameModels : [String], _ cardId: String)
 }
 
 class DetailViewController: UIViewController {
@@ -21,13 +21,14 @@ class DetailViewController: UIViewController {
     public var homePageVc = HomePageCollectionViewController()
     private var tableView = UITableView()
     public var deckId :String = ""
-    public var cardId : String = ""
+    public var cardId : [String] = []
     private let identifier = "detailCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         print("detailviewcontroller deckId \(deckId)")
+        print("buraya bak detailView\(cardId)")
     }
     
     private func setupTableView() {
@@ -64,7 +65,7 @@ class DetailViewController: UIViewController {
    
     
     private func configureFirebaseData() {
-        let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription, cardId: cardId)
+        let cardNameModel  = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
         AuthService.shared.addCardNameDataToFirebase(cardNameModel, deckId: deckId) {  error in
             if let error = error {
                 print("wrong data \(error.localizedDescription)")
@@ -76,6 +77,8 @@ class DetailViewController: UIViewController {
             guard let self = self else {return}
             let vc = CardViewController()
             vc.deckId = self.deckId
+            vc.cardId = self.cardId
+            print("buraya bak firebase \(cardId)")
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -133,12 +136,12 @@ extension DetailViewController : UITableViewDelegate , UITableViewDataSource, UI
 }
 
 extension DetailViewController : SendTextFieldDelegate {
-    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String]) {
+    
+    func sendTextField(_ frontName: [String], _ backName: [String], _ cardDescription: [String], _ fetchedCardNameModels: [String], _ cardId : String) {
         let vc = CardViewController()
         vc.frontName = frontName
         vc.backName = backName
         vc.cardDescription = cardDescription
-        vc.fetchedCardNameModels = fetchedCardNameModels
     }
 }
 

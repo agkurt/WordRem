@@ -105,7 +105,7 @@ class AuthService {
         let data : [String:Any] = ["frontName": cardNameDataModel.frontName,
                                    "backName":cardNameDataModel.backName,
                                    "cardDescription":cardNameDataModel.cardDescription,
-                                   "cardId": cardNameDataModel.cardId]
+                                   ]
         
         db.collection("users").document(uid).collection("decks").document(deckId).collection("cardName")
             .addDocument(data: data) { error in
@@ -136,6 +136,7 @@ class AuthService {
                         for deckName in deckNameArray {
                             fetchedDeckNames.append(deckName)
                             deckIds.append(document.documentID)
+                            print("authservice deckIds:\(deckIds)")
                         }
                     }
                 }
@@ -144,7 +145,7 @@ class AuthService {
             }
         }
     
-    public func fetchCurrentUserCardsData(deckId: String, completion: @escaping ([String]?, [String]?, [String]?,String?, Error?) -> Void) {
+    public func fetchCurrentUserCardsData(deckId: String, completion: @escaping ([String]?, [String]?, [String]?,[String]?, Error?) -> Void) {
            guard let currentUserUID = Auth.auth().currentUser?.uid else {
                completion(nil, nil, nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
                return
@@ -159,10 +160,11 @@ class AuthService {
                    return
                }
                
-               var cardIds = ""
+               var cardIds = [String]()
                var frontNames = [String]()
                var backNames = [String]()
                var cardDescriptions = [String]()
+               
                
                for document in snapshot?.documents ?? [] {
                    let deckData = document.data()
@@ -174,6 +176,8 @@ class AuthService {
                        backNames.append(contentsOf: backNameArray)
                        cardDescriptions.append(contentsOf: cardDescriptionArray)
                        cardIds.append(document.documentID)
+                       print("authservice cardIds \(cardIds)")
+                       
                    }
                }
                
@@ -181,21 +185,23 @@ class AuthService {
            }
        }
     
-    func deleteCardFromFirebase(cardID: String, completion: @escaping (Error?) -> Void) {
+    func deleteCardFromFirebase(cardID: String, deckId: String, completion: @escaping (Error?) -> Void) {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
             completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
             return
         }
         
         let db = Firestore.firestore()
-        let userCardRef = db.collection("users").document(currentUserUID).collection("cards").document(cardID)
+        let userCardRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName").document(cardID)
         
         userCardRef.delete { error in
             if let error = error {
-                completion(error)
+                // Firestore'dan dönen hata yakalanıyor
+                print("Firestore Error: \(error.localizedDescription)")
+                completion(error) // Hatanın tamamını geri dön
                 return
             }
-            completion(nil) // No error, deletion successful
+            completion(nil) // Hata yok, silme başarılı
         }
     }
 

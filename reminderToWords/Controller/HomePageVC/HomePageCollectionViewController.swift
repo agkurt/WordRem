@@ -15,7 +15,8 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     var deckNames : [String] = []
     var deckIds : [String] = []
     var fetchedDeckNames: [String] = []
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator =  UIActivityIndicatorView()
+    var loadingView = UIView()
     
     init() {
         super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
@@ -45,16 +46,49 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         cell.configure(text: deckNames[indexPath.row])
         cell.backgroundColor = UIColor.random
         cell.layer.cornerRadius = 20
-        
         return cell
         
+    }
+    
+    private func showSpinner() {
+        activityIndicator.startAnimating()
+        loadingView.isHidden = false
+    }
+    
+    private func hideSpinner() {
+        activityIndicator.stopAnimating()
+        loadingView.isHidden = true
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CardViewController()
         vc.deckId = deckIds[indexPath.row]
+        print("homepage didselect \(deckIds)")
         vc.deckNames = deckNames
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func configureActivityIndicator() {
+
+        view.addSubview(activityIndicator)
+        activityIndicator.style = .large
+        view.addSubview(loadingView)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+        ])
     }
     
     
@@ -67,14 +101,22 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         collectionView.delegate = self
         collectionView.dataSource = self
         setupUI()
-        fetchCurrentUserDecksData()
+        configureActivityIndicator()
+        showSpinner()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchCurrentUserDecksData()
+    }
+    
     
     private func fetchCurrentUserDecksData() {
         AuthService.shared.fetchCurrentUserDecksData { fetchedDeckNames, deckIds, error in
             if let error = error {
                 print("Error fetching deck data: \(error.localizedDescription)")
+                self.hideSpinner()
                 return
             }
             
@@ -82,7 +124,9 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
                 self.deckNames = fetchedDeckNames
                 self.deckIds = deckIds
                 self.collectionView.reloadData()
+                self.hideSpinner()
             }
+            
         }
     }
     
@@ -91,14 +135,13 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         navigationController?.pushViewController(addViewController, animated: true)
     }
     
-    
     private let cellId = "cellId"
     
     private func setupUI() {
         collectionView.backgroundColor = .white
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(DeckCellCollectionViewCell.self, forCellWithReuseIdentifier: "deckCell")
-               
+        
         navigatorControllerSet()
         createActivityIndicator()
     }

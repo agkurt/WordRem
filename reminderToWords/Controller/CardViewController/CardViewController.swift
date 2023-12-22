@@ -19,12 +19,12 @@ class CardViewController: UICollectionViewController {
     public var deckId : String = ""
     public var deckNames : [String] = []
     var cardView = CardView()
-    public var cardIds : String = ""
+    public var cardId: [String] = []
     var deletedItems: (frontName: String, backName: String, cardDescription: String)?
     var showingFront = true
-    let refreshController = UIRefreshControl()
-    
-    
+    var activityIndicator =  UIActivityIndicatorView()
+    var loadingView = UIView()
+
     init() {
         super.init(collectionViewLayout: CardViewController.createLayout())
     }
@@ -49,6 +49,14 @@ class CardViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        print("\(deckId)")
+        print("buraya bak cardview cardıd\(cardId)")
+        showSpinner()
+        configureActivityIndicator()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchCurrentUserCardsData()
     }
     
@@ -76,6 +84,16 @@ class CardViewController: UICollectionViewController {
         vc.deckId = deckId
         navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    private func showSpinner() {
+        activityIndicator.startAnimating()
+        loadingView.isHidden = false
+    }
+    
+    private func hideSpinner() {
+        activityIndicator.stopAnimating()
+        loadingView.isHidden = true
     }
     
     func update(with deckId: String) {
@@ -119,15 +137,39 @@ class CardViewController: UICollectionViewController {
             let vc = DetailViewController()
             vc.deckId = self.deckId
             vc.deckName = self.deckNames
-            vc.cardId = self.cardIds
+            vc.cardId = self.cardId
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }
     
+    private func configureActivityIndicator() {
+
+        view.addSubview(activityIndicator)
+        activityIndicator.style = .large
+        view.addSubview(loadingView)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+        ])
+    }
+    
     func fetchCurrentUserCardsData() {
         AuthService.shared.fetchCurrentUserCardsData(deckId: deckId) { frontNames, backNames, cardDescriptions,cardIds ,error  in
             if let error = error {
+                self.hideSpinner()
                 // Hata durumunu ele al
                 print("Error fetching card data: \(error.localizedDescription)")
                 return
@@ -137,10 +179,9 @@ class CardViewController: UICollectionViewController {
                 self.frontName = frontNames
                 self.backName = backNames
                 self.cardDescription = cardDescriptions
-                self.cardIds = cardIds
-                
-                //                NotificationProvider.scheduleNotification(title: "WordMean", date: <#T##Date#>, id: <#T##String#>, word: <#T##String#>, wordMean: <#T##String#>, wordDescription: <#T##String#>)
+                self.cardId = cardIds
                 self.collectionView.reloadData()
+                self.hideSpinner()
             }
         }
     }
@@ -160,7 +201,6 @@ class CardViewController: UICollectionViewController {
         }
         cell.delegate = self
         
-        
         cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
         cell.isEditing = isEditing
         cell.word.isHidden = false
@@ -173,8 +213,7 @@ class CardViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("cardIds içeriği \(cardIds)")
-       
+            
             guard let cell = collectionView.cellForItem(at: indexPath) as?
                     CardTableViewCell else {return}
             
@@ -182,7 +221,6 @@ class CardViewController: UICollectionViewController {
                 if self.showingFront {
                     cell.wordMean.text = self.backName[indexPath.row]
                     cell.wordDescription.text = self.cardDescription[indexPath.row]
-                    
                     cell.word.isHidden = true
                     cell.wordMean.isHidden = false
                     cell.wordDescription.isHidden = false
@@ -213,23 +251,22 @@ extension CardViewController : SwipeCollectionViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            AuthService.shared.deleteCardFromFirebase(cardID: self.cardIds) { error in
+            AuthService.shared.deleteCardFromFirebase(cardID: self.cardId[indexPath.row], deckId: self.deckId) { error in
                 if let error = error {
-                    print("\(error.localizedDescription)")
-                    return
+                    print(error.localizedDescription)
                 }
-                self.frontName.remove(at: indexPath.row)
-                self.backName.remove(at: indexPath.row)
-                self.cardDescription.remove(at: indexPath.row)
-                collectionView.reloadData()
-                action.fulfill(with: .delete)
-                action.image = UIImage(named: "delete")
             }
+            self.frontName.remove(at: indexPath.row)
+            self.backName.remove(at: indexPath.row)
+            self.cardDescription.remove(at: indexPath.row)
+            action.fulfill(with: .delete)
+            action.image = UIImage(named: "delete")
         }
+        
+        deleteAction.image = UIImage(named: "delete")
         
         return [deleteAction]
     }
-
     
     func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         var options = SwipeOptions()
@@ -237,7 +274,5 @@ extension CardViewController : SwipeCollectionViewCellDelegate {
         options.transitionStyle = .border
         return options
     }
-    
 }
-    
-   
+

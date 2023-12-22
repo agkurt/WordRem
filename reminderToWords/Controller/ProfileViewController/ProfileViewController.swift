@@ -11,17 +11,22 @@ import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     
+    var activityIndicator =  UIActivityIndicatorView()
+    var loadingView = UIView()
+    
     private lazy var profileView: ProfileView = {
         let view = ProfileView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         fetchEmailAndUsernameData()
         navigationController?.navigationBar.isHidden = true
+        showSpinner()
+        configureActivityIndicator()
     }
     
     private func setupView() {
@@ -36,7 +41,6 @@ class ProfileViewController: UIViewController {
         
         profileView.logoutButton.addTarget(self, action: #selector(didTapLogoutButton), for: .touchUpInside)
         profileView.changePasswordButton.addTarget(self, action: #selector(didTapChangePasswordButton), for: .touchUpInside)
-        profileView.changeEmailButton.addTarget(self, action: #selector(didTapChangeEmailButton), for: .touchUpInside)
     }
     
     @objc func didTapChangeEmailButton() {
@@ -50,6 +54,40 @@ class ProfileViewController: UIViewController {
             self.present(vc, animated: true)
         }
     }
+    
+    private func showSpinner() {
+        activityIndicator.startAnimating()
+        loadingView.isHidden = false
+    }
+    
+    private func hideSpinner() {
+        activityIndicator.stopAnimating()
+        loadingView.isHidden = true
+    }
+    
+    private func configureActivityIndicator() {
+
+        view.addSubview(activityIndicator)
+        activityIndicator.style = .large
+        view.addSubview(loadingView)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+            loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            
+        ])
+    }
+    
 
     
     @objc func didTapLogoutButton() {
@@ -75,6 +113,7 @@ class ProfileViewController: UIViewController {
             
             if let error = error {
                 print("Error fetching user data: \(error.localizedDescription)")
+                hideSpinner()
                 return
             }
             
@@ -88,6 +127,7 @@ class ProfileViewController: UIViewController {
                 profileView.emailLabel.text = email
                 profileView.userNameLabel.text = username
                 print("User Email: \(email), Username: \(username)")
+                hideSpinner()
             }
         }
     }

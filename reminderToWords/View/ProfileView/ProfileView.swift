@@ -11,11 +11,9 @@ class ProfileView: UIView {
     
     let logoutButton = UIComponentsHelper.createCustomButton(buttonTitle: "Logout", titleColor:UIColor.red, buttonBackGroundColor: UIColor.clear, UIColorName: "Gilroy-Bold")
     let emailLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
-    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 20, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Light")
+    let userNameLabel = UIComponentsHelper.createCustomLabel(text: "", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.black, fontName: "Gilroy-Bold")
     let changePasswordButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Password", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
-    let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome User", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Gilroy-Bold")
-    let changeEmailButton = UIComponentsHelper.createCustomButton(buttonTitle: "Change Email", titleColor: UIColor.white, buttonBackGroundColor: UIColor.mainBlue, UIColorName: "Gilroy-Bold")
-    
+    let welcomeLabel = UIComponentsHelper.createCustomLabel(text: "Welcome", size: 30, labelBackGroundColor: UIColor.clear, textColor: UIColor.white, fontName: "Gilroy-Bold")
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -27,6 +25,8 @@ class ProfileView: UIView {
         profileImageView.anchor(top: view.topAnchor, paddingTop: 88, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 120, height: 120,centerXAnchor: view.centerXAnchor,centerYAnchor: nil)
         welcomeLabel.anchor(top: profileImageView.bottomAnchor, paddingTop: 25, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0,centerXAnchor: view.centerXAnchor,centerYAnchor: nil)
         
+        welcomeLabel.text! += userNameLabel.text!
+        
         profileImageView.layer.cornerRadius = 120 / 2
         
         return view
@@ -34,7 +34,7 @@ class ProfileView: UIView {
     
     let profileImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "photo1")
+        iv.image = UIImage(named: "profile")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.borderWidth = 3
@@ -61,7 +61,6 @@ class ProfileView: UIView {
         addSubview(emailLabel)
         addSubview(changePasswordButton)
         addSubview(userNameLabel)
-        addSubview(changeEmailButton)
         createSystemIcon()
         
         containerView.anchor(top: topAnchor, paddingTop: 0, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 0, right: rightAnchor, paddingRight: 0, width: 0, height: 300, centerXAnchor: nil, centerYAnchor: nil)
@@ -69,7 +68,6 @@ class ProfileView: UIView {
         emailLabel.anchor(top: containerView.bottomAnchor, paddingTop: 45, bottom: nil, paddingBottom: 0, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         changePasswordButton.anchor(top: nil, paddingTop: 0, bottom: logoutButton.topAnchor, paddingBottom: 10, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 200, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         userNameLabel.anchor(top: emailLabel.bottomAnchor, paddingTop: 25, bottom: nil, paddingBottom: 0, left: emailLabel.leftAnchor, paddingLeft:0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
-        changeEmailButton.anchor(top:nil, paddingTop: 0, bottom: changePasswordButton.topAnchor, paddingBottom: 10, left: nil, paddingLeft:0, right: nil, paddingRight: 0, width: 200, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
         
         userNameLabel.textAlignment = .left
         
