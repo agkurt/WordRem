@@ -11,7 +11,6 @@ import UIKit
 
 protocol ImagePickerDelegate : AnyObject {
     func didTapButton(_ button : UIButton)
-    func didSelectButtonInCell(_ cell : DeckImageTableViewCell)
 }
 protocol TextFieldDelegate: AnyObject {
     func sendTextFieldValue(deckNames: [String])
@@ -20,7 +19,6 @@ protocol TextFieldDelegate: AnyObject {
 final class NewDeckViewController : UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     private var tableView = UITableView()
-    private var newDeckView = NewDeckView()
     var deckNames : [String] = [""]
     var selectedImage: UIImage?
     
@@ -30,61 +28,14 @@ final class NewDeckViewController : UIViewController, UIImagePickerControllerDel
     }
     
     private func configureTableView() {
-        self.view.addSubview(newDeckView)
         self.view.addSubview(tableView)
         setTableViewDelegate()
         tableView.register(NewDeckTableViewCell.self, forCellReuseIdentifier: "deckCell")
-        tableView.register(DeckColorTableViewCell.self, forCellReuseIdentifier: "colorCell")
-        tableView.register(DeckImageTableViewCell.self, forCellReuseIdentifier: "deckImage")
         configureNavigationbar()
-        newDeckView.pin(to: view)
-        configureView()
+        tableView.pin(to: view)
         tableView.separatorStyle = .none
         title = "New Deck"
         view.backgroundColor = UIColor.white
-    }
-    
-    private func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
-        return imagePicker
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            selectedImage = image
-            if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? DeckImageTableViewCell {
-                cell.updateImage(image)
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    public func showImagePickerOptions() {
-        let alertVC = UIAlertController(title: "Pick a Photo", message: "Choose a picture from Library or camera", preferredStyle: .actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
-            guard let self = self else {return}
-            let cameraImagePicker = self.imagePicker (sourceType: .camera)
-            cameraImagePicker.delegate = self
-            self.present(cameraImagePicker, animated: true) {
-                //TODO
-            }
-        }
-        
-        let libraryAction = UIAlertAction(title: "Library", style: .default) { [weak self] (action) in //Capture self to avoid retain cycles
-            guard let self = self else {return}
-            let libraryImagePicker = self.imagePicker (sourceType: .photoLibrary)
-            libraryImagePicker.delegate = self
-            self.present(libraryImagePicker, animated: true) {
-            }
-        }
-        let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
-        alertVC.addAction(cameraAction)
-        alertVC.addAction(libraryAction)
-        alertVC.addAction(cancelAction)
-        self.present(alertVC, animated: true, completion: nil)
     }
     
     func checkEmptyTextField() {
@@ -115,25 +66,6 @@ final class NewDeckViewController : UIViewController, UIImagePickerControllerDel
     
     @objc func cancelButtonTapped() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    private func configureView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.layer.cornerRadius = 10
-        tableView.layer.borderWidth = 1.0
-        tableView.layer.borderColor = UIColor.systemGray.cgColor
-        tableView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        tableView.layer.shadowOpacity = 1.0
-        tableView.layer.shadowRadius = 2
-        tableView.layer.masksToBounds = true
-        tableView.clipsToBounds = true
-        tableView.backgroundColor = .white
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
-            tableView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor , constant: 20),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor , constant: -140),
-        ])
     }
     
     private func configureNavigationbar() {
@@ -198,20 +130,6 @@ extension NewDeckViewController : UITableViewDelegate, UITableViewDataSource , U
         
     }
     
-}
-
-extension NewDeckViewController : ImagePickerDelegate {
-    
-    func didSelectButtonInCell(_ cell: DeckImageTableViewCell) {
-        showImagePickerOptions()
-    }
-    
-    func didTapButton(_ button: UIButton) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "deckImage") as? DeckImageTableViewCell else {
-            fatalError("wrong identifier")
-        }
-        cell.delegate?.didTapButton(button)
-    }
 }
 
 extension NewDeckViewController : TextFieldDelegate {

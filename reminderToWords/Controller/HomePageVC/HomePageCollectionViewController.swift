@@ -22,6 +22,17 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
         super.init(collectionViewLayout: HomePageCollectionViewController.createLayout())
     }
     
+    private lazy var emptyLabel : UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.text = "Hiç kartlık eklemedin, hemen bir kartlık ekle ve kelimelerini oluştur ☻"
+        label.textColor = .gray
+        label.center = view.center
+        return label
+    }()
+    
     static func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) ->
             NSCollectionLayoutSection? in
@@ -36,6 +47,11 @@ class HomePageCollectionViewController : UICollectionViewController,UITabBarDele
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if deckNames.isEmpty {
+            collectionView.backgroundView = emptyLabel
+        } else {
+            collectionView.backgroundView = nil
+        }
         return deckNames.count
     }
     

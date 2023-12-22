@@ -24,7 +24,18 @@ class CardViewController: UICollectionViewController {
     var showingFront = true
     var activityIndicator =  UIActivityIndicatorView()
     var loadingView = UIView()
-
+    
+    private lazy var emptyLabel : UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.text = "Hiç kart eklemedin, hemen bir kart ekle ve ezberlemeye başla ☻"
+        label.textColor = .gray
+        label.center = view.center
+        return label
+    }()
+    
     init() {
         super.init(collectionViewLayout: CardViewController.createLayout())
     }
@@ -68,19 +79,20 @@ class CardViewController: UICollectionViewController {
         cardView.btnMiddle.addTarget(self, action: #selector(didTapbtnMiddleButton), for: .touchUpInside)
         
     }
+
     
     private func configureNavigationItem() {
         navigationItem.leftBarButtonItem =
         UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didtapBackButton))
         navigationItem.rightBarButtonItems = [
             //editButtonItem,
-            UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(didTapRecycleButton))
+            UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"), style: .plain, target: self, action: #selector(didTapRecycleButton))
             
         ]
     }
     
     @objc private func didTapRecycleButton() {
-        let vc = RecycleBinController()
+        let vc = SuccessCardController()
         vc.deckId = deckId
         navigationController?.pushViewController(vc, animated: true)
         
@@ -185,15 +197,6 @@ class CardViewController: UICollectionViewController {
             }
         }
     }
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        collectionView.allowsMultipleSelection = editing
-        collectionView.indexPathsForVisibleItems.forEach { indexPath in
-            if let cell = collectionView.cellForItem(at: indexPath) as? CardTableViewCell {
-                cell.isEditing = editing
-            }
-        }
-    }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
@@ -202,7 +205,6 @@ class CardViewController: UICollectionViewController {
         cell.delegate = self
         
         cell.configure(frontName[indexPath.row], backName[indexPath.row], cardDescription[indexPath.row])
-        cell.isEditing = isEditing
         cell.word.isHidden = false
         cell.wordMean.isHidden = true
         cell.wordDescription.isHidden = true
@@ -241,6 +243,11 @@ class CardViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if frontName.isEmpty {
+            collectionView.backgroundView = emptyLabel
+        } else {
+            collectionView.backgroundView = nil
+        }
         return frontName.count
     }
     
@@ -249,9 +256,9 @@ class CardViewController: UICollectionViewController {
 extension CardViewController : SwipeCollectionViewCellDelegate {
     func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-        
+        let cardNameModel = CardNameModel(frontName: frontName, backName: backName, cardDescription: cardDescription)
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            AuthService.shared.deleteCardFromFirebase(cardID: self.cardId[indexPath.row], deckId: self.deckId) { error in
+            AuthService.shared.deleteCardFromFirebase(cardNameModel, cardID: self.cardId[indexPath.row], deckId: self.deckId) { error in
                 if let error = error {
                     print(error.localizedDescription)
                 }

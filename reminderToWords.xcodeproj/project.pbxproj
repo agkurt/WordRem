@@ -14,9 +14,8 @@
 		E82C3E442B34E17A003052EE /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E432B34E17A003052EE /* ReminderManager.swift */; };
 		E82C3E462B34E199003052EE /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E452B34E199003052EE /* TaskModel.swift */; };
 		E82C3E482B3508B9003052EE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E472B3508B9003052EE /* ActivityIndicator.swift */; };
+		E82C3E4A2B350D34003052EE /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C3E492B350D34003052EE /* ThemeColor.swift */; };
 		E83328132B2CE703006302E6 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83328122B2CE703006302E6 /* PasswordView.swift */; };
-		E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */; };
-		E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */; };
 		E83FFE442ADE8EC300C9A01A /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */; };
 		E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */; };
 		E84E4FF92B29181A00EA2266 /* Ext + HomePageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */; };
@@ -81,8 +80,8 @@
 		E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */; };
 		E88F541C2B2E486200903336 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = E88F541B2B2E486200903336 /* SwipeCellKit */; };
 		E89413612B2F10B800A44B76 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E89413602B2F10B800A44B76 /* FirebaseMessaging */; };
-		E89E69A12B325B8E00E4725E /* RecycleBinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A02B325B8E00E4725E /* RecycleBinController.swift */; };
-		E89E69A32B32623200E4725E /* RecycleBinCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A22B32623200E4725E /* RecycleBinCollectionCell.swift */; };
+		E89E69A12B325B8E00E4725E /* SuccessCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A02B325B8E00E4725E /* SuccessCardController.swift */; };
+		E89E69A32B32623200E4725E /* SuccessCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A22B32623200E4725E /* SuccessCardViewCell.swift */; };
 		E89E69A52B33545E00E4725E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E69A42B33545E00E4725E /* NotificationProvider.swift */; };
 		E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */; };
 		E8BD25B62AFBD7A7009E6597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8BD25B52AFBD7A7009E6597 /* GoogleService-Info.plist */; };
@@ -139,9 +138,8 @@
 		E82C3E432B34E17A003052EE /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		E82C3E452B34E199003052EE /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		E82C3E472B3508B9003052EE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		E82C3E492B350D34003052EE /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		E83328122B2CE703006302E6 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
-		E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckColorTableViewCell.swift; sourceTree = "<group>"; };
-		E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckImageTableViewCell.swift; sourceTree = "<group>"; };
 		E83FFE432ADE8EC300C9A01A /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		E848090A2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		E84E4FF82B29181A00EA2266 /* Ext + HomePageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext + HomePageCollectionView.swift"; sourceTree = "<group>"; };
@@ -204,8 +202,8 @@
 		E88B60622AE7FC020005649A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		E88B60642AE7FEA70005649A /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
 		E89413622B2F115100A44B76 /* reminderToWords.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = reminderToWords.entitlements; sourceTree = "<group>"; };
-		E89E69A02B325B8E00E4725E /* RecycleBinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinController.swift; sourceTree = "<group>"; };
-		E89E69A22B32623200E4725E /* RecycleBinCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleBinCollectionCell.swift; sourceTree = "<group>"; };
+		E89E69A02B325B8E00E4725E /* SuccessCardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCardController.swift; sourceTree = "<group>"; };
+		E89E69A22B32623200E4725E /* SuccessCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCardViewCell.swift; sourceTree = "<group>"; };
 		E89E69A42B33545E00E4725E /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
 		E8B5DC162AFA334000047D1D /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
 		E8BD25B52AFBD7A7009E6597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -273,8 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				E82420BD2ADFF45E00B6993D /* NewDeckTableViewCell.swift */,
-				E83577B12AE09FD000C37473 /* DeckColorTableViewCell.swift */,
-				E83577B92AE150A100C37473 /* DeckImageTableViewCell.swift */,
 			);
 			path = NewDeckTableViewCell;
 			sourceTree = "<group>";
@@ -387,6 +383,7 @@
 				E89E69A42B33545E00E4725E /* NotificationProvider.swift */,
 				E82C3E432B34E17A003052EE /* ReminderManager.swift */,
 				E82C3E472B3508B9003052EE /* ActivityIndicator.swift */,
+				E82C3E492B350D34003052EE /* ThemeColor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -539,8 +536,8 @@
 		E89E699D2B325B5E00E4725E /* RecycleBinController */ = {
 			isa = PBXGroup;
 			children = (
-				E89E69A02B325B8E00E4725E /* RecycleBinController.swift */,
-				E89E69A22B32623200E4725E /* RecycleBinCollectionCell.swift */,
+				E89E69A02B325B8E00E4725E /* SuccessCardController.swift */,
+				E89E69A22B32623200E4725E /* SuccessCardViewCell.swift */,
 			);
 			path = RecycleBinController;
 			sourceTree = "<group>";
@@ -838,7 +835,6 @@
 				E858E1732AD7619700E37212 /* Ext + UIView.swift in Sources */,
 				E8BD25CF2AFCA012009E6597 /* ForgotPasswordViewController.swift in Sources */,
 				E8B5DC172AFA334000047D1D /* LoginUserRequest.swift in Sources */,
-				E83577B22AE09FD000C37473 /* DeckColorTableViewCell.swift in Sources */,
 				E8697CDD2AFABB860077A8BD /* RegisterUserRequest.swift in Sources */,
 				E8D75F172AF981AB00CD4857 /* LoginScreenViewController.swift in Sources */,
 				E8EDEDDE2B10104B0051E511 /* CardTableViewCell.swift in Sources */,
@@ -853,9 +849,9 @@
 				E8552E552B0FB81400BCDE3E /* CardNameModel.swift in Sources */,
 				E8D75F1E2AF981F800CD4857 /* RegisterView.swift in Sources */,
 				E8697CDB2AFAB9A40077A8BD /* AuthService.swift in Sources */,
-				E89E69A12B325B8E00E4725E /* RecycleBinController.swift in Sources */,
+				E89E69A12B325B8E00E4725E /* SuccessCardController.swift in Sources */,
 				E858E17C2AD8244E00E37212 /* UIComponentsHelper.swift in Sources */,
-				E89E69A32B32623200E4725E /* RecycleBinCollectionCell.swift in Sources */,
+				E89E69A32B32623200E4725E /* SuccessCardViewCell.swift in Sources */,
 				E87E559E2AF2D840006F2612 /* CardViewController.swift in Sources */,
 				E8E358C32AD755CB00EE32E6 /* SceneDelegate.swift in Sources */,
 				E83328132B2CE703006302E6 /* PasswordView.swift in Sources */,
@@ -867,10 +863,10 @@
 				E88B60652AE7FEA70005649A /* UIOnboardingHelper.swift in Sources */,
 				E8D75F192AF981B600CD4857 /* RegisterViewController.swift in Sources */,
 				E848090B2AE9AA93008FF04A /* DeckCellCollectionViewCell.swift in Sources */,
-				E83577BA2AE150A100C37473 /* DeckImageTableViewCell.swift in Sources */,
 				E858E1762AD7622000E37212 /* Ext + UIColor .swift in Sources */,
 				E87E55A02AF2DB46006F2612 /* CardView.swift in Sources */,
 				E84E4FFC2B29193500EA2266 /* TabBarController.swift in Sources */,
+				E82C3E4A2B350D34003052EE /* ThemeColor.swift in Sources */,
 				E858E1AC2AD83E3E00E37212 /* HomePageView.swift in Sources */,
 				E82C3E462B34E199003052EE /* TaskModel.swift in Sources */,
 				E8690FAE2B2A5FBE004EAA12 /* ProfileViewController.swift in Sources */,

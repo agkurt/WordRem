@@ -105,7 +105,7 @@ class AuthService {
         let data : [String:Any] = ["frontName": cardNameDataModel.frontName,
                                    "backName":cardNameDataModel.backName,
                                    "cardDescription":cardNameDataModel.cardDescription,
-                                   ]
+        ]
         
         db.collection("users").document(uid).collection("decks").document(deckId).collection("cardName")
             .addDocument(data: data) { error in
@@ -113,96 +113,115 @@ class AuthService {
             }
     }
     public func fetchCurrentUserDecksData(completion: @escaping ([String]?, [String]?, Error?) -> Void) {
-            guard let currentUserUID = Auth.auth().currentUser?.uid else {
-                completion(nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            completion(nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
+        
+        userDecksRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, nil, error)
                 return
             }
             
-            let db = Firestore.firestore()
-            let userDecksRef = db.collection("users").document(currentUserUID).collection("decks")
+            var fetchedDeckNames = [String]()
+            var deckIds = [String]()
             
-            userDecksRef.getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(nil, nil, error)
-                    return
-                }
-                
-                var fetchedDeckNames = [String]()
-                var deckIds = [String]()
-                
-                for document in snapshot?.documents ?? [] {
-                    let deckData = document.data()
-                    if let deckNameArray = deckData["deckName"] as? [String] {
-                        for deckName in deckNameArray {
-                            fetchedDeckNames.append(deckName)
-                            deckIds.append(document.documentID)
-                            print("authservice deckIds:\(deckIds)")
-                        }
+            for document in snapshot?.documents ?? [] {
+                let deckData = document.data()
+                if let deckNameArray = deckData["deckName"] as? [String] {
+                    for deckName in deckNameArray {
+                        fetchedDeckNames.append(deckName)
+                        deckIds.append(document.documentID)
+                        print("authservice deckIds:\(deckIds)")
                     }
                 }
-                
-                completion(fetchedDeckNames, deckIds, nil)
             }
+            
+            completion(fetchedDeckNames, deckIds, nil)
         }
+    }
     
     public func fetchCurrentUserCardsData(deckId: String, completion: @escaping ([String]?, [String]?, [String]?,[String]?, Error?) -> Void) {
-           guard let currentUserUID = Auth.auth().currentUser?.uid else {
-               completion(nil, nil, nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
-               return
-           }
-           
-           let db = Firestore.firestore()
-           let userDecksRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName")
-           
-           userDecksRef.getDocuments { (snapshot, error) in
-               if let error = error {
-                   completion(nil, nil, nil,nil , error)
-                   return
-               }
-               
-               var cardIds = [String]()
-               var frontNames = [String]()
-               var backNames = [String]()
-               var cardDescriptions = [String]()
-               
-               
-               for document in snapshot?.documents ?? [] {
-                   let deckData = document.data()
-                   if let frontNameArray = deckData["frontName"] as? [String],
-                      let backNameArray = deckData["backName"] as? [String],
-                      let cardDescriptionArray = deckData["cardDescription"] as? [String] {
-                       
-                       frontNames.append(contentsOf: frontNameArray)
-                       backNames.append(contentsOf: backNameArray)
-                       cardDescriptions.append(contentsOf: cardDescriptionArray)
-                       cardIds.append(document.documentID)
-                       print("authservice cardIds \(cardIds)")
-                       
-                   }
-               }
-               
-               completion(frontNames, backNames, cardDescriptions, cardIds ,nil)
-           }
-       }
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            completion(nil, nil, nil, nil, NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userDecksRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName")
+        
+        userDecksRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(nil, nil, nil,nil , error)
+                return
+            }
+            
+            var cardIds = [String]()
+            var frontNames = [String]()
+            var backNames = [String]()
+            var cardDescriptions = [String]()
+            
+            
+            for document in snapshot?.documents ?? [] {
+                let deckData = document.data()
+                if let frontNameArray = deckData["frontName"] as? [String],
+                   let backNameArray = deckData["backName"] as? [String],
+                   let cardDescriptionArray = deckData["cardDescription"] as? [String] {
+                    
+                    frontNames.append(contentsOf: frontNameArray)
+                    backNames.append(contentsOf: backNameArray)
+                    cardDescriptions.append(contentsOf: cardDescriptionArray)
+                    cardIds.append(document.documentID)
+                    print("authservice cardIds \(cardIds)")
+                    
+                }
+            }
+            
+            completion(frontNames, backNames, cardDescriptions, cardIds ,nil)
+        }
+    }
     
-    func deleteCardFromFirebase(cardID: String, deckId: String, completion: @escaping (Error?) -> Void) {
+    func deleteCardFromFirebase(_ cardNameDataModel: CardNameModel, cardID: String, deckId: String, completion: @escaping (Error?) -> Void) {
         guard let currentUserUID = Auth.auth().currentUser?.uid else {
             completion(NSError(domain: "AuthService", code: 0, userInfo: [NSLocalizedDescriptionKey: "User is not logged in"]))
             return
         }
         
         let db = Firestore.firestore()
-        let userCardRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName").document(cardID)
         
-        userCardRef.delete { error in
-            if let error = error {
-                // Firestore'dan dönen hata yakalanıyor
-                print("Firestore Error: \(error.localizedDescription)")
-                completion(error) // Hatanın tamamını geri dön
-                return
+        let userCardRef = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("cardName").document(cardID)
+        let userCardRef2 = db.collection("users").document(currentUserUID).collection("decks").document(deckId).collection("deletedItems").document(cardID)
+        
+        // cardName koleksiyonundan belgeyi oku
+        userCardRef.getDocument { document, error in
+            if let document = document, document.exists {
+                // deleteItems koleksiyonuna belgeyi kopyala
+                if let data = document.data() {
+                    userCardRef2.setData(data) { error in
+                        if let error = error {
+                            completion(error) // Kopyalama hatası
+                            return
+                        }
+                        // Belge kopyalandı, şimdi orijinal belgeyi sil
+                        userCardRef.delete { error in
+                            if let error = error {
+                                print("Firestore Error: \(error.localizedDescription)")
+                                completion(error) // Silme hatası
+                                return
+                            }
+                            completion(nil) // Her şey başarılı
+                        }
+                    }
+                }
+            } else {
+                print("Document does not exist")
             }
-            completion(nil) // Hata yok, silme başarılı
         }
     }
 
+    
 }

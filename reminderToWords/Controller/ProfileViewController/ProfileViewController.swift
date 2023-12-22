@@ -19,7 +19,26 @@ class ProfileViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
- 
+    
+//    lazy var switchButton : UISwitch = {
+//        let switchButton = UISwitch()
+//        switchButton.translatesAutoresizingMaskIntoConstraints = false
+//        // Switch button değiştiğinde çağrılacak fonksiyonu belirle
+//        switchButton.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+//        return switchButton
+//    }()
+    
+    @objc func switchChanged(_ sender: UISwitch) {
+        let appDelegate = UIApplication.shared.windows.first
+        if sender.isOn {
+            appDelegate?.overrideUserInterfaceStyle = .dark
+            return
+        }
+        appDelegate?.overrideUserInterfaceStyle = .light
+        return
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -66,13 +85,16 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureActivityIndicator() {
-
+        
         view.addSubview(activityIndicator)
         activityIndicator.style = .large
         view.addSubview(loadingView)
-        
+        //view.addSubview(switchButton)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingView.translatesAutoresizingMaskIntoConstraints = false
+        //switchButton.translatesAutoresizingMaskIntoConstraints = false
+        
+//        switchButton.anchor(top: nil, paddingTop: 0, bottom: profileView.changePasswordButton.topAnchor, paddingBottom: 10, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: view.centerXAnchor, centerYAnchor: nil)
         
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -84,11 +106,10 @@ class ProfileViewController: UIViewController {
             loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            
         ])
     }
     
-
+    
     
     @objc func didTapLogoutButton() {
         AuthService.shared.signOut { [weak self] error in
@@ -125,10 +146,13 @@ class ProfileViewController: UIViewController {
             if let email = document["email"] as? String,
                let username = document["username"] as? String {
                 profileView.emailLabel.text = email
-                profileView.userNameLabel.text = username
+                profileView.welcomeLabel.text! += username
                 print("User Email: \(email), Username: \(username)")
                 hideSpinner()
             }
         }
     }
+    
+    
+    
 }

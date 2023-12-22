@@ -9,7 +9,8 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class RecycleBinController : UICollectionViewController {
+
+class SuccessCardController : UICollectionViewController {
     
     public var deckId : String = ""
     private var recycleBinId = ""
@@ -18,6 +19,19 @@ class RecycleBinController : UICollectionViewController {
     private var word : [String] = []
     private var wordMean : [String] = []
     private var wordDescription : [String] = []
+    var showingFront = true
+    
+    private lazy var emptyLabel : UILabel = {
+       let label = UILabel()
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.text = "Hiç ezberlediğin kart yok, geriye dön kartlarını oluştur ve ezberle☻"
+        label.textColor = .gray
+        label.center = view.center
+        return label
+    }()
+
     
     init() {
         super.init(collectionViewLayout: CardViewController.createLayout())
@@ -45,15 +59,15 @@ class RecycleBinController : UICollectionViewController {
         configureCollectionView()
     }
     
-    private func configureCollectionView() {
-        collectionView.register(RecycleBinCollectionCell.self, forCellWithReuseIdentifier: "recycleCell")
-        configureNavigationItem()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchedFromFirebaseDeleteItems()
     }
     
-    private func configureNavigationItem() {
-        navigationItem.rightBarButtonItem = editButtonItem
-        
+    private func configureCollectionView() {
+        collectionView.register(SuccessCardViewCell.self, forCellWithReuseIdentifier: "recycleCell")
     }
+    
     
     private func fetchedFromFirebaseDeleteItems() {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -93,33 +107,54 @@ class RecycleBinController : UICollectionViewController {
     }
 }
 
-extension RecycleBinController {
+extension SuccessCardController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if word.isEmpty {
+            collectionView.backgroundView = emptyLabel
+        } else {
+            collectionView.backgroundView = nil
+        }
+        return word.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recycleCell", for: indexPath) as? RecycleBinCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recycleCell", for: indexPath) as? SuccessCardViewCell else {
             fatalError("wrong identifier")
         }
         
-        //cell.configure(word[indexPath.row],wordMean[indexPath.row], wordDescription[indexPath.row])
+        cell.configure(word[indexPath.row],wordMean[indexPath.row], wordDescription[indexPath.row])
         cell.backgroundColor = UIColor.random
         cell.word.isHidden = false
         cell.wordMean.isHidden = true
         cell.wordDescription.isHidden = true
-        cell.isEditing = isEditing
         cell.layer.cornerRadius = 20
         return cell
     }
     
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        collectionView.allowsMultipleSelection = editing
-        collectionView.indexPathsForVisibleItems.forEach { (indexPath) in
-            let cell = collectionView.cellForItem(at: indexPath) as! RecycleBinCollectionCell
-            cell.isEditing = editing
-        }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as?
+                SuccessCardViewCell else {return}
+        
+        UIView.transition(with: cell, duration: 0.5, options: .transitionFlipFromTop, animations: {
+            if self.showingFront {
+                cell.wordMean.text = self.wordMean[indexPath.row]
+                cell.wordDescription.text = self.wordDescription[indexPath.row]
+                cell.word.isHidden = true
+                cell.wordMean.isHidden = false
+                cell.wordDescription.isHidden = false
+                
+                self.showingFront = false
+            } else {
+                cell.word.text = self.word[indexPath.row]
+                cell.wordDescription.text = ""
+                
+                cell.word.isHidden = false
+                cell.wordMean.isHidden = true
+                cell.wordDescription.isHidden = true
+                
+                self.showingFront = true
+            }
+        }, completion: nil)
     }
 }

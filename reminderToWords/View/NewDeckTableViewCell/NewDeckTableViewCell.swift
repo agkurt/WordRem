@@ -9,8 +9,9 @@ import UIKit
 
 class NewDeckTableViewCell: UITableViewCell {
     
-    let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.init(hex: "#3B5BA5"), fontName: "Poppins-SemiBold")
+    let deckLabel = UIComponentsHelper.createCustomLabel(text: "Deck Name", size: 15, labelBackGroundColor: .clear, textColor: UIColor.black, fontName: "Poppins-Light")
     let deckNameTextField = UIComponentsHelper.createTextField(placeholder: "Enter Deck Name...", textColor : UIColor.black, backgroundColor: UIColor.clear)
+
 
     weak var delegate : TextFieldDelegate?
     
@@ -31,11 +32,11 @@ class NewDeckTableViewCell: UITableViewCell {
     private func setupUI() {
         deckLabel.numberOfLines = 0
         deckLabel.adjustsFontSizeToFitWidth = false
-        deckLabel.anchor(top: topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: nil, paddingLeft: 0, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: centerXAnchor, centerYAnchor: nil)
+        deckLabel.anchor(top: topAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
         deckNameTextField.anchor(top: deckLabel.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 50, centerXAnchor: centerXAnchor, centerYAnchor: nil)
       
         deckNameTextField.layer.borderWidth = 1.0
-        deckNameTextField.layer.borderColor = UIColor(hex: "#3B5BA5").cgColor
+        deckNameTextField.layer.borderColor = UIColor.gray.cgColor
         deckNameTextField.layer.cornerRadius = 10
   
     }

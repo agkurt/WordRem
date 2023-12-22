@@ -121,10 +121,6 @@ class DetailTableViewCell: UITableViewCell, UITextFieldDelegate {
         
         datePicker.anchor(top: switchButton.bottomAnchor, paddingTop: 10, bottom: nil, paddingBottom: 0, left: leftAnchor, paddingLeft: 10, right: nil, paddingRight: 0, width: 0, height: 0, centerXAnchor: nil, centerYAnchor: nil)
         
-        
-        
-        
-        
         frontTextField.layer.borderWidth = 1.0
         frontTextField.layer.borderColor = UIColor.gray.cgColor
         frontTextField.layer.cornerRadius = 10
