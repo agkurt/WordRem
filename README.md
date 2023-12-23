@@ -15,7 +15,8 @@ Firebase Bağlantısı: Verilerinizi güvenle saklayın ve senkronize edin.
 Giriş Ekranı: Kullanıcıların çalışmalarını kaydetmelerini sağlayan kullanıcı dostu giriş ekranı.
 WordRem, dil öğrenme deneyiminizi özelleştirerek daha etkili hale getirirken, kolay kullanımıyla da dikkat çeker. Kendi dil öğrenme yolculuğunuzda size rehberlik etmek için tasarlandı
 
-![image1 3](https://github.com/agkurt/WordRem/assets/85376292/ca94e2d3-9624-4755-94fe-0f440bd258c7 | width = 100)
+<img src="https://github.com/agkurt/WordRem/assets/85376292/ca94e2d3-9624-4755-94fe-0f440bd258c7" alt="resim açıklaması" width="200" height="150">
+
 
 
 
