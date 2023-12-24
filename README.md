@@ -2,18 +2,17 @@
 
 **About**
 
+WordRem: Learn Words, Enrich with Cards
 
-WordRem: Kelimeleri Öğren, Kartlarla Zenginleştir
+WordRem is a user-friendly application designed to make language learning more effective. You can create your own customized card holders and manage different contents on each card. For example, you can create an English card holder and show the word on the front of each card and its meaning and example sentence on the back.
 
-WordRem, dil öğrenimini daha etkili hale getirmek için tasarlanmış kullanıcı dostu bir uygulamadır. Kendi özelleştirilmiş kartlıklarınızı oluşturabilir, her bir kartta farklı içerikleri yönetebilirsiniz. Örneğin, İngilizce kartlık oluşturabilir ve her kartın ön yüzünde kelimeyi, arka yüzünde anlamını ve örnek cümlesini gösterebilirsiniz.
+Features:
 
-Özellikler:
-
-Kart Yaratma ve Yönetme: Decks oluşturun ve her birine özgü kartları ekleyin, düzenleyin veya silin.
-Çift Yüzlü Kartlar: Kartları çevirerek hem kelimeyi hem de anlamını görebilirsiniz.
-Firebase Bağlantısı: Verilerinizi güvenle saklayın ve senkronize edin.
-Giriş Ekranı: Kullanıcıların çalışmalarını kaydetmelerini sağlayan kullanıcı dostu giriş ekranı.
-WordRem, dil öğrenme deneyiminizi özelleştirerek daha etkili hale getirirken, kolay kullanımıyla da dikkat çeker. Kendi dil öğrenme yolculuğunuzda size rehberlik etmek için tasarlandı.
+Card Creation and Management: Create decks and add, edit or delete cards specific to each.
+Double-Faced Cards: By turning the cards, you can see both the word and its meaning.
+Firebase Connection: Securely store and sync your data.
+Login Screen: User-friendly login screen that allows users to save their work.
+While WordRem customizes your language learning experience and makes it more effective, it also attracts attention with its ease of use. Designed to guide you on your own language learning journey.
 
 - UIKit 
 - Programmatic 
